@@ -1,3 +1,4 @@
+#!/bin/bash
 VPN_FILE=$(ls *.ovpn 2> /dev/null | head -1)
 if [ -n "$VPN_FILE" ]; then
     echo "Importing $VPN_FILE...\n"
