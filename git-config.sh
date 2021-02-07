@@ -51,6 +51,11 @@ Do you want to overwrite it? [y/N]: "
 
         if [ "$GIT_OVERWRITE" == "1" ]; then
             clear
+            printf "
+╔════════════════════════════════════╗
+║ You're setting up your global user ║
+╚════════════════════════════════════╝
+"
             printf "Type your full name: "
             read GIT_NAME
 
@@ -62,9 +67,69 @@ Do you want to overwrite it? [y/N]: "
             git config --global pull.rebase true
         fi
     elif [ "$MENU_OPTION" == "2" ]; then
+        DIRECTORY=~/
+
+        while :
+        do
         clear
-        printf "Oops! I'll code it later..."
-        read
+            printf "Please select a directory:\n"
+            select DIRECTORY in $DIRECTORY*/;
+            do
+                test -n "$DIRECTORY" && break
+            done
+
+            printf "Do you want to select another directory inside $DIRECTORY [Y/n]?: "
+            read INSIDE_DIRECTORY
+            if [ "$INSIDE_DIRECTORY" == "n" ] || [ "$INSIDE_DIRECTORY" == "N" ]; then
+
+                break
+            fi
+        done
+
+        GIT_NAME=$(git config --file $DIRECTORY/.gitconfig user.name)
+        GIT_EMAIL=$(git config --file $DIRECTORY/.gitconfig user.email)
+        GIT_OVERWRITE=1
+
+        if [ -n "$GIT_NAME" ] || [ -n "$GIT_EMAIL" ]; then
+            clear
+            printf "
+╔════════════════════════════════════════╗
+║                 WARNING                ║
+╠════════════════════════════════════════╣
+║ You have already set up this directory ║
+╚════════════════════════════════════════╝
+User name : $GIT_NAME
+User email: $GIT_EMAIL
+
+Do you want to overwrite it? [y/N]: "
+            read GIT_OVERWRITE_INPUT
+
+            if [ "$GIT_OVERWRITE_INPUT" == "y" ] || [ "$GIT_OVERWRITE_INPUT" == "Y" ]; then
+                GIT_OVERWRITE=1
+            else
+                GIT_OVERWRITE=0
+            fi
+        fi
+
+        if [ "$GIT_OVERWRITE" == "1" ]; then
+            clear
+            printf "
+╔══════════════════════════════════════╗
+║ You're setting up your local user at ║
+  $DIRECTORY
+╚══════════════════════════════════════╝
+"
+            printf "Type your full name: "
+            read GIT_NAME
+
+            printf "Type your e-mail: "
+            read GIT_EMAIL
+
+            git config --file $DIRECTORY/.gitconfig user.name "$GIT_NAME"
+            git config --file $DIRECTORY/.gitconfig user.email "$GIT_EMAIL"
+            git config --file $DIRECTORY/.gitconfig pull.rebase true
+            git config --global --add includeif.gitdir:$DIRECTORY.path $DIRECTORY.gitconfig
+        fi
     elif [ "$MENU_OPTION" == "3" ]; then
         while :
         do
