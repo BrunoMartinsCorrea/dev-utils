@@ -129,6 +129,13 @@ Do you want to overwrite it? [y/N]: "
             git config --file $DIRECTORY/.gitconfig user.email "$GIT_EMAIL"
             git config --file $DIRECTORY/.gitconfig pull.rebase true
             git config --global --add includeif.gitdir:$DIRECTORY.path $DIRECTORY.gitconfig
+            clear
+            printf "
+╔════════════════════════════════════╗
+║    User configured successfully!   ║
+╠════════════════════════════════════╣
+║    Press any key to continue...    ║
+╚════════════════════════════════════╝"
         fi
     elif [ "$MENU_OPTION" == "3" ]; then
         while :
