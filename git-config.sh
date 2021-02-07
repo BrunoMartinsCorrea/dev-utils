@@ -136,6 +136,7 @@ Do you want to overwrite it? [y/N]: "
 ╠════════════════════════════════════╣
 ║    Press any key to continue...    ║
 ╚════════════════════════════════════╝"
+            read
         fi
     elif [ "$MENU_OPTION" == "3" ]; then
         while :
