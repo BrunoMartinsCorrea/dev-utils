@@ -1,12 +1,17 @@
 #!/bin/bash
-sudo pacman -Syyu --needed --noconfirm base-devel
+sudo pacman -Syyu --needed --noconfirm base-devel rustup
+
+# RUSTUP
+rustup install stable
+rustup default stable
+# RUSTUP
 
 cd /tmp
 git clone https://aur.archlinux.org/paru.git
 cd paru
-makepkg -si
+sudo makepkg -si
 
-paru -S --needed --noconfirm zsh ssed xclip xdotool tree vim curl net-tools openvpn zip unzip git jq tldr htop browsh-bin arandr ranger i3 python python-pip rustup elixir vala vala-lint-git ninja meson lua npm nvm go docker-compose ctop postgresql nginx jenkins terraform chef-dk minikube kubectl helm lens-bin k9s stern-bin elasticsearch logstash kibana grafana prometheus pinpoint kafka redis flatpak google-chrome intellij-idea-community-edition pycharm-community-edition android-studio visual-studio-code-bin postman-bin insomnia visualvm oh-my-zsh-git zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono ttf-ms-fonts ttf-wps-fonts telegram-desktop slack-desktop steam dbeaver android-tools android-sdk android-ndk android-emulator flutter
+paru -S --needed --noconfirm zsh ssed xclip xdotool tree vim curl net-tools openvpn zip unzip git jq tldr htop browsh-bin arandr ranger i3 python python-pip elixir vala vala-lint-git ninja meson lua npm nvm go docker-compose ctop postgresql nginx jenkins terraform chef-dk minikube kubectl helm lens-bin k9s stern-bin elasticsearch logstash kibana grafana prometheus pinpoint kafka redis flatpak google-chrome intellij-idea-community-edition pycharm-community-edition android-studio visual-studio-code-bin postman-bin insomnia visualvm oh-my-zsh-git zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono ttf-ms-fonts ttf-wps-fonts telegram-desktop slack-desktop steam dbeaver android-tools android-sdk android-ndk android-emulator flutter
 
 # FLATPAK
 flatpak install -y flathub com.wps.Office com.discordapp.Discord com.spotify.Client
@@ -81,11 +86,6 @@ sdk install gradle
 sdk install springboot
 sdk install spark
 # SDKMAN
-
-# RUSTUP
-rustup install stable
-rustup default stable
-# RUSTUP
 
 # FLUTTER
 export ANDROID_HOME=/opt/android-sdk
