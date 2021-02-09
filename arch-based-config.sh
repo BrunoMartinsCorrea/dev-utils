@@ -11,7 +11,7 @@ git clone https://aur.archlinux.org/paru.git
 cd paru
 makepkg -si
 
-paru -S --needed --noconfirm zsh ssed xclip xdotool tree vim curl net-tools openvpn zip unzip git jq tldr htop browsh-bin arandr ranger i3 python python-pip elixir vala vala-lint-git ninja meson lua npm nvm go docker-compose ctop postgresql nginx jenkins terraform chef-dk minikube kubectl helm lens-bin k9s stern-bin elasticsearch logstash kibana grafana prometheus pinpoint kafka redis flatpak google-chrome intellij-idea-community-edition pycharm-community-edition android-studio visual-studio-code-bin postman-bin insomnia visualvm oh-my-zsh-git zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono ttf-ms-fonts ttf-wps-fonts telegram-desktop slack-desktop steam dbeaver android-tools android-sdk android-ndk android-emulator flutter
+paru -S --needed --noconfirm zsh xclip tree vim curl net-tools openvpn zip unzip git jq htop python python-pip elixir npm nvm go ruby ghc cabal-install stack lua vala vala-lint-git ninja meson docker-compose ctop postgresql minikube kubectl helm k9s flatpak chromium intellij-idea-community-edition pycharm-community-edition android-studio visual-studio-code-bin postman-bin visualvm oh-my-zsh-git zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono ttf-ms-fonts ttf-wps-fonts telegram-desktop slack-desktop steam dbeaver android-tools android-sdk android-ndk android-emulator flutter
 
 # FLATPAK
 flatpak install -y flathub com.wps.Office com.discordapp.Discord com.spotify.Client
@@ -92,9 +92,3 @@ export ANDROID_HOME=/opt/android-sdk
 sudo chown -R $USER /opt/flutter
 flutter config --android-sdk $ANDROID_HOME
 # FLUTTER
-
-# KAFKA
-# sudo systemctl enable zookeeper.service
-# sudo systemctl start zookeeper.service
-# sudo kafka-server-start.sh /etc/kafka/server.properties &
-# KAFKA
