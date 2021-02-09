@@ -1,10 +1,5 @@
 #!/bin/bash
-sudo pacman -Syyu --needed --noconfirm base-devel rustup
-
-# RUSTUP
-rustup install stable
-rustup default stable
-# RUSTUP
+sudo pacman -Syyu --needed --noconfirm base-devel rust
 
 cd /tmp
 git clone https://aur.archlinux.org/paru.git
