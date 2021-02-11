@@ -9,7 +9,7 @@ makepkg -si
 paru -S --needed --noconfirm zsh xclip tree vim curl net-tools openvpn zip unzip git jq htop python python-pip erlang elixir npm nvm go nasm ruby perl clisp ghc cabal-install stack r julia php lua vala vala-lint-git ninja meson arduino arduino-avr-core heroku-cli docker-compose ctop minikube kubectl helm k9s kind flatpak chromium intellij-idea-community-edition pycharm-community-edition android-studio visual-studio-code-bin postman-bin visualvm oh-my-zsh-git zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono ttf-ms-fonts ttf-wps-fonts telegram-desktop slack-desktop steam dbeaver android-tools android-sdk android-ndk android-emulator flutter
 
 # FLATPAK
-flatpak install -y flathub com.wps.Office com.discordapp.Discord com.spotify.Client
+flatpak install -y flathub com.wps.Office com.discordapp.Discord com.spotify.Client im.riot.Riot
 # FLATPAK
 
 # ZSHELL
