@@ -54,7 +54,7 @@ sudo usermod -aG docker $USER
 # DOCKER
 
 # PYTHON
-sudo pip install pipenv autopep8 pylint awscli boto3
+sudo pip install pipenv autopep8 pylint notebook jupyterlab voila awscli boto3
 pip install --user localstack
 # PYTHON
 
