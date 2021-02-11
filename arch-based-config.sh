@@ -64,7 +64,7 @@ nvm install node
 # NVM
 
 # NPM
-sudo npm install -g yarn react-native-cli create-react-app create-next-app @nestjs/cli @vue/cli json-server
+sudo npm install -g yarn react-native-cli create-react-app create-next-app @nestjs/cli @vue/cli json-server expo-cli
 # NPM
 
 # SDKMAN
