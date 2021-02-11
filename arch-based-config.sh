@@ -6,7 +6,7 @@ git clone https://aur.archlinux.org/paru.git
 cd paru
 makepkg -si
 
-paru -S --needed --noconfirm zsh xclip tree vim curl net-tools openvpn zip unzip git jq htop python python-pip erlang elixir npm nvm go nasm ruby clisp ghc cabal-install stack r julia php lua vala vala-lint-git ninja meson heroku-cli docker-compose ctop postgresql minikube kubectl helm k9s flatpak chromium intellij-idea-community-edition pycharm-community-edition android-studio visual-studio-code-bin postman-bin visualvm oh-my-zsh-git zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono ttf-ms-fonts ttf-wps-fonts telegram-desktop slack-desktop steam dbeaver android-tools android-sdk android-ndk android-emulator flutter
+paru -S --needed --noconfirm zsh xclip tree vim curl net-tools openvpn zip unzip git jq htop python python-pip erlang elixir npm nvm go nasm ruby clisp ghc cabal-install stack r julia php lua vala vala-lint-git ninja meson heroku-cli docker-compose ctop postgresql minikube kubectl helm k9s kind flatpak chromium intellij-idea-community-edition pycharm-community-edition android-studio visual-studio-code-bin postman-bin visualvm oh-my-zsh-git zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono ttf-ms-fonts ttf-wps-fonts telegram-desktop slack-desktop steam dbeaver android-tools android-sdk android-ndk android-emulator flutter
 
 # FLATPAK
 flatpak install -y flathub com.wps.Office com.discordapp.Discord com.spotify.Client
@@ -87,3 +87,59 @@ export ANDROID_HOME=/opt/android-sdk
 sudo chown -R $USER /opt/flutter
 flutter config --android-sdk $ANDROID_HOME
 # FLUTTER
+
+# VSCODE
+code --install-extension vscoss.vscode-ansible
+code --install-extension vsciot-vscode.vscode-arduino
+code --install-extension ms-vscode.cpptools
+code --install-extension ms-vscode.cmake-tools
+code --install-extension msjsdiag.debugger-for-chrome
+code --install-extension vscjava.vscode-java-debug
+code --install-extension ms-azuretools.vscode-docker
+code --install-extension docsmsft.docs-article-templates
+code --install-extension docsmsft.docs-images
+code --install-extension docsmsft.docs-linting
+code --install-extension docsmsft.docs-markdown
+code --install-extension docsmsft.docs-metadata
+code --install-extension docsmsft.docs-preview
+code --install-extension docsmsft.docs-build
+code --install-extension docsmsft.docs-yaml
+code --install-extension editorconfig.editorconfig
+code --install-extension JakeBecker.elixir-ls
+code --install-extension dbaeumer.vscode-eslint
+code --install-extension ms-devlabs.extension-manifest-editor
+code --install-extension ms-vscode.github-browser
+code --install-extension ms-vscode.github-issues-prs
+code --install-extension golang.go
+code --install-extension ms-vscode.hexeditor
+code --install-extension vscjava.vscode-java-pack
+code --install-extension vscjava.vscode-java-test
+code --install-extension ms-vscode.vscode-typescript-next
+code --install-extension ms-toolsai.jupyter
+code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
+code --install-extension redhat.java
+code --install-extension ritwickdey.liveserver
+code --install-extension ms-vsliveshare.vsliveshare
+code --install-extension ms-vsliveshare.vsliveshare-audio
+code --install-extension ms-vsliveshare.vsliveshare-pack
+code --install-extension vscjava.vscode-maven
+code --install-extension asabil.meson
+code --install-extension ms-ossdata.vscode-postgresql
+code --install-extension vscjava.vscode-java-dependency
+code --install-extension ms-python.python
+code --install-extension msjsdiag.vscode-react-native
+code --install-extension ms-vscode-remote.remote-containers
+code --install-extension ms-vscode-remote.remote-ssh
+code --install-extension ms-vscode-remote.remote-ssh-edit
+code --install-extension ms-vscode-remote.remote-wsl
+code --install-extension rust-lang.rust
+code --install-extension vscjava.vscode-spring-boot-dashboard
+code --install-extension pivotal.vscode-spring-boot
+code --install-extension vscjava.vscode-spring-initializr
+code --install-extension ms-vscode.vscode-typescript-tslint-plugin
+code --install-extension prince781.vala
+code --install-extension visualstudioexptteam.vscodeintellicode
+code --install-extension ms-vscode.wordcount
+code --install-extension redhat.vscode-yaml
+code --install-extension ms-kubernetes-tools.kind-vscode
+# VSCODE
