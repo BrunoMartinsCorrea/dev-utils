@@ -7,7 +7,7 @@ function isInstalled() {
     fi
 }
 
-sudo pacman -Syyu --needed --noconfirm base-devel rust
+sudo pacman -Syyu --needed --noconfirm base-devel zsh zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono xclip tree vim curl net-tools openvpn zip unzip git jq yq htop python python-pip erlang elixir rust go nasm ruby perl clisp ghc cabal-install stack php lua vala ninja meson arduino arduino-avr-core docker-compose ctop minikube kubectl helm k9s smali jadx android-tools visualvm intellij-idea-community-edition pycharm-community-edition dbeaver
 
 if [ $(isInstalled paru) == 0 ]; then
     cd /tmp
@@ -16,7 +16,7 @@ if [ $(isInstalled paru) == 0 ]; then
     makepkg -si
 fi
 
-paru -S --needed --noconfirm zsh xclip tree vim curl net-tools openvpn zip unzip git jq htop python python-pip erlang elixir nvm go nasm ruby perl clisp ghc cabal-install stack php lua vala vala-lint-git ninja meson arduino arduino-avr-core heroku-cli docker-compose ctop minikube kubectl helm k9s kind intellij-idea-community-edition pycharm-community-edition android-studio visual-studio-code-bin postman-bin visualvm oh-my-zsh-git zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono ttf-ms-fonts ttf-wps-fonts dbeaver android-tools android-sdk android-ndk android-emulator flutter
+paru -S --needed --noconfirm nvm heroku-cli kind android-studio visual-studio-code-bin postman-bin oh-my-zsh-git ttf-ms-fonts ttf-wps-fonts android-sdk android-ndk android-emulator flutter
 
 # ZSHELL
 if [ $(isInstalled zsh) == 1 ]; then
