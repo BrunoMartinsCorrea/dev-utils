@@ -8,7 +8,12 @@ function isInstalled() {
 }
 
 sudo pacman -Syyu --noconfirm
-sudo pacman -S --needed --noconfirm base-devel cmake zsh zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono xclip tree vim curl net-tools openvpn zip unzip git jq yq htop python python-pip erlang elixir rust go nasm ruby perl clisp ghc cabal-install stack php lua vala ninja meson arduino arduino-avr-core docker-compose ctop minikube kubectl helm k9s smali jadx android-tools visualvm intellij-idea-community-edition pycharm-community-edition dbeaver
+sudo pacman -S --needed --noconfirm base-devel cmake zsh zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono xclip tree vim curl net-tools openvpn zip unzip git jq yq htop python python-pip erlang elixir rustup go nasm ruby perl clisp ghc cabal-install stack php lua vala ninja meson arduino arduino-avr-core docker-compose ctop minikube kubectl helm k9s smali jadx android-tools visualvm intellij-idea-community-edition pycharm-community-edition dbeaver
+
+# RUSTUP
+rustup install stable
+rustup default stable
+# RUSTUP
 
 if [ $(isInstalled paru) == 0 ]; then
     cd /tmp
