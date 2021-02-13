@@ -32,44 +32,6 @@ if [ $(isInstalled paru) == 1 ]; then
     paru -S --needed --noconfirm nvm heroku-cli kind android-studio visual-studio-code-bin postman-bin oh-my-zsh-git ttf-ms-fonts ttf-wps-fonts android-sdk android-ndk android-emulator flutter
 fi
 
-# ZSHELL
-if [ $(isInstalled zsh) == 1 ]; then
-    chsh -s $(which zsh)
-    sudo chsh -s $(which zsh)
-    mkdir -p ~/.cache/zsh
-    printf "# OH-MY-ZSH
-ZSH_CACHE_DIR=~/.cache/zsh
-ZSH_THEME=\"agnoster\"
-plugins=(adb autopep8 aws cargo colored-man-pages command-not-found django docker-compose docker flutter git golang gradle heroku jfrog kubectl man minikube node npm npx pep8 pip redis-cli rust rustup scala sdk spring sudo terraform themes yarn)
-source /usr/share/oh-my-zsh/oh-my-zsh.sh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# NVM
-source /usr/share/nvm/init-nvm.sh
-
-# PYTHON
-PIPENV_VENV_IN_PROJECT=true
-
-# FLUTTER
-export ANDROID_HOME=/opt/android-sdk
-
-# ALIASES
-alias ll=\"ls -la\"
-alias docker-stop-all=\"sudo docker stop \\\$(sudo docker ps -aq)\"
-alias docker-remove-all-containers=\"sudo docker rm \\\$(sudo docker ps -aq)\"
-alias docker-remove-all-images=\"sudo docker rmi \\\$(sudo docker images -q)\"
-alias docker-cleanup=\"docker-stop-all && docker-remove-all-containers && docker-remove-all-images\"
-alias update-all-repositories='cur_dir=\$(pwd) && for i in \$(find . -name \".git\" | grep -Po \".*(?=/\.git)\"); do cd \"\$cur_dir/\$i\" && printf \"\\\n\\\nATUALIZANDO \$i\\\n\\\n\" && git fetch && git pull; done && cd \"\$cur_dir\"'\n
-
-# SDKMAN
-# THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR=\"\$HOME/.sdkman\"
-[[ -s \"\$HOME/.sdkman/bin/sdkman-init.sh\" ]] && source \"\$HOME/.sdkman/bin/sdkman-init.sh\"
-" > ~/.zshrc
-    sudo cp ~/.zshrc /root/
-fi
-# ZSHELL
-
 # DOCKER
 if [ $(isInstalled docker) == 1 ]; then
     sudo systemctl start docker
@@ -186,3 +148,41 @@ if [ $(isInstalled code) == 1 ]; then
     code --install-extension ms-kubernetes-tools.kind-vscode
 fi
 # VSCODE
+
+# ZSHELL
+if [ $(isInstalled zsh) == 1 ]; then
+    chsh -s $(which zsh)
+    sudo chsh -s $(which zsh)
+    mkdir -p ~/.cache/zsh
+    printf "# OH-MY-ZSH
+ZSH_CACHE_DIR=~/.cache/zsh
+ZSH_THEME=\"agnoster\"
+plugins=(adb autopep8 aws cargo colored-man-pages command-not-found django docker-compose docker flutter git golang gradle heroku jfrog kubectl man minikube node npm npx pep8 pip redis-cli rust rustup scala sdk spring sudo terraform themes yarn)
+source /usr/share/oh-my-zsh/oh-my-zsh.sh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# NVM
+source /usr/share/nvm/init-nvm.sh
+
+# PYTHON
+PIPENV_VENV_IN_PROJECT=true
+
+# FLUTTER
+export ANDROID_HOME=/opt/android-sdk
+
+# ALIASES
+alias ll=\"ls -la\"
+alias docker-stop-all=\"sudo docker stop \\\$(sudo docker ps -aq)\"
+alias docker-remove-all-containers=\"sudo docker rm \\\$(sudo docker ps -aq)\"
+alias docker-remove-all-images=\"sudo docker rmi \\\$(sudo docker images -q)\"
+alias docker-cleanup=\"docker-stop-all && docker-remove-all-containers && docker-remove-all-images\"
+alias update-all-repositories='cur_dir=\$(pwd) && for i in \$(find . -name \".git\" | grep -Po \".*(?=/\.git)\"); do cd \"\$cur_dir/\$i\" && printf \"\\\n\\\nATUALIZANDO \$i\\\n\\\n\" && git fetch && git pull; done && cd \"\$cur_dir\"'\n
+
+# SDKMAN
+# THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR=\"\$HOME/.sdkman\"
+[[ -s \"\$HOME/.sdkman/bin/sdkman-init.sh\" ]] && source \"\$HOME/.sdkman/bin/sdkman-init.sh\"
+" > ~/.zshrc
+    sudo cp ~/.zshrc /root/
+fi
+# ZSHELL
