@@ -38,7 +38,7 @@ PIPENV_VENV_IN_PROJECT=true
 
 # FLUTTER
 export ANDROID_HOME=/opt/android-sdk
- 
+
 #ALIASES
 alias ll=\"ls -la\"
 alias docker-stop-all=\"sudo docker stop \\\$(sudo docker ps -aq)\"
