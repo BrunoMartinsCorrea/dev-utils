@@ -7,7 +7,7 @@ function isInstalled() {
     fi
 }
 
-sudo pacman -Syyu --needed --noconfirm base-devel zsh zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono xclip tree vim curl net-tools openvpn zip unzip git jq yq htop python python-pip erlang elixir rust go nasm ruby perl clisp ghc cabal-install stack php lua vala ninja meson arduino arduino-avr-core docker-compose ctop minikube kubectl helm k9s smali jadx android-tools visualvm intellij-idea-community-edition pycharm-community-edition dbeaver
+sudo pacman -Syyu --needed --noconfirm base-devel cmake zsh zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono xclip tree vim curl net-tools openvpn zip unzip git jq yq htop python python-pip erlang elixir rust go nasm ruby perl clisp ghc cabal-install stack php lua vala ninja meson arduino arduino-avr-core docker-compose ctop minikube kubectl helm k9s smali jadx android-tools visualvm intellij-idea-community-edition pycharm-community-edition dbeaver
 
 if [ $(isInstalled paru) == 0 ]; then
     cd /tmp
@@ -83,10 +83,18 @@ fi
 sudo usermod -aG uucp $USER
 # ARDUINO
 
+if [ $(isInstalled zsh) == 1 ] && [ $(isInstalled sdk) == 0 ]; then
+    echo "Deu ruim"
+else
+    echo "Foi"
+fi
+
 # SDKMAN
-if [ $(isInstalled zsh) == 1 ]; then
+if [ $(isInstalled zsh) == 1 ] && [ $(isInstalled sdk) == 0 ]; then
     curl -s "https://get.sdkman.io" | zsh
     source "$HOME/.sdkman/bin/sdkman-init.sh"
+fi
+if [ $(isInstalled sdk) == 1 ]; then
     sdk list java | grep -Po "(8|11|15)(\.\d+)+-zulu" | while read -r JAVA_LATEST_MINOR; do
         sdk install java $JAVA_LATEST_MINOR < /dev/null
     done
