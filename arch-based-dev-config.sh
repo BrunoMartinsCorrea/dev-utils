@@ -45,13 +45,18 @@ PIPENV_VENV_IN_PROJECT=true
 # FLUTTER
 export ANDROID_HOME=/opt/android-sdk
 
-#ALIASES
+# ALIASES
 alias ll=\"ls -la\"
 alias docker-stop-all=\"sudo docker stop \\\$(sudo docker ps -aq)\"
 alias docker-remove-all-containers=\"sudo docker rm \\\$(sudo docker ps -aq)\"
 alias docker-remove-all-images=\"sudo docker rmi \\\$(sudo docker images -q)\"
 alias docker-cleanup=\"docker-stop-all && docker-remove-all-containers && docker-remove-all-images\"
 alias update-all-repositories='cur_dir=\$(pwd) && for i in \$(find . -name \".git\" | grep -Po \".*(?=/\.git)\"); do cd \"\$cur_dir/\$i\" && printf \"\\\n\\\nATUALIZANDO \$i\\\n\\\n\" && git fetch && git pull; done && cd \"\$cur_dir\"'\n
+
+# SDKMAN
+# THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR=\"\$HOME/.sdkman\"
+[[ -s \"\$HOME/.sdkman/bin/sdkman-init.sh\" ]] && source \"\$HOME/.sdkman/bin/sdkman-init.sh\"
 " > ~/.zshrc
     sudo cp ~/.zshrc /root/
 fi
