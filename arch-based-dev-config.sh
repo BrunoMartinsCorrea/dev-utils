@@ -8,21 +8,29 @@ function isInstalled() {
 }
 
 sudo pacman -Syyu --noconfirm
-sudo pacman -S --needed --noconfirm base-devel cmake zsh zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono xclip tree vim curl net-tools openvpn zip unzip git jq yq htop python python-pip erlang elixir rustup go nasm ruby perl clisp ghc cabal-install stack php lua vala ninja meson arduino arduino-avr-core docker-compose ctop minikube kubectl helm k9s smali jadx android-tools visualvm intellij-idea-community-edition pycharm-community-edition dbeaver
+sudo pacman -S --needed --noconfirm base-devel cmake git rustup
 
 # RUSTUP
-rustup install stable
-rustup default stable
+if [ $(isInstalled rustup) == 1 ]; then
+    rustup install stable
+    rustup default stable
+fi
 # RUSTUP
 
+# PARU
 if [ $(isInstalled paru) == 0 ]; then
     cd /tmp
     git clone https://aur.archlinux.org/paru.git
     cd paru
     makepkg -si
 fi
+# PARU
 
-paru -S --needed --noconfirm nvm heroku-cli kind android-studio visual-studio-code-bin postman-bin oh-my-zsh-git ttf-ms-fonts ttf-wps-fonts android-sdk android-ndk android-emulator flutter
+sudo pacman -S --needed --noconfirm zsh zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono xclip tree vim curl net-tools openvpn zip unzip jq yq htop python python-pip erlang elixir go nasm ruby perl clisp ghc cabal-install stack php lua vala ninja meson arduino arduino-avr-core docker-compose ctop minikube kubectl helm k9s smali jadx android-tools visualvm intellij-idea-community-edition pycharm-community-edition dbeaver
+
+if [ $(isInstalled paru) == 1 ]; then
+    paru -S --needed --noconfirm nvm heroku-cli kind android-studio visual-studio-code-bin postman-bin oh-my-zsh-git ttf-ms-fonts ttf-wps-fonts android-sdk android-ndk android-emulator flutter
+fi
 
 # ZSHELL
 if [ $(isInstalled zsh) == 1 ]; then
