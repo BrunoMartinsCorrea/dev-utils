@@ -173,9 +173,9 @@ export ANDROID_HOME=/opt/android-sdk
 
 # ALIASES
 alias ll=\"ls -la\"
-alias docker-stop-all=\"sudo docker stop \\\$(sudo docker ps -aq)\"
-alias docker-remove-all-containers=\"sudo docker rm \\\$(sudo docker ps -aq)\"
-alias docker-remove-all-images=\"sudo docker rmi \\\$(sudo docker images -q)\"
+alias docker-stop-all=\"docker stop \\\$(docker ps -aq)\"
+alias docker-remove-all-containers=\"docker rm \\\$(docker ps -aq)\"
+alias docker-remove-all-images=\"docker rmi \\\$(docker images -q)\"
 alias docker-cleanup=\"docker-stop-all && docker-remove-all-containers && docker-remove-all-images\"
 alias update-all-repositories='cur_dir=\$(pwd) && for i in \$(find . -name \".git\" | grep -Po \".*(?=/\.git)\"); do cd \"\$cur_dir/\$i\" && printf \"\\\n\\\nATUALIZANDO \$i\\\n\\\n\" && git fetch && git pull; done && cd \"\$cur_dir\"'\n
 
