@@ -50,7 +50,8 @@ fi
 # NVM
 source /usr/share/nvm/init-nvm.sh
 if [ $(isInstalled nvm) == 1 ]; then
-    nvm install node
+    nvm install --lts
+    nvm use --lts
 fi
 # NVM
 
