@@ -56,7 +56,7 @@ fi
 
 # NPM
 if [ $(isInstalled npm) == 1 ]; then
-    npm install -g yarn react-native-cli create-react-app create-next-app @nestjs/cli @vue/cli json-server expo-cli
+    npm install -g yarn react-native-cli create-react-app create-next-app @nestjs/cli @vue/cli vue-native-cli json-server expo-cli
 fi
 # NPM
 
