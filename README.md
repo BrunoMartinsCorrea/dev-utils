@@ -64,6 +64,8 @@ Cria um ambiente amplo para desenvolvimento, contendo as seguintes...
 - [VisualVM](https://visualvm.github.io/)
 - [Vue.js](https://vuejs.org/)
 
+PS: Este script sobrescreverá toda vez o arquivo .zshrc, então caso você queira criar variáveis, alias ou personalizar seu tema do oh-my-zsh, escreva esses comandos no arquivo .zsh_profile, pois ele nunca sofrerá alterações de conteúdo
+
 ## git-config.sh
 
 CLI simples usando o CLI oficial do GIT para facilitar as seguintes tarefas:
