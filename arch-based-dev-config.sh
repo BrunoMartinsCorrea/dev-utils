@@ -29,7 +29,7 @@ fi
 sudo pacman -S --needed --noconfirm zsh zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono clang man xclip tree vim curl net-tools openvpn zip unzip jq yq htop python python-pip r erlang elixir go nasm ruby perl clisp ghc cabal-install stack php lua vala ninja meson arduino arduino-avr-core docker-compose ctop minikube kubectl helm k9s smali jadx android-tools visualvm intellij-idea-community-edition pycharm-community-edition dbeaver
 
 if [ $(isInstalled paru) == 1 ]; then
-    paru -S --needed --noconfirm nvm kind android-studio visual-studio-code-bin postman-bin oh-my-zsh-git ttf-ms-fonts ttf-wps-fonts ncurses5-compat-libs android-sdk android-ndk android-emulator flutter
+    paru -S --needed --noconfirm nvm kind android-studio visual-studio-code-bin postman-bin oh-my-zsh-git ttf-ms-fonts ttf-wps-fonts ncurses5-compat-libs
 fi
 
 # DOCKER
@@ -83,14 +83,6 @@ if [ $(isInstalled sdk) == 1 ]; then
     sdk install spark
 fi
 # SDKMAN
-
-# FLUTTER
-if [ $(isInstalled flutter) == 1 ]; then
-    export ANDROID_HOME=/opt/android-sdk
-    sudo chown -R $USER /opt/flutter
-    flutter config --android-sdk $ANDROID_HOME
-fi
-# FLUTTER
 
 # VSCODE
 if [ $(isInstalled code) == 1 ]; then
@@ -185,9 +177,6 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 # NVM SOURCE
 source /usr/share/nvm/init-nvm.sh
-
-# FLUTTER 
-export ANDROID_HOME=/opt/android-sdk
 
 # SDKMAN
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
