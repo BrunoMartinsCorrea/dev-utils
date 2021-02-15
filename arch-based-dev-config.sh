@@ -155,21 +155,14 @@ if [ $(isInstalled zsh) == 1 ]; then
     chsh -s $(which zsh)
     sudo chsh -s $(which zsh)
     mkdir -p ~/.cache/zsh
-    printf "# OH-MY-ZSH
+    touch ~/.zsh_profile
+    printf "# OH-MY-ZSH VARS
 ZSH_CACHE_DIR=~/.cache/zsh
 ZSH_THEME=\"agnoster\"
 plugins=(adb autopep8 aws cabal cargo colored-man-pages command-not-found django docker docker-compose dotenv flutter gem git golang gradle heroku jfrog kubectl man minikube mvn node npm npx nvm pep8 perl pip redis-cli rust rustup scala sdk spring sudo terraform themes yarn)
-source /usr/share/oh-my-zsh/oh-my-zsh.sh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# NVM
-source /usr/share/nvm/init-nvm.sh
-
-# PYTHON
+# PYTHON VARS
 PIPENV_VENV_IN_PROJECT=true
-
-# FLUTTER
-export ANDROID_HOME=/opt/android-sdk
 
 # ALIASES
 alias ll=\"ls -la\"
@@ -179,11 +172,26 @@ alias docker-remove-all-images=\"docker rmi \\\$(docker images -q)\"
 alias docker-cleanup=\"docker-stop-all && docker-remove-all-containers && docker-remove-all-images\"
 alias update-all-repositories='cur_dir=\$(pwd) && for i in \$(find . -name \".git\" | grep -Po \".*(?=/\.git)\"); do cd \"\$cur_dir/\$i\" && printf \"\\\n\\\nATUALIZANDO \$i\\\n\\\n\" && git fetch && git pull; done && cd \"\$cur_dir\"'\n
 
+# USER PROFILE SOURCE
+# ADD YOUR CUSTOM VARIABLES, ALIAS AND THEMES IN THE FILE BELOW
+source \"\$HOME/.zsh_profile\"
+
+# OH-MY-ZSH SOURCE
+source /usr/share/oh-my-zsh/oh-my-zsh.sh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# NVM SOURCE
+source /usr/share/nvm/init-nvm.sh
+
+# FLUTTER 
+export ANDROID_HOME=/opt/android-sdk
+
 # SDKMAN
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR=\"\$HOME/.sdkman\"
 [[ -s \"\$HOME/.sdkman/bin/sdkman-init.sh\" ]] && source \"\$HOME/.sdkman/bin/sdkman-init.sh\"
 " > ~/.zshrc
     sudo cp ~/.zshrc /root/
+    sudo touch ~/.zsh_profile
 fi
 # ZSHELL
