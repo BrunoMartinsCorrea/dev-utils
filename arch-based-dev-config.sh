@@ -159,6 +159,9 @@ if [ $(isInstalled zsh) == 1 ]; then
     printf "# OH-MY-ZSH VARS
 ZSH_CACHE_DIR=~/.cache/zsh
 ZSH_THEME=\"agnoster\"
+if [ `tput colors` != \"256\" ]; then
+  ZSH_THEME=\"dstufft\"
+fi
 plugins=(adb autopep8 aws cabal cargo colored-man-pages command-not-found django docker docker-compose dotenv flutter gem git golang gradle heroku jfrog kubectl man minikube mvn node npm npx nvm pep8 perl pip redis-cli rust rustup scala sdk spring sudo terraform themes yarn)
 
 # PYTHON VARS
