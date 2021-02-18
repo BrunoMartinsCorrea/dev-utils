@@ -70,6 +70,7 @@ if [ $(isInstalled zsh) == 1 ] && [ $(isInstalled sdk) == 0 ]; then
     source "$HOME/.sdkman/bin/sdkman-init.sh"
 fi
 if [ $(isInstalled sdk) == 1 ]; then
+    sdk selfupdate force
     sdk list java | grep -Po "(8|11|15)(\.\d+)+-zulu" | while read -r JAVA_LATEST_MINOR; do
         sdk install java $JAVA_LATEST_MINOR < /dev/null
     done
