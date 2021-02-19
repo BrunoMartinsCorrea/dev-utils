@@ -79,8 +79,6 @@ if [ $(isInstalled sdk) == 1 ]; then
     sdk install groovy < /dev/null
     sdk install maven < /dev/null
     sdk install gradle < /dev/null
-    sdk install springboot < /dev/null
-    sdk install spark < /dev/null
 fi
 # SDKMAN
 
