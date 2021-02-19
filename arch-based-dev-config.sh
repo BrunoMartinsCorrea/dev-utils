@@ -86,59 +86,59 @@ fi
 
 # VSCODE
 if [ $(isInstalled code) == 1 ]; then
-    code --install-extension vscoss.vscode-ansible
-    code --install-extension vsciot-vscode.vscode-arduino
-    code --install-extension ms-vscode.cpptools
-    code --install-extension ms-vscode.cmake-tools
-    code --install-extension msjsdiag.debugger-for-chrome
-    code --install-extension vscjava.vscode-java-debug
-    code --install-extension ms-azuretools.vscode-docker
-    code --install-extension docsmsft.docs-article-templates
-    code --install-extension docsmsft.docs-images
-    code --install-extension docsmsft.docs-linting
-    code --install-extension docsmsft.docs-markdown
-    code --install-extension docsmsft.docs-metadata
-    code --install-extension docsmsft.docs-preview
-    code --install-extension docsmsft.docs-build
-    code --install-extension docsmsft.docs-yaml
-    code --install-extension editorconfig.editorconfig
-    code --install-extension JakeBecker.elixir-ls
-    code --install-extension dbaeumer.vscode-eslint
-    code --install-extension ms-devlabs.extension-manifest-editor
-    code --install-extension ms-vscode.github-browser
-    code --install-extension ms-vscode.github-issues-prs
-    code --install-extension golang.go
-    code --install-extension ms-vscode.hexeditor
-    code --install-extension vscjava.vscode-java-pack
-    code --install-extension vscjava.vscode-java-test
-    code --install-extension ms-vscode.vscode-typescript-next
-    code --install-extension ms-toolsai.jupyter
-    code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
-    code --install-extension redhat.java
-    code --install-extension ritwickdey.liveserver
-    code --install-extension ms-vsliveshare.vsliveshare
-    code --install-extension ms-vsliveshare.vsliveshare-audio
-    code --install-extension ms-vsliveshare.vsliveshare-pack
-    code --install-extension vscjava.vscode-maven
-    code --install-extension asabil.meson
-    code --install-extension ms-ossdata.vscode-postgresql
-    code --install-extension vscjava.vscode-java-dependency
-    code --install-extension ms-python.python
-    code --install-extension msjsdiag.vscode-react-native
-    code --install-extension ms-vscode-remote.remote-containers
-    code --install-extension ms-vscode-remote.remote-ssh
-    code --install-extension ms-vscode-remote.remote-ssh-edit
-    code --install-extension ms-vscode-remote.remote-wsl
-    code --install-extension rust-lang.rust
-    code --install-extension vscjava.vscode-spring-boot-dashboard
-    code --install-extension pivotal.vscode-spring-boot
-    code --install-extension vscjava.vscode-spring-initializr
-    code --install-extension ms-vscode.vscode-typescript-tslint-plugin
-    code --install-extension prince781.vala
-    code --install-extension visualstudioexptteam.vscodeintellicode
-    code --install-extension ms-vscode.wordcount
-    code --install-extension redhat.vscode-yaml
-    code --install-extension ms-kubernetes-tools.kind-vscode
+    code --install-extension vscoss.vscode-ansible --force
+    code --install-extension vsciot-vscode.vscode-arduino --force
+    code --install-extension ms-vscode.cpptools --force
+    code --install-extension ms-vscode.cmake-tools --force
+    code --install-extension msjsdiag.debugger-for-chrome --force
+    code --install-extension vscjava.vscode-java-debug --force
+    code --install-extension ms-azuretools.vscode-docker --force
+    code --install-extension docsmsft.docs-article-templates --force
+    code --install-extension docsmsft.docs-images --force
+    code --install-extension docsmsft.docs-linting --force
+    code --install-extension docsmsft.docs-markdown --force
+    code --install-extension docsmsft.docs-metadata --force
+    code --install-extension docsmsft.docs-preview --force
+    code --install-extension docsmsft.docs-build --force
+    code --install-extension docsmsft.docs-yaml --force
+    code --install-extension editorconfig.editorconfig --force
+    code --install-extension JakeBecker.elixir-ls --force
+    code --install-extension dbaeumer.vscode-eslint --force
+    code --install-extension ms-devlabs.extension-manifest-editor --force
+    code --install-extension ms-vscode.github-browser --force
+    code --install-extension ms-vscode.github-issues-prs --force
+    code --install-extension golang.go --force
+    code --install-extension ms-vscode.hexeditor --force
+    code --install-extension vscjava.vscode-java-pack --force
+    code --install-extension vscjava.vscode-java-test --force
+    code --install-extension ms-vscode.vscode-typescript-next --force
+    code --install-extension ms-toolsai.jupyter --force
+    code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools --force
+    code --install-extension redhat.java --force
+    code --install-extension ritwickdey.liveserver --force
+    code --install-extension ms-vsliveshare.vsliveshare --force
+    code --install-extension ms-vsliveshare.vsliveshare-audio --force
+    code --install-extension ms-vsliveshare.vsliveshare-pack --force
+    code --install-extension vscjava.vscode-maven --force
+    code --install-extension asabil.meson --force
+    code --install-extension ms-ossdata.vscode-postgresql --force
+    code --install-extension vscjava.vscode-java-dependency --force
+    code --install-extension ms-python.python --force
+    code --install-extension msjsdiag.vscode-react-native --force
+    code --install-extension ms-vscode-remote.remote-containers --force
+    code --install-extension ms-vscode-remote.remote-ssh --force
+    code --install-extension ms-vscode-remote.remote-ssh-edit --force
+    code --install-extension ms-vscode-remote.remote-wsl --force
+    code --install-extension rust-lang.rust --force
+    code --install-extension vscjava.vscode-spring-boot-dashboard --force
+    code --install-extension pivotal.vscode-spring-boot --force
+    code --install-extension vscjava.vscode-spring-initializr --force
+    code --install-extension ms-vscode.vscode-typescript-tslint-plugin --force
+    code --install-extension prince781.vala --force
+    code --install-extension visualstudioexptteam.vscodeintellicode --force
+    code --install-extension ms-vscode.wordcount --force
+    code --install-extension redhat.vscode-yaml --force
+    code --install-extension ms-kubernetes-tools.kind-vscode --force
 fi
 # VSCODE
 
