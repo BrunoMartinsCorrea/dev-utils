@@ -84,8 +84,7 @@ fi
 # SDKMAN
 
 # VISUALVM
-printf "
-[Desktop Entry]
+printf "[Desktop Entry]
 Type=Application
 Name=VisualVM
 Exec=$HOME/.sdkman/candidates/visualvm/current/bin/visualvm
