@@ -74,13 +74,13 @@ if [ $(isInstalled sdk) == 1 ]; then
     sdk list java | grep -Po "(8|11|15)(\.\d+)+-zulu" | while read -r JAVA_LATEST_MINOR; do
         sdk install java $JAVA_LATEST_MINOR < /dev/null
     done
-    sdk install kotlin
-    sdk install scala
-    sdk install groovy
-    sdk install maven
-    sdk install gradle
-    sdk install springboot
-    sdk install spark
+    sdk install kotlin < /dev/null
+    sdk install scala < /dev/null
+    sdk install groovy < /dev/null
+    sdk install maven < /dev/null
+    sdk install gradle < /dev/null
+    sdk install springboot < /dev/null
+    sdk install spark < /dev/null
 fi
 # SDKMAN
 
