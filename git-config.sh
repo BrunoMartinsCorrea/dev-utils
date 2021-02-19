@@ -73,7 +73,7 @@ Do you want to overwrite it? [y/N]: "
         do
         clear
             printf "Please select a directory:\n"
-            select DIRECTORY in $DIRECTORY*/;
+            select DIRECTORY in "$DIRECTORY"*/;
             do
                 test -n "$DIRECTORY" && break
             done
