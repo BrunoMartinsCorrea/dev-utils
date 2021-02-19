@@ -144,8 +144,14 @@ fi
 
 # ZSHELL
 if [ $(isInstalled zsh) == 1 ]; then
-    chsh -s $(which zsh)
-    sudo chsh -s $(which zsh)
+    while : ; do
+        chsh -s $(which zsh)
+        [[ "$?" == "1" ]] || break
+    done
+    while : ; do
+        sudo chsh -s $(which zsh)
+        [[ "$?" == "1" ]] || break
+    done
     mkdir -p ~/.cache/zsh
     touch ~/.zsh_profile
     printf "# OH-MY-ZSH VARS
