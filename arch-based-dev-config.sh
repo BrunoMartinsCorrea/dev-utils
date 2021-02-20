@@ -85,8 +85,9 @@ fi
 
 # VISUALVM
 printf "[Desktop Entry]
-Type=Application
 Name=VisualVM
+Type=Application
+Categories=Development;
 Exec=$HOME/.sdkman/candidates/visualvm/current/bin/visualvm
 Icon=$HOME/.sdkman/candidates/visualvm/current/etc/visualvm.icns
 " > ~/.local/share/applications/visualvm-sdkman.desktop
