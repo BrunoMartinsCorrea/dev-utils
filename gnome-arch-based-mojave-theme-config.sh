@@ -50,7 +50,7 @@ fi
 # PARU
 
 # INSTALLING ESSENTIAL PACKAGES
-sudo pacman -S --noconfirm epiphany gedit gnome-terminal capitaine-cursors 
+sudo pacman -S --noconfirm epiphany gedit gnome-terminal capitaine-cursors gnome-tweaks
 paru -Syyu --noconfirm gnome-session-properties mojave-gtk-theme gnome-mojave-timed-wallpaper la-capitaine-icon-theme ruby-fusuma
 
 # SETTING UP KEYBOARD
