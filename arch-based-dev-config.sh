@@ -25,10 +25,10 @@ if [ $(isInstalled paru) == 0 ]; then
 fi
 # PARU
 
-sudo pacman -S --needed --noconfirm zsh zsh-syntax-highlighting oh-my-zsh powerline-fonts ttf-jetbrains-mono clang man xclip tree vim curl net-tools openvpn zip unzip jq yq htop python python-pip r erlang elixir go nasm ruby perl clisp ghc cabal-install stack php lua vala ninja meson arduino arduino-avr-core docker-compose ctop minikube kubectl helm k9s smali jadx android-tools intellij-idea-community-edition pycharm-community-edition dbeaver
+sudo pacman -S --needed --noconfirm zsh zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono clang man xclip tree vim curl net-tools openvpn zip unzip jq yq htop python python-pip r erlang elixir go nasm ruby perl clisp ghc cabal-install stack php lua vala ninja meson arduino arduino-avr-core docker-compose ctop minikube kubectl helm k9s smali jadx android-tools intellij-idea-community-edition pycharm-community-edition dbeaver
 
 if [ $(isInstalled paru) == 1 ]; then
-    paru -Syyu --needed --noconfirm nvm kind android-studio visual-studio-code-bin postman-bin ttf-ms-fonts ttf-wps-fonts ncurses5-compat-libs
+    paru -Syyu --needed --noconfirm oh-my-zsh-git nvm kind android-studio visual-studio-code-bin postman-bin ttf-ms-fonts ttf-wps-fonts ncurses5-compat-libs
 fi
 
 # DOCKER
