@@ -152,6 +152,7 @@ if [ $(isInstalled code) == 1 ]; then
     code --install-extension prince781.vala --force
     code --install-extension visualstudioexptteam.vscodeintellicode --force
     code --install-extension ms-vscode.wordcount --force
+    code --install-extension mjmcloug.vscode-elixir --force
     code --install-extension redhat.vscode-yaml --force
     code --install-extension ms-kubernetes-tools.kind-vscode --force
 fi
