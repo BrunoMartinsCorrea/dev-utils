@@ -41,7 +41,7 @@ fi
 
 # PYTHON
 if [ $(isInstalled pip) == 1 ]; then
-    sudo pip install pipenv autopep8 pylint notebook awscli boto3
+    sudo pip install pipenv autopep8 pylint notebook awscli boto3 localstack-client
     pip install --user localstack
 fi
 # PYTHON
