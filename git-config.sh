@@ -65,6 +65,7 @@ Do you want to overwrite it? [y/N]: "
             git config --global user.name "$GIT_NAME"
             git config --global user.email "$GIT_EMAIL"
             git config --global pull.rebase true
+            git config --global init.defaultBranch main
         fi
     elif [ "$MENU_OPTION" == "2" ]; then
         DIRECTORY=~/
@@ -128,6 +129,7 @@ Do you want to overwrite it? [y/N]: "
             git config --file $DIRECTORY/.gitconfig user.name "$GIT_NAME"
             git config --file $DIRECTORY/.gitconfig user.email "$GIT_EMAIL"
             git config --file $DIRECTORY/.gitconfig pull.rebase true
+            git config --file $DIRECTORY/.gitconfig init.defaultBranch main
             git config --global --add includeif.gitdir:$DIRECTORY.path $DIRECTORY.gitconfig
             clear
             printf "
