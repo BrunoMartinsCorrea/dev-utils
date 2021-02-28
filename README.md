@@ -20,7 +20,7 @@ Instala algumas ferramentas de uso comum, contendo os seguintes softwares:
 
 ## arch-based-dev-config.sh
 
-Cria um ambiente amplo para desenvolvimento, contendo as seguintes...
+Cria um ambiente amplo para desenvolvimento baseado no seu perfil técnico (backend, frontend ou data scientist), contendo as seguintes...
 
 ### Linguagens
 
@@ -51,18 +51,26 @@ Cria um ambiente amplo para desenvolvimento, contendo as seguintes...
 - [AWS CLI](https://aws.amazon.com/cli/)
 - [DBeaver](https://dbeaver.io/)
 - [Docker](https://www.docker.com/)
-- [Intellij Community](https://www.jetbrains.com/idea/download/)
+- [Insomnia](https://insomnia.rest/)
+- [IntelliJ Community](https://www.jetbrains.com/idea/download/)
 - [Jupyter Notebook](https://jupyter.org/)
 - [LocalStack](https://github.com/localstack/localstack)
 - [Minikube](https://kubernetes.io/docs/tasks/tools/)
 - [NVM](https://github.com/nvm-sh/nvm)
-- [Postman](https://www.postman.com/)
-- [Pycharm Community](https://www.jetbrains.com/pycharm/download/)
+- [PyCharm Community](https://www.jetbrains.com/pycharm/download/)
 - [React](https://reactjs.org/)
 - [SDKMAN](https://sdkman.io/)
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [VisualVM](https://visualvm.github.io/)
 - [Vue.js](https://vuejs.org/)
+
+### Uso
+
+Para mais detalhes do uso, acesse o help do script
+
+```bash
+./arch-based-dev-config.sh -h
+```
 
 PS: Este script sobrescreverá toda vez o arquivo .zshrc, então caso você queira criar variáveis, alias ou personalizar seu tema do oh-my-zsh, escreva esses comandos no arquivo .zsh_profile, pois ele nunca sofrerá alterações de conteúdo
 
@@ -76,6 +84,18 @@ CLI simples usando o CLI oficial do GIT para facilitar as seguintes tarefas:
     - [Bitbucket](https://bitbucket.org/)
     - [GitHub](https://github.com/)
     - [GitLab](https://gitlab.com/)
+
+## gnome-arch-based-mojave-theme-config.sh
+
+Script que aplica o tema Mojave no seu ambiente Gnome.
+
+### Uso
+
+Para mais detalhes do uso, acesse o help do script
+
+```bash
+./gnome-arch-based-mojave-theme-config.sh -h
+```
 
 ## vpn-config.sh
 
