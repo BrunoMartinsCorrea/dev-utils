@@ -13,6 +13,7 @@ sudo pacman -Syyu --noconfirm base-devel cmake git rustup
 if [ $(isInstalled rustup) == 1 ]; then
     rustup install stable
     rustup default stable
+    rustup component add rls
 fi
 # RUSTUP
 
@@ -25,10 +26,10 @@ if [ $(isInstalled paru) == 0 ]; then
 fi
 # PARU
 
-sudo pacman -S --needed --noconfirm zsh zsh-syntax-highlighting oh-my-zsh powerline-fonts ttf-jetbrains-mono clang man xclip tree vim curl net-tools openvpn zip unzip jq yq htop python python-pip r erlang elixir go nasm ruby perl clisp ghc cabal-install stack php lua vala ninja meson arduino arduino-avr-core docker-compose ctop minikube kubectl helm k9s smali jadx android-tools intellij-idea-community-edition pycharm-community-edition dbeaver
+sudo pacman -S --needed --noconfirm zsh zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono clang man xclip tree vim curl net-tools openvpn zip unzip jq yq htop python python-pip r erlang elixir go nasm ruby perl clisp ghc cabal-install stack php lua vala ninja meson arduino arduino-avr-core docker-compose ctop minikube kubectl helm k9s smali jadx android-tools intellij-idea-community-edition pycharm-community-edition dbeaver
 
 if [ $(isInstalled paru) == 1 ]; then
-    paru -Syyu --needed --noconfirm nvm kind android-studio visual-studio-code-bin postman-bin ttf-ms-fonts ttf-wps-fonts ncurses5-compat-libs
+    paru -Syyu --needed --noconfirm oh-my-zsh-git nvm kind android-studio visual-studio-code-bin postman-bin ttf-ms-fonts ttf-wps-fonts ncurses5-compat-libs
 fi
 
 # DOCKER
@@ -41,7 +42,7 @@ fi
 
 # PYTHON
 if [ $(isInstalled pip) == 1 ]; then
-    sudo pip install pipenv autopep8 pylint notebook awscli boto3
+    sudo pip install pipenv autopep8 pylint notebook awscli boto3 localstack-client
     pip install --user localstack
 fi
 # PYTHON
@@ -56,7 +57,7 @@ fi
 
 # NPM
 if [ $(isInstalled npm) == 1 ]; then
-    npm install -g yarn react-native-cli create-react-app create-next-app @nestjs/cli @vue/cli vue-native-cli json-server expo-cli
+    npm install -g yarn react-native-cli create-react-app create-next-app @nestjs/cli vercel @vue/cli vue-native-cli json-server expo-cli
 fi
 # NPM
 
@@ -71,6 +72,12 @@ if [ $(isInstalled zsh) == 1 ] && [ $(isInstalled sdk) == 0 ]; then
 fi
 if [ $(isInstalled sdk) == 1 ]; then
     sdk selfupdate force
+
+    sed -i '/auto_answer/s/false/true/' ~/.sdkman/etc/config
+    sed -i '/auto_selfupdate/s/false/true/' ~/.sdkman/etc/config
+    sed -i '/colour_enable/s/false/true/' ~/.sdkman/etc/config
+    sed -i '/auto_env/s/false/true/' ~/.sdkman/etc/config
+
     sdk list java | grep -Po "(8|11|15)(\.\d+)+-zulu" | while read -r JAVA_LATEST_MINOR; do
         sdk install java $JAVA_LATEST_MINOR < /dev/null
     done
@@ -146,6 +153,7 @@ if [ $(isInstalled code) == 1 ]; then
     code --install-extension prince781.vala --force
     code --install-extension visualstudioexptteam.vscodeintellicode --force
     code --install-extension ms-vscode.wordcount --force
+    code --install-extension mjmcloug.vscode-elixir --force
     code --install-extension redhat.vscode-yaml --force
     code --install-extension ms-kubernetes-tools.kind-vscode --force
 fi
@@ -177,8 +185,8 @@ PIPENV_VENV_IN_PROJECT=true
 # ALIASES
 alias ll=\"ls -la\"
 alias docker-stop-all=\"docker stop \\\$(docker ps -aq)\"
-alias docker-remove-all-containers=\"docker rm \\\$(docker ps -aq)\"
-alias docker-remove-all-images=\"docker rmi \\\$(docker images -q)\"
+alias docker-remove-all-containers=\"docker rm -f \\\$(docker ps -aq)\"
+alias docker-remove-all-images=\"docker rmi -f \\\$(docker images -q)\"
 alias docker-cleanup=\"docker-stop-all && docker-remove-all-containers && docker-remove-all-images\"
 alias update-all-repositories='cur_dir=\$(pwd) && for i in \$(find . -name \".git\" | grep -Po \".*(?=/\.git)\"); do cd \"\$cur_dir/\$i\" && printf \"\\\n\\\nATUALIZANDO \$i\\\n\\\n\" && git fetch && git pull; done && cd \"\$cur_dir\"'\n
 
