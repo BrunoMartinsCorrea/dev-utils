@@ -63,7 +63,7 @@ fi
 # PARU
 
 # DEFAULT
-sudo pacman -S --needed --noconfirm zsh zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono man xclip tree vim curl net-tools openvpn zip unzip jq yq htop python python-pip docker-compose ctop
+sudo pacman -S --needed --noconfirm zsh zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono ttf-fira-code man xclip tree vim curl net-tools openvpn zip unzip jq yq htop python python-pip docker-compose ctop qemu libvirt
 # DEFAULT
 
 # BACKEND
@@ -74,7 +74,7 @@ fi
 
 # FRONTEND
 if [ "$FRONTEND" == "1" ]; then
-    sudo pacman -S --needed --noconfirm php smali jadx android-tools
+    sudo pacman -S --needed --noconfirm php smali jadx jdk11-openjdk
 fi
 # FRONTEND
 
@@ -101,6 +101,10 @@ if [ $(isInstalled paru) == 1 ]; then
     fi
     # FRONTEND
 fi
+
+# KVM
+sudo usermod -aG kvm $USER
+# KVM
 
 # DOCKER
 if [ $(isInstalled docker) == 1 ]; then
