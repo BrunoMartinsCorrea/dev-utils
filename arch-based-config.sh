@@ -7,7 +7,15 @@ function isInstalled() {
     fi
 }
 
-sudo pacman -Syyu --needed --noconfirm base-devel rust
+sudo pacman -Syyu --noconfirm base-devel cmake git rustup
+
+# RUSTUP
+if [ $(isInstalled rustup) == 1 ]; then
+    rustup install stable
+    rustup default stable
+    rustup component add rls
+fi
+# RUSTUP
 
 if [ $(isInstalled paru) == 0 ]; then
     cd /tmp
