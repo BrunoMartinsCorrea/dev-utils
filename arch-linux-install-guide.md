@@ -85,12 +85,12 @@ gsettings set org.gnome.desktop.interface icon-theme "urutau-icons"
 sudo systemctl enable lightdm
 # PANTHEON
 
+exit
+exit
+reboot
+
 cd /tmp
 git clone https://github.com/BrunoMartinsCorrea/dev-utils.git
 ./dev-util/arch-based-dev-config.sh -h
 ./dev-util/arch-based-config.sh
-
-exit
-exit
-reboot
 ```
