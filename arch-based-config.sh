@@ -28,6 +28,6 @@ paru -S --needed --noconfirm flatpak chromium telegram-desktop slack-desktop ste
 
 # FLATPAK
 if [ $(isInstalled flatpak) == 1 ]; then
-    flatpak install -y flathub com.wps.Office com.discordapp.Discord com.spotify.Client im.riot.Riot
+    flatpak install -y flathub com.discordapp.Discord com.spotify.Client im.riot.Riot
 fi
 # FLATPAK

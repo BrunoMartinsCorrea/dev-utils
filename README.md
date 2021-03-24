@@ -16,7 +16,6 @@ Instala algumas ferramentas de uso comum, contendo os seguintes softwares:
 - [Spotify](https://www.spotify.com/)
 - [Steam](https://store.steampowered.com/)
 - [Telegram](https://telegram.org/)
-- [WPS Office](https://www.wps.com/)
 
 ## arch-based-dev-config.sh
 
