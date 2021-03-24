@@ -63,7 +63,7 @@ fi
 # PARU
 
 # DEFAULT
-sudo pacman -S --needed --noconfirm zsh zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono ttf-fira-code man xclip tree vim curl net-tools openvpn zip unzip jq yq htop python python-pip docker-compose ctop qemu libvirt
+sudo pacman -S --needed --noconfirm zsh zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono ttf-fira-code ttf-nerd-fonts-symbols-mono man xclip tree vim curl net-tools openvpn zip unzip jq yq htop python python-pip docker-compose ctop qemu libvirt
 # DEFAULT
 
 # BACKEND
