@@ -38,7 +38,9 @@ systemctl enable NetworkManager
 systemctl start NetworkManager
 ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 hwclock --systohc
-echo "KEYMAP=br-abnt2" > /etc/vconsole.conf
+vim /etc/locale.gen # <- uncomment #en_US.UTF8 UTF-8 and #pt_BR.UTF-8 UTF-8
+locale-gen
+echo "KEYMAP=br-abnt2" > /etc/vconsole.conf # <- us-acentos or execute `localectl list-keymaps` to see more options
 localectl set-locale LANG=en_US.UTF-8
 localectl set-locale LC_CTYPE=en_US.UTF-8
 localectl set-locale LC_NUMERIC=pt_BR.UTF-8
@@ -52,8 +54,6 @@ localectl set-locale LC_ADDRESS=pt_BR.UTF-8
 localectl set-locale LC_TELEPHONE=pt_BR.UTF-8
 localectl set-locale LC_MEASUREMENT=pt_BR.UTF-8
 localectl set-locale LC_IDENTIFICATION=pt_BR.UTF-8
-vim /etc/locale.gen # <- uncomment #en_US.UTF8 UTF-8
-locale-gen
 echo "<MY_HOSTNAME>" > /etc/hostname # Replace <MY_HOSTNAME> with the name you want (e.g. jarvis-pc)
 vim /etc/hosts
     127.0.0.1   localhost
