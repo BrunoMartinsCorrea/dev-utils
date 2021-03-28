@@ -74,7 +74,7 @@ fi
 
 # FRONTEND
 if [ "$FRONTEND" == "1" ]; then
-    sudo pacman -S --needed --noconfirm php smali jadx jdk11-openjdk
+    sudo pacman -S --needed --noconfirm php smali jadx jdk8-openjdk android-sdk
 fi
 # FRONTEND
 
@@ -166,6 +166,34 @@ if [ $(isInstalled npm) == 1 ]; then
     # FRONTEND
 fi
 # NPM
+
+# ANDROID-SDK
+if [ "$FRONTEND" == "1" ]; then
+    mkdir -p ~/.android && touch ~/.android/repositories.cfg
+
+    export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
+    export ANDROID_HOME=/opt/android-sdk
+    export ANDROID_SDK_ROOT=/opt/android-sdk
+    export PATH=$PATH:$ANDROID_HOME/emulator
+    export PATH=$PATH:$ANDROID_HOME/tools
+    export PATH=$PATH:$ANDROID_HOME/tools/bin
+    export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+    sdkmanager --update
+    echo "y" | sdkmanager --install platform-tools emulator
+    echo "y\ny\ny\ny" | sdkmanager --licenses
+
+    SDKMANAGER_LIST=$(sdkmanager --list)
+    SDKMANAGER_PLATFORMS=$(echo $SDKMANAGER_LIST | grep -Po "platforms;android-(\d{2,}|[a-zA-Z]*)" | sort -r | head -1)
+    SDKMANAGER_BUILD_TOOLS=$(echo $SDKMANAGER_LIST | grep -Po "build-tools;(\d+\.){2}\d+(?=\s)" | sort -r | head -1)
+    SDKMANAGER_SYSTEM_IMAGES=$(echo $SDKMANAGER_LIST | grep -Po "system-images;android\S*google_apis;x86_64" | sort -r | head -1)
+
+    sdkmanager "$SDKMANAGER_PLATFORMS"
+    sdkmanager "$SDKMANAGER_BUILD_TOOLS"
+    sdkmanager "$SDKMANAGER_SYSTEM_IMAGES"
+    avdmanager create avd --name pixel --device "pixel_xl" --package "$SDKMANAGER_SYSTEM_IMAGES"
+fi
+# ANDROID-SDK
 
 # ARDUINO
 if [ $(isInstalled arduino) == 1 ]; then
@@ -374,6 +402,21 @@ export SDKMAN_DIR=\"\$HOME/.sdkman\"
 " >> ~/.zshrc
     fi
     # SDKMAN
+
+    # ANDROID-SDK
+    if [ "$FRONTEND" == "1" ]; then
+        printf "
+# ANDROID-SDK
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
+export ANDROID_HOME=/opt/android-sdk
+export ANDROID_SDK_ROOT=/opt/android-sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+        " >> ~/.zshrc
+    fi
+    # ANDROID-SDK
 
     sudo cp ~/.zshrc /root/
     sudo touch ~/.zsh_profile
