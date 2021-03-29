@@ -24,10 +24,10 @@ if [ $(isInstalled paru) == 0 ]; then
     makepkg -si
 fi
 
-paru -S --needed --noconfirm flatpak chromium telegram-desktop slack-desktop steam
+paru -S --needed --noconfirm flatpak google-chrome element-desktop telegram-desktop slack-desktop steam
 
 # FLATPAK
 if [ $(isInstalled flatpak) == 1 ]; then
-    flatpak install -y flathub com.discordapp.Discord com.spotify.Client im.riot.Riot
+    flatpak install -y flathub com.spotify.Client
 fi
 # FLATPAK
