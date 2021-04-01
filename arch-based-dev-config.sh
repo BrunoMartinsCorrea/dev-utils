@@ -32,7 +32,7 @@ while [ -n "$1" ]; do
   By default, the following packages will be installed: [base-devel, rustup, python, docker, cmake, git, awscli, paru, zsh, oh-my-zsh, vscode, insomnia]
 
   -b, --backend         [llvm, nasm, erlang, elixir, go, ruby, perl, lisp, haskell, lua, vala, nvm, node, nest, sdkman, java, kotlin, scala, groovy, maven, gradle, visualvm, minikube, localstack, arduino-ide, intellij, pycharm, dbeaver]
-  -f, --frontend        [php, nvm, node, react, react-native, vercel, vue, vue-native, json-server, expo-cli, netlify, jadx, android-studio]
+  -f, --frontend        [php, nvm, node, react, react-native, vercel, vue, vue-native, json-server, expo-cli, netlify, jadx, android-studio, android-sdk]
   -d, --data-science    [pycharm, dbeaver, notebook]
   -F, --fullstack       All packages included in backend and frontend flags
   -A, --all             All packages above
@@ -74,7 +74,7 @@ fi
 
 # FRONTEND
 if [ "$FRONTEND" == "1" ]; then
-    sudo pacman -S --needed --noconfirm php smali jadx jdk8-openjdk android-sdk
+    sudo pacman -S --needed --noconfirm php smali jadx jdk8-openjdk
 fi
 # FRONTEND
 
@@ -97,7 +97,7 @@ if [ $(isInstalled paru) == 1 ]; then
 
     # FRONTEND
     if [ "$FRONTEND" == "1" ]; then
-        paru -S --needed --noconfirm nvm android-studio
+        paru -S --needed --noconfirm nvm android-studio android-sdk
     fi
     # FRONTEND
 fi
@@ -117,19 +117,18 @@ fi
 # PYTHON
 if [ $(isInstalled pip) == 1 ]; then
     # DEFAULT
-    sudo pip install pipenv autopep8 pylint awscli boto3
+    pip install --user pipenv virtualenv awscli
     # DEFAULT
 
     # BACKEND
     if [ "$BACKEND" == "1" ]; then
-        sudo pip install localstack-client
-        pip install --user localstack
+        pip install --user localstack-client localstack
     fi
     # BACKEND
 
     # DATA-SCIENCE
     if [ "$DATA_SCIENCE" == "1" ]; then
-        sudo pip install notebook
+        pip install --user notebook
     fi
     # DATA-SCIENCE
 fi
