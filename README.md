@@ -54,6 +54,7 @@ Cria um ambiente amplo para desenvolvimento baseado no seu perfil técnico (back
 - [Spotify](https://www.spotify.com)
 - [Steam](https://store.steampowered.com)
 - [Telegram](https://telegram.org)
+- [Ventoy](https://www.ventoy.net)
 - [Visual Studio Code](https://code.visualstudio.com)
 - [VisualVM](https://visualvm.github.io)
 - [Vue.js](https://vuejs.org)

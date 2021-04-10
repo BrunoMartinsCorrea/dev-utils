@@ -29,7 +29,7 @@ while [ -n "$1" ]; do
 		--help|-h|*)
 			printf "Usage: $(basename $0) [OPTION..]
 
-  By default, the following packages will be installed: [base-devel, rustup, python, docker, cmake, git, awscli, paru, flatpak, zsh, oh-my-zsh, vscode, insomnia, google-chrome, element, telegram, slack, steam, discord]
+  By default, the following packages will be installed: [base-devel, rustup, python, docker, cmake, git, awscli, paru, flatpak, zsh, oh-my-zsh, vscode, insomnia, ventoy, google-chrome, element, telegram, slack, steam, discord]
 
   -b, --backend         [llvm, nasm, erlang, elixir, go, ruby, perl, lisp, haskell, lua, vala, nvm, node, nest, sdkman, java, kotlin, scala, groovy, maven, gradle, visualvm, kubectl, kubeadm, minikube, k9s, localstack, arduino-ide, intellij, pycharm, dbeaver]
   -f, --frontend        [php, nvm, node, react, react-native, vercel, vue, vue-native, json-server, expo-cli, netlify, jadx, android-studio, android-sdk]
@@ -63,7 +63,7 @@ fi
 # PARU
 
 # DEFAULT
-paru -Syuq --needed --sudoloop --noconfirm --noprogressbar pacman-contrib zsh zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono ttf-fira-code ttf-nerd-fonts-symbols-mono noto-fonts-emoji gst-libav man xclip tree vim curl net-tools networkmanager-openvpn zip unzip jq yq htop python python-pip docker-compose ctop qemu libvirt flatpak google-chrome element-desktop telegram-desktop slack-desktop steam discord
+paru -Syuq --needed --sudoloop --noconfirm --noprogressbar pacman-contrib zsh zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono ttf-fira-code ttf-nerd-fonts-symbols-mono noto-fonts-emoji gst-libav man xclip tree vim curl net-tools networkmanager-openvpn zip unzip jq yq htop python python-pip docker-compose ctop qemu libvirt flatpak ventoy-bin google-chrome element-desktop telegram-desktop slack-desktop steam discord
 # DEFAULT
 
 # FLATPAK
