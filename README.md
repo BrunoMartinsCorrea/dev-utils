@@ -35,7 +35,7 @@ Cria um ambiente amplo para desenvolvimento baseado no seu perfil técnico (back
 - [Android Studio](https://developer.android.com/studio)
 - [Arduino IDE](https://www.arduino.cc/en/software)
 - [AWS CLI](https://aws.amazon.com/cli)
-- [Chromium](https://www.chromium.org)
+- [Google Chrome](https://www.google.com/chrome)
 - [DBeaver](https://dbeaver.io)
 - [Discord](https://discord.com)
 - [Docker](https://www.docker.com)
