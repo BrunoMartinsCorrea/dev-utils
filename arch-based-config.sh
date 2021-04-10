@@ -371,6 +371,14 @@ plugins=(autopep8 aws colored-man-pages command-not-found dotenv docker docker-c
 # PYTHON VARS
 PIPENV_VENV_IN_PROJECT=true
 
+# FUNCTIONS
+kill-on-port() {
+    pid=\"\$(lsof -t -i:\$1)\"
+    if [ -n \"\$pid\" ]; then
+        kill -9 \$pid;
+    fi
+}
+
 # ALIASES
 alias docker-stop-all=\"docker stop \\\$(docker ps -aq)\"
 alias docker-remove-all-containers=\"docker rm -f \\\$(docker ps -aq)\"
