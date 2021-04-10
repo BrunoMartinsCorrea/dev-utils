@@ -24,7 +24,7 @@ if [ $(isInstalled paru) == 0 ]; then
     makepkg -si
 fi
 
-paru -S --needed --noconfirm flatpak google-chrome element-desktop telegram-desktop slack-desktop steam discord
+paru -Syu --needed --noconfirm flatpak google-chrome element-desktop telegram-desktop slack-desktop steam discord
 
 # FLATPAK
 if [ $(isInstalled flatpak) == 1 ]; then

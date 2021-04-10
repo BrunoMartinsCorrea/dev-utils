@@ -43,7 +43,7 @@ while [ -n "$1" ]; do
 	shift
 done
 
-sudo pacman -Syyu --noconfirm base-devel cmake git rustup
+sudo pacman -Syu --needed --noconfirm base-devel cmake git rustup
 
 # RUSTUP
 if [ $(isInstalled rustup) == 1 ]; then
@@ -63,41 +63,41 @@ fi
 # PARU
 
 # DEFAULT
-sudo pacman -S --needed --noconfirm zsh zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono ttf-fira-code ttf-nerd-fonts-symbols-mono noto-fonts-emoji gst-libav man xclip tree vim curl net-tools openvpn zip unzip jq yq htop python python-pip docker-compose ctop qemu libvirt
+paru -Syu --needed --sudoloop --noconfirm zsh zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono ttf-fira-code ttf-nerd-fonts-symbols-mono noto-fonts-emoji gst-libav man xclip tree vim curl net-tools openvpn zip unzip jq yq htop python python-pip docker-compose ctop qemu libvirt
 # DEFAULT
 
 # BACKEND
 if [ "$BACKEND" == "1" ]; then
-    sudo pacman -S --needed --noconfirm clang erlang elixir go nasm ruby perl clisp ghc cabal-install stack lua vala ninja meson arduino arduino-avr-core minikube kubectl helm k9s intellij-idea-community-edition pycharm-community-edition dbeaver
+    paru -S --needed --sudoloop --noconfirm clang erlang elixir go nasm ruby perl clisp ghc cabal-install stack lua vala ninja meson arduino arduino-avr-core minikube kubectl helm k9s intellij-idea-community-edition pycharm-community-edition dbeaver
 fi
 # BACKEND
 
 # FRONTEND
 if [ "$FRONTEND" == "1" ]; then
-    sudo pacman -S --needed --noconfirm php smali jadx jdk8-openjdk
+    paru -S --needed --sudoloop --noconfirm php smali jadx jdk8-openjdk
 fi
 # FRONTEND
 
 # DATA-SCIENCE
 if [ "$DATA_SCIENCE" == "1" ]; then
-    sudo pacman -S --needed --noconfirm r pycharm-community-edition dbeaver
+    paru -S --needed --sudoloop --noconfirm r pycharm-community-edition dbeaver
 fi
 # DATA-SCIENCE
 
 if [ $(isInstalled paru) == 1 ]; then
     # DEFAULT
-    paru -Syyu --needed --noconfirm ttf-ms-fonts oh-my-zsh-git visual-studio-code-bin insomnia-bin
+    paru -S --needed --sudoloop --noconfirm ttf-ms-fonts oh-my-zsh-git visual-studio-code-bin insomnia-bin
     # DEFAULT
 
     # BACKEND
     if [ "$BACKEND" == "1" ]; then
-        paru -S --needed --noconfirm nvm kind ncurses5-compat-libs
+        paru -S --needed --sudoloop --noconfirm nvm kind ncurses5-compat-libs
     fi
     # BACKEND
 
     # FRONTEND
     if [ "$FRONTEND" == "1" ]; then
-        paru -S --needed --noconfirm nvm android-studio android-sdk
+        paru -S --needed --sudoloop --noconfirm nvm android-studio android-sdk
     fi
     # FRONTEND
 fi
@@ -371,6 +371,7 @@ alias docker-remove-all-containers=\"docker rm -f \\\$(docker ps -aq)\"
 alias docker-remove-all-images=\"docker rmi -f \\\$(docker images -q)\"
 alias docker-cleanup=\"docker-stop-all && docker-remove-all-containers && docker-remove-all-images\"
 alias update-all-repositories='cur_dir=\$(pwd) && for i in \$(find . -name \".git\" | grep -Po \".*(?=/\.git)\"); do cd \"\$cur_dir/\$i\" && printf \"\\\n\\\nUPDATING \$i\\\n\\\n\" && git fetch && git pull; done && cd \"\$cur_dir\"'
+alias update-all-pip-packages=\"pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip install -U\"
 
 # USER PROFILE SOURCE
 # ADD YOUR CUSTOM VARIABLES, ALIAS AND THEMES IN THE FILE BELOW

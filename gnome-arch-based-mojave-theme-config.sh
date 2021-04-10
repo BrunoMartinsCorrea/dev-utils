@@ -31,7 +31,7 @@ while [ -n "$1" ]; do
 	shift
 done
 
-sudo pacman -Syyu --noconfirm base-devel cmake git rustup
+sudo pacman -Syu --needed --noconfirm base-devel cmake git rustup
 
 # RUSTUP
 if [ $(isInstalled rustup) == 1 ]; then
@@ -50,8 +50,7 @@ fi
 # PARU
 
 # INSTALLING ESSENTIAL PACKAGES
-sudo pacman -S --noconfirm epiphany gedit gnome-terminal capitaine-cursors gnome-tweaks
-paru -Syyu --noconfirm gnome-session-properties mojave-gtk-theme gnome-mojave-timed-wallpaper la-capitaine-icon-theme ruby-fusuma
+paru -Syu --needed --sudoloop --noconfirm epiphany gedit gnome-terminal capitaine-cursors gnome-tweaks gnome-session-properties mojave-gtk-theme gnome-mojave-timed-wallpaper la-capitaine-icon-theme ruby-fusuma
 
 # SETTING UP KEYBOARD
 gsettings set org.gnome.desktop.peripherals.keyboard delay 500
