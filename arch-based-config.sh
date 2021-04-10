@@ -43,7 +43,7 @@ while [ -n "$1" ]; do
 	shift
 done
 
-sudo pacman -Syu --needed --noconfirm base-devel cmake git rustup
+sudo pacman -Syuq --needed --noconfirm --noprogressbar base-devel cmake git rustup
 
 # RUSTUP
 if [ $(isInstalled rustup) == 1 ]; then
@@ -63,7 +63,7 @@ fi
 # PARU
 
 # DEFAULT
-paru -Syu --needed --sudoloop --noconfirm zsh zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono ttf-fira-code ttf-nerd-fonts-symbols-mono noto-fonts-emoji gst-libav man xclip tree vim curl net-tools openvpn zip unzip jq yq htop python python-pip docker-compose ctop qemu libvirt flatpak google-chrome element-desktop telegram-desktop slack-desktop steam discord
+paru -Syuq --needed --sudoloop --noconfirm --noprogressbar pacman-contrib zsh zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono ttf-fira-code ttf-nerd-fonts-symbols-mono noto-fonts-emoji gst-libav man xclip tree vim curl net-tools networkmanager-openvpn zip unzip jq yq htop python python-pip docker-compose ctop qemu libvirt flatpak google-chrome element-desktop telegram-desktop slack-desktop steam discord
 # DEFAULT
 
 # FLATPAK
@@ -74,36 +74,36 @@ fi
 
 # BACKEND
 if [ "$BACKEND" == "1" ]; then
-    paru -S --needed --sudoloop --noconfirm clang erlang elixir go nasm ruby perl clisp ghc cabal-install stack lua vala ninja meson arduino arduino-avr-core minikube kubernetes-tools helm k9s intellij-idea-community-edition pycharm-community-edition dbeaver
+    paru -Sq --needed --sudoloop --noconfirm --noprogressbar clang erlang elixir go nasm ruby perl clisp ghc cabal-install stack lua vala ninja meson arduino arduino-avr-core minikube kubernetes-tools helm k9s intellij-idea-community-edition pycharm-community-edition dbeaver
 fi
 # BACKEND
 
 # FRONTEND
 if [ "$FRONTEND" == "1" ]; then
-    paru -S --needed --sudoloop --noconfirm php smali jadx jdk8-openjdk
+    paru -Sq --needed --sudoloop --noconfirm --noprogressbar php smali jadx jdk8-openjdk
 fi
 # FRONTEND
 
 # DATA-SCIENCE
 if [ "$DATA_SCIENCE" == "1" ]; then
-    paru -S --needed --sudoloop --noconfirm r pycharm-community-edition dbeaver
+    paru -Sq --needed --sudoloop --noconfirm --noprogressbar r pycharm-community-edition dbeaver
 fi
 # DATA-SCIENCE
 
 if [ $(isInstalled paru) == 1 ]; then
     # DEFAULT
-    paru -S --needed --sudoloop --noconfirm ttf-ms-fonts oh-my-zsh-git visual-studio-code-bin insomnia-bin
+    paru -Sq --needed --sudoloop --noconfirm --noprogressbar ttf-ms-fonts oh-my-zsh-git visual-studio-code-bin insomnia-bin
     # DEFAULT
 
     # BACKEND
     if [ "$BACKEND" == "1" ]; then
-        paru -S --needed --sudoloop --noconfirm nvm kind ncurses5-compat-libs
+        paru -Sq --needed --sudoloop --noconfirm --noprogressbar nvm kind ncurses5-compat-libs
     fi
     # BACKEND
 
     # FRONTEND
     if [ "$FRONTEND" == "1" ]; then
-        paru -S --needed --sudoloop --noconfirm nvm android-studio android-sdk
+        paru -Sq --needed --sudoloop --noconfirm --noprogressbar nvm android-studio android-sdk
     fi
     # FRONTEND
 fi
