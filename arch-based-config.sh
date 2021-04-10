@@ -379,7 +379,21 @@ alias docker-cleanup=\"docker-stop-all && docker-remove-all-containers && docker
 alias update-all-repositories='cur_dir=\$(pwd) && for i in \$(find . -name \".git\" 2>/dev/null | grep -Po \".*(?=/\.git)\" | grep -v \".*/\..*\"); do cd \"\$cur_dir/\$i\" && printf \"\\\n\\\nUPDATING \$i\\\n\\\n\" && git pull || true; done && cd \"\$cur_dir\"'
 alias update-all-pip-packages=\"pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip install -U\"
 alias update-all-system-packages=\"paru -Syu --noconfirm && flatpak update\"
-alias update-everything='_pwd=\$(pwd) && cd && update-all-system-packages && update-all-pip-packages && update-all-repositories && cd \"\$_pwd\"'
+alias update-everything='_pwd=\$(pwd) && cd && update-all-system-packages && update-all-pip-packages && rustup update && update-all-repositories " >> ~/.zshrc
+
+    # BACKEND
+    if [ "$BACKEND" == "1" ]; then
+        printf "&& sdk self-update && sdk update " >> ~/.zshrc
+    fi
+    # BACKEND
+
+    # FRONTEND
+    if [ "$FRONTEND" == "1" ]; then
+        printf "&& nvm install --lts --reinstall-packages-from=default --latest-npm && npm update -g " >> ~/.zshrc
+    fi
+    # FRONTEND
+    
+    printf "&& cd \"\$_pwd\"'
 
 # USER PROFILE SOURCE
 # ADD YOUR CUSTOM VARIABLES, ALIAS AND THEMES IN THE FILE BELOW
