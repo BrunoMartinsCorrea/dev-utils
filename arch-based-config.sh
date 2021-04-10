@@ -378,6 +378,8 @@ alias docker-remove-all-images=\"docker rmi -f \\\$(docker images -q)\"
 alias docker-cleanup=\"docker-stop-all && docker-remove-all-containers && docker-remove-all-images\"
 alias update-all-repositories='cur_dir=\$(pwd) && for i in \$(find . -name \".git\" | grep -Po \".*(?=/\.git)\"); do cd \"\$cur_dir/\$i\" && printf \"\\\n\\\nUPDATING \$i\\\n\\\n\" && git fetch && git pull; done && cd \"\$cur_dir\"'
 alias update-all-pip-packages=\"pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip install -U\"
+alias update-all-system-packages=\"paru -Syu --noconfirm && flatpak update\"
+alias update-everything=\"cur_dir=\$(pwd) && cd && update-all-system-packages && update-all-pip-packages && update-all-repositories && cd \$cur_dir\"
 
 # USER PROFILE SOURCE
 # ADD YOUR CUSTOM VARIABLES, ALIAS AND THEMES IN THE FILE BELOW
