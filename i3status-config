@@ -1,0 +1,67 @@
+general {
+	output_format = "i3bar"
+        colors = true
+        interval = 1
+}
+
+order += "cpu_usage all"
+order += "cpu_temperature all"
+order += "memory"
+order += "disk /"
+order += "ethernet _first_"
+order += "wireless _first_"
+order += "battery all"
+order += "volume master"
+order += "tztime local"
+
+cpu_usage {
+	format = " %usage"
+	max_threshold = 90
+	degraded_threshold = 75
+}
+
+cpu_temperature all {
+        format = " %degrees°C"
+        max_threshold = 42
+}
+
+memory {
+        format = " %used"
+        threshold_degraded = 30%
+        threshold_critical = 10%
+}
+
+disk "/" {
+        format = " %avail"
+        threshold_type = percentage_free
+        low_threshold = 85
+}
+
+ethernet _first_ {
+        format_up = " %quality at %essid"
+        format_down = ""
+}
+
+wireless _first_ {
+        format_up = "直%quality at %essid"
+	format_down = "睊"
+}
+
+battery all {
+        format = "%status %percentage"
+	format_down = ""
+	status_chr = ""
+        status_bat = ""
+        status_unk = ""
+        status_full = ""
+        low_threshold = 20
+}
+
+volume master {
+	format = "墳 %volume"
+        format_muted = "婢"
+}
+
+tztime local {
+        format = " %Y-%m-%d %H:%M:%S"
+}

@@ -1,0 +1,121 @@
+set $mod Mod4
+
+font pango:JetBrains Mono ExtraBold, Symbols Nerd Font 10
+
+bar {
+        status_command i3status
+        mode dock
+        output primary
+        tray_output primary
+        tray_padding 0
+        workspace_buttons yes
+        strip_workspace_numbers no
+	position top
+	separator_symbol ""
+	
+	colors {
+		background #000000
+		statusline #ffffff
+		separator #666666
+
+		focused_workspace  #666666 #666666 #ffffff
+		active_workspace   #666666 #666666 #ffffff
+		inactive_workspace #000000 #000000 #666666
+		urgent_workspace   #666666 #666666 #ffffff
+		binding_mode       #666666 #666666 #ffffff
+	}
+}
+
+mode "resize" {
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+client.focused          #666666 #666666 #ffffff #000000 #000000
+client.focused_inactive #000000 #000000 #ffffff #000000 #000000
+client.unfocused        #000000 #000000 #666666 #000000 #000000
+client.urgent           #000000 #000000 #ffffff #000000 #000000
+client.placeholder      #000000 #000000 #ffffff #000000 #000000
+client.background       #000000
+
+default_border pixel 0
+
+exec --no-startup-id xsetroot -solid "#000000"
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id nm-applet
+# exec --no-startup-id xfsettingsd --daemon --disable-wm-check --replace
+# exec --no-startup-id gnome-session
+# exec --no-startup-id /usr/lib/gsd-xsettings
+
+floating_modifier $mod
+
+set $refresh_i3status killall -SIGUSR1 i3status 
+
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 && $refresh_i3status
+bindsym XF86MonBrighnessDown exec --no-startup-id xbacklight -dec 5 && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 0
+
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 0
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+h split h
+bindsym $mod+v split v
+bindsym $mod+f fullscreen toggle
+
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -f 'pango:pango:JetBrains Mono ExtraBold, Symbols Nerd Font 10' -m '' -B '襤' 'shutdown now' -B '累' 'reboot' -B '' 'i3-msg exit' -B '' 'i3lock -bef -c 000000'"
+
+bindsym $mod+Shift+q kill
+bindsym $mod+r mode "resize"
+bindsym $mod+Shift+space floating toggle
+
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu_run -b -i -p '' -fn 'JetBrains Mono ExtraBold-10 Symbols Nerd Font-10' -nf '#666666' -nb '#000000' -sf '#ffffff' -sb '#666666'"
+bindsym $mod+l exec --no-startup-id i3lock -bef -c 000000
+bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
