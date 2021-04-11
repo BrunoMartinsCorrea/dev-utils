@@ -23,7 +23,7 @@ fdisk /dev/sda
 mkfs.fat -F32 /dev/sda1
 mkfs.ext4 /dev/sda2
 mount /dev/sda2 /mnt
-pacstrap /mnt base base-devel linux linux-firmware
+pacstrap /mnt base base-devel linux linux-firmware vim
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 
@@ -43,17 +43,17 @@ locale-gen
 echo "KEYMAP=br-abnt2" > /etc/vconsole.conf # <- us-acentos or execute `localectl list-keymaps` to see more options
 localectl set-locale LANG=en_US.UTF-8
 localectl set-locale LC_CTYPE=en_US.UTF-8
-localectl set-locale LC_NUMERIC=pt_BR.UTF-8
-localectl set-locale LC_TIME=pt_BR.UTF-8
+# localectl set-locale LC_NUMERIC=pt_BR.UTF-8
+# localectl set-locale LC_TIME=pt_BR.UTF-8
 localectl set-locale LC_COLLATE=en_US.UTF-8
-localectl set-locale LC_MONETARY=pt_BR.UTF-8
+# localectl set-locale LC_MONETARY=pt_BR.UTF-8
 localectl set-locale LC_MESSAGES=en_US.UTF-8
-localectl set-locale LC_PAPER=pt_BR.UTF-8
-localectl set-locale LC_NAME=pt_BR.UTF-8
-localectl set-locale LC_ADDRESS=pt_BR.UTF-8
-localectl set-locale LC_TELEPHONE=pt_BR.UTF-8
-localectl set-locale LC_MEASUREMENT=pt_BR.UTF-8
-localectl set-locale LC_IDENTIFICATION=pt_BR.UTF-8
+# localectl set-locale LC_PAPER=pt_BR.UTF-8
+# localectl set-locale LC_NAME=pt_BR.UTF-8
+# localectl set-locale LC_ADDRESS=pt_BR.UTF-8
+# localectl set-locale LC_TELEPHONE=pt_BR.UTF-8
+# localectl set-locale LC_MEASUREMENT=pt_BR.UTF-8
+# localectl set-locale LC_IDENTIFICATION=pt_BR.UTF-8
 echo "<MY_HOSTNAME>" > /etc/hostname # Replace <MY_HOSTNAME> with the name you want (e.g. jarvis-pc)
 vim /etc/hosts
     127.0.0.1   localhost
@@ -70,9 +70,19 @@ nmcli d wifi list
 nmcli d wifi connect <NETWORK> password <PASSWORD>
 
 # GNOME
-sudo pacman -S gnome chrome-gnome-shell gnome-software-packagekit-plugin
+pacman -S --noconfirm gdm gnome-control-center chrome-gnome-shell gnome-software-packagekit-plugin gnome-terminal gnome-calculator gnome-system-monitor gnome-screenshot gnome-tweaks nautilus sushi totem gedit eog
+
 systemctl enable gdm
+
+setxkbmap "br,us"
+
+cd /usr/share/applications
+rm avahi-discover.desktop bssh.desktop bvnc.desktop lstopo.desktop nm-connection-editor.desktop qv4l2.desktop qvidcap.desktop
 # GNOME
+
+# I3
+pacman -S --noconfirm i3-wm i3blocks i3lock i3status
+# I3
 
 # PANTHEON
 echo -e "\n[extra-alucryd]\nServer = https://pkgbuild.com/~alucryd/\$repo/\$arch\n" | sudo tee -a /etc/pacman.conf
@@ -86,11 +96,9 @@ sudo systemctl enable lightdm
 # PANTHEON
 
 exit
-exit
 reboot
 
 cd /tmp
 git clone https://github.com/BrunoMartinsCorrea/dev-utils.git
-./dev-util/arch-based-dev-config.sh -h
-./dev-util/arch-based-config.sh
+./dev-util/arch-based-config.sh -h
 ```
