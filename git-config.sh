@@ -154,6 +154,7 @@ User email: $GIT_EMAIL
 "
             read -p "Option: " VCS_OPTION
 
+            GIT_EMAIL=$(git config --global user.email)
             VCS_NAME=github
             VCS_SSH_URL="https://github.com/settings/keys"
 
