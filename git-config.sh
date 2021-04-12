@@ -1,16 +1,20 @@
 #!/bin/bash
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+NO_COLOR='\033[0m'
 GIT_PATH=$(which git)
 XCLIP_PATH=$(which xclip)
 
 if ! command -v git &> /dev/null || ! command -v xclip &> /dev/null; then
-    printf "Oops! You need to install git and xclip before running this script!"
+    echo "${RED}Oops! You need to install git and xclip before running this script!${NO_COLOR}"
     exit 1
 fi
 
 while :
 do
     clear
-    printf "
+    echo "
 ╔══════════════════════════════════════╗
 ║        Welcome to git-config         ║
 ╠══════════════════════════════════════╣
@@ -19,9 +23,8 @@ do
 ║ 2. Configure user in a custom folder ║
 ║ 3. Generate SSH                      ║
 ╚══════════════════════════════════════╝
-
-Option: "
-    read MENU_OPTION
+"
+    read -p "Option: " MENU_OPTION
 
     if [ "$MENU_OPTION" == "1" ]; then
         GIT_NAME=$(git config --global user.name)
@@ -30,17 +33,17 @@ Option: "
 
         if [ -n "$GIT_NAME" ] || [ -n "$GIT_EMAIL" ]; then
             clear
-            printf "
+            echo -e "${YELLOW}
 ╔══════════════════════════════════════════╗
 ║                 WARNING                  ║
 ╠══════════════════════════════════════════╣
 ║ You have already set up your global user ║
 ╚══════════════════════════════════════════╝
+${NO_COLOR}
 User name : $GIT_NAME
 User email: $GIT_EMAIL
-
-Do you want to overwrite it? [y/N]: "
-            read GIT_OVERWRITE_INPUT
+"
+            read -p "Do you want to overwrite it? [y/N]: " GIT_OVERWRITE_INPUT
 
             if [ "$GIT_OVERWRITE_INPUT" == "y" ] || [ "$GIT_OVERWRITE_INPUT" == "Y" ]; then
                 GIT_OVERWRITE=1
@@ -51,16 +54,13 @@ Do you want to overwrite it? [y/N]: "
 
         if [ "$GIT_OVERWRITE" == "1" ]; then
             clear
-            printf "
+            echo -e "${YELLOW}
 ╔════════════════════════════════════╗
 ║ You're setting up your global user ║
-╚════════════════════════════════════╝
+╚════════════════════════════════════╝${NO_COLOR}
 "
-            printf "Type your full name: "
-            read GIT_NAME
-
-            printf "Type your e-mail: "
-            read GIT_EMAIL
+            read -p "Type your full name: " GIT_NAME
+            read -p "Type your e-mail: " GIT_EMAIL
 
             git config --global user.name "$GIT_NAME"
             git config --global user.email "$GIT_EMAIL"
@@ -73,16 +73,16 @@ Do you want to overwrite it? [y/N]: "
         while :
         do
         clear
-            printf "Please select a directory:\n"
+            echo -e "Please select a directory:\n"
+
             select DIRECTORY in "$DIRECTORY"*/;
             do
                 test -n "$DIRECTORY" && break
             done
 
-            printf "Do you want to select another directory inside $DIRECTORY [Y/n]?: "
-            read INSIDE_DIRECTORY
-            if [ "$INSIDE_DIRECTORY" == "n" ] || [ "$INSIDE_DIRECTORY" == "N" ]; then
+            read -p "Do you want to select another directory inside $DIRECTORY [Y/n]?: " INSIDE_DIRECTORY
 
+            if [ "$INSIDE_DIRECTORY" == "n" ] || [ "$INSIDE_DIRECTORY" == "N" ]; then
                 break
             fi
         done
@@ -93,17 +93,17 @@ Do you want to overwrite it? [y/N]: "
 
         if [ -n "$GIT_NAME" ] || [ -n "$GIT_EMAIL" ]; then
             clear
-            printf "
+            echo -e "${YELLOW}
 ╔════════════════════════════════════════╗
 ║                 WARNING                ║
 ╠════════════════════════════════════════╣
 ║ You have already set up this directory ║
 ╚════════════════════════════════════════╝
+${NO_COLOR}
 User name : $GIT_NAME
 User email: $GIT_EMAIL
-
-Do you want to overwrite it? [y/N]: "
-            read GIT_OVERWRITE_INPUT
+"
+            read -p "Do you want to overwrite it? [y/N]: " GIT_OVERWRITE_INPUT
 
             if [ "$GIT_OVERWRITE_INPUT" == "y" ] || [ "$GIT_OVERWRITE_INPUT" == "Y" ]; then
                 GIT_OVERWRITE=1
@@ -114,17 +114,14 @@ Do you want to overwrite it? [y/N]: "
 
         if [ "$GIT_OVERWRITE" == "1" ]; then
             clear
-            printf "
+            echo "
 ╔══════════════════════════════════════╗
 ║ You're setting up your local user at ║
   $DIRECTORY
 ╚══════════════════════════════════════╝
 "
-            printf "Type your full name: "
-            read GIT_NAME
-
-            printf "Type your e-mail: "
-            read GIT_EMAIL
+            read -p "Type your full name: " GIT_NAME
+            read -p "Type your e-mail: " GIT_EMAIL
 
             git config --file $DIRECTORY/.gitconfig user.name "$GIT_NAME"
             git config --file $DIRECTORY/.gitconfig user.email "$GIT_EMAIL"
@@ -132,19 +129,19 @@ Do you want to overwrite it? [y/N]: "
             git config --file $DIRECTORY/.gitconfig init.defaultBranch main
             git config --global --add includeif.gitdir:$DIRECTORY.path $DIRECTORY.gitconfig
             clear
-            printf "
+            echo -e "${GREEN}
 ╔════════════════════════════════════╗
 ║    User configured successfully!   ║
 ╠════════════════════════════════════╣
 ║    Press any key to continue...    ║
-╚════════════════════════════════════╝"
+╚════════════════════════════════════╝${NO_COLOR}"
             read
         fi
     elif [ "$MENU_OPTION" == "3" ]; then
         while :
         do
             clear
-            printf "
+            echo "
 ╔══════════════════════════════════════╗
 ║     Select a product to configure    ║
 ╠══════════════════════════════════════╣
@@ -154,9 +151,8 @@ Do you want to overwrite it? [y/N]: "
 ║ 3. Gitlab                            ║
 ║ 4. Other                             ║
 ╚══════════════════════════════════════╝
-
-Option: "
-            read VCS_OPTION
+"
+            read -p "Option: " VCS_OPTION
 
             VCS_NAME=github
             VCS_SSH_URL="https://github.com/settings/keys"
@@ -173,8 +169,7 @@ Option: "
                 VCS_NAME=gitlab
                 VCS_SSH_URL="https://gitlab.com/profile/keys"
             else
-                printf "Type the service name: "
-                read VCS_OTHER_NAME
+                read -p "Type the service name: " VCS_OTHER_NAME
                 
                 VCS_NAME=$(echo "$VCS_OTHER_NAME" | awk '{print tolower($0)}')
             fi
@@ -185,19 +180,18 @@ Option: "
 
             clear
 
-            printf "
+            echo -e "${GREEN}
 ╔══════════════════════════════════════════════╗
 ║         Your SSH key is on clipboard         ║
 ╠══════════════════════════════════════════════╣
 ║   Press Enter and paste the SSH key on the   ║
 ║ website that will open.                      ║
-╚══════════════════════════════════════════════╝"
+╚══════════════════════════════════════════════╝${NO_COLOR}"
             read
             xdg-open $VCS_SSH_URL > /dev/null 2>&1
             
             clear
-            printf "Do you want to configure another SSH key? [y/N]: "
-            read CONTINUE_OPTION
+            read -p "Do you want to configure another SSH key? [y/N]: " CONTINUE_OPTION
 
             if [ "$CONTINUE_OPTION" != "y" ] && [ "$CONTINUE_OPTION" != "Y" ]; then
                 break

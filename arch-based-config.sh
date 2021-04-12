@@ -27,7 +27,7 @@ while [ -n "$1" ]; do
 			FRONTEND=1
 			DATA_SCIENCE=1;;
 		--help|-h|*)
-			printf "Usage: $(basename $0) [OPTION..]
+			echo "Usage: $(basename $0) [OPTION..]
 
   By default, the following packages will be installed: [base-devel, rustup, python, docker, cmake, git, awscli, paru, flatpak, zsh, oh-my-zsh, vscode, insomnia, ventoy, google-chrome, element, telegram, slack, steam, discord]
 
@@ -185,8 +185,8 @@ if [ "$FRONTEND" == "1" ]; then
     export PATH=$PATH:$ANDROID_HOME/platform-tools
 
     sdkmanager --update
-    echo "y" | sdkmanager --install platform-tools emulator
-    echo "y\ny\ny\ny" | sdkmanager --licenses
+    yes | sdkmanager --install platform-tools emulator
+    yes | sdkmanager --licenses
 
     SDKMANAGER_LIST=$(sdkmanager --list)
     SDKMANAGER_PLATFORMS=$(echo $SDKMANAGER_LIST | grep -Po "platforms;android-(\d{2,}|[a-zA-Z]*)" | sort -r | head -1)
@@ -196,7 +196,7 @@ if [ "$FRONTEND" == "1" ]; then
     sdkmanager "$SDKMANAGER_PLATFORMS"
     sdkmanager "$SDKMANAGER_BUILD_TOOLS"
     sdkmanager "$SDKMANAGER_SYSTEM_IMAGES"
-    avdmanager create avd --name pixel --device "pixel_xl" --package "$SDKMANAGER_SYSTEM_IMAGES"
+    avdmanager create avd --force --name pixel --device "pixel_xl" --package "$SDKMANAGER_SYSTEM_IMAGES"
 fi
 # ANDROID-SDK
 
@@ -235,7 +235,7 @@ if [ $(isInstalled sdk) == 1 ]; then
     sdk install visualvm < /dev/null
 
     # VISUALVM
-printf "[Desktop Entry]
+echo "[Desktop Entry]
 Name=VisualVM
 Type=Application
 Categories=Development;
@@ -328,19 +328,21 @@ fi
 
 # ZSHELL
 if [ $(isInstalled zsh) == 1 ]; then
-    while : ; do
-        chsh -s $(which zsh)
-        [[ "$?" == "1" ]] || break
-    done
-    while : ; do
-        sudo chsh -s $(which zsh)
-        [[ "$?" == "1" ]] || break
-    done
+    if [ "$SHELL" != "/usr/bin/zsh" ]; then
+        while : ; do
+            chsh -s $(which zsh)
+            [[ "$?" == "1" ]] || break
+        done
+        while : ; do
+            sudo chsh -s $(which zsh)
+            [[ "$?" == "1" ]] || break
+        done
+    fi
     mkdir -p ~/.cache/zsh
     touch ~/.zsh_profile
     
     # DEFAULT
-    printf "# OH-MY-ZSH VARS
+    echo "# OH-MY-ZSH VARS
 ZSH_CACHE_DIR=~/.cache/zsh
 ZSH_THEME=\"agnoster\"
 if [ \`tput colors\` != \"256\" ]; then
@@ -350,23 +352,23 @@ plugins=(autopep8 aws colored-man-pages command-not-found dotenv docker docker-c
 
     # BACKEND
     if [ "$BACKEND" == "1" ]; then
-        printf "cabal cargo gem golang gradle jfrog kubectl minikube mvn scala sdk spring " >> ~/.zshrc
+        echo "cabal cargo gem golang gradle jfrog kubectl minikube mvn scala sdk spring " >> ~/.zshrc
     fi
     # BACKEND
 
     # FRONTEND
     if [ "$FRONTEND" == "1" ]; then
-        printf "adb django react-native " >> ~/.zshrc
+        echo "adb django react-native " >> ~/.zshrc
     fi
     # FRONTEND
 
     # BACKEND || FRONTEND
     if [ "$BACKEND" == "1" ] || [ "$FRONTEND" == "1" ]; then
-        printf "npm nvm yarn" >> ~/.zshrc
+        echo "npm nvm yarn" >> ~/.zshrc
     fi
     # BACKEND || FRONTEND
 
-    printf ")
+    echo -n ")
 
 # PYTHON VARS
 PIPENV_VENV_IN_PROJECT=true
@@ -384,24 +386,24 @@ alias docker-stop-all=\"docker stop \\\$(docker ps -aq)\"
 alias docker-remove-all-containers=\"docker rm -f \\\$(docker ps -aq)\"
 alias docker-remove-all-images=\"docker rmi -f \\\$(docker images -q)\"
 alias docker-cleanup=\"docker-stop-all && docker-remove-all-containers && docker-remove-all-images\"
-alias update-all-repositories='cur_dir=\$(pwd) && for i in \$(find . -name \".git\" 2>/dev/null | grep -Po \".*(?=/\.git)\" | grep -v \".*/\..*\"); do cd \"\$cur_dir/\$i\" && printf \"\\\n\\\nUPDATING \$i\\\n\\\n\" && git pull || true; done && cd \"\$cur_dir\"'
+alias update-all-repositories='cur_dir=\$(pwd) && for i in \$(find . -name \".git\" 2>/dev/null | grep -Po \".*(?=/\.git)\" | grep -v \".*/\..*\"); do cd \"\$cur_dir/\$i\" && echo -e \"\\\n\\\nUPDATING \$i\\\n\\\n\" && git pull || true; done && cd \"\$cur_dir\"'
 alias update-all-pip-packages=\"pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip install -U\"
 alias update-all-system-packages=\"paru -Syu --noconfirm && flatpak update\"
 alias update-everything='_pwd=\$(pwd) && cd && update-all-system-packages && update-all-pip-packages && rustup update && update-all-repositories " >> ~/.zshrc
 
     # BACKEND
     if [ "$BACKEND" == "1" ]; then
-        printf "&& sdk self-update && sdk update " >> ~/.zshrc
+        echo -n "&& sdk self-update && sdk update " >> ~/.zshrc
     fi
     # BACKEND
 
     # FRONTEND
     if [ "$FRONTEND" == "1" ]; then
-        printf "&& nvm install --lts --reinstall-packages-from=default --latest-npm && npm update -g " >> ~/.zshrc
+        echo -n "&& nvm install --lts --reinstall-packages-from=default --latest-npm && npm update -g " >> ~/.zshrc
     fi
     # FRONTEND
     
-    printf "&& cd \"\$_pwd\"'
+    echo "&& cd \"\$_pwd\"'
 
 # USER PROFILE SOURCE
 # ADD YOUR CUSTOM VARIABLES, ALIAS AND THEMES IN THE FILE BELOW
@@ -409,42 +411,39 @@ source \"\$HOME/.zsh_profile\"
 
 # OH-MY-ZSH SOURCE
 source /usr/share/oh-my-zsh/oh-my-zsh.sh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-" >> ~/.zshrc
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
     # DEFAULT
 
     # NVM
     if [ $(isInstalled nvm) == 1 ]; then
-        printf "
+        echo "
 # NVM SOURCE
-source /usr/share/nvm/init-nvm.sh
-" >> ~/.zshrc
+source /usr/share/nvm/init-nvm.sh" >> ~/.zshrc
     fi
     # NVM
 
     # SDKMAN
     if [ $(isInstalled sdk) == 1 ]; then
-        printf "
+        echo "
 # SDKMAN
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR=\"\$HOME/.sdkman\"
-[[ -s \"\$HOME/.sdkman/bin/sdkman-init.sh\" ]] && source \"\$HOME/.sdkman/bin/sdkman-init.sh\"
-" >> ~/.zshrc
+[[ -s \"\$HOME/.sdkman/bin/sdkman-init.sh\" ]] && source \"\$HOME/.sdkman/bin/sdkman-init.sh\"" >> ~/.zshrc
     fi
     # SDKMAN
 
     # ANDROID-SDK
     if [ "$FRONTEND" == "1" ]; then
-        printf "
+        echo "
 # ANDROID-SDK
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 export ANDROID_HOME=/opt/android-sdk
 export ANDROID_SDK_ROOT=/opt/android-sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-        " >> ~/.zshrc
+export PATH=\$PATH:$ANDROID_HOME/emulator
+export PATH=\$PATH:$ANDROID_HOME/tools
+export PATH=\$PATH:$ANDROID_HOME/tools/bin
+export PATH=\$PATH:$ANDROID_HOME/platform-tools
+" >> ~/.zshrc
     fi
     # ANDROID-SDK
 

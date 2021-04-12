@@ -73,7 +73,7 @@ gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 gsettings set org.gnome.desktop.peripherals.touchpad two-finger-scrolling-enabled true
 sudo gpasswd -a $USER input
 mkdir -p ~/.config/fusuma
-printf "swipe:
+echo "swipe:
   3:
     left:
       command: \"xdotool set_desktop --relative 1\"
@@ -89,7 +89,7 @@ pinch:
       command: \"dbus-send --session --type=method_call --dest=org.gnome.Shell /org/gnome/Shell org.gnome.Shell.Eval string:'Main.shellDBusService.ShowApplications();'\"
     out:
       command: \"xdotool key ctrl+d\"" > ~/.config/fusuma/config.yml
-printf "[Desktop Entry]
+echo "[Desktop Entry]
 Type=Application
 Exec=/usr/bin/fusuma -d
 Hidden=false
