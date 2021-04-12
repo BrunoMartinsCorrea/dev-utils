@@ -63,7 +63,7 @@ fi
 # PARU
 
 # DEFAULT
-paru -Syuq --needed --sudoloop --noconfirm --noprogressbar pacman-contrib zsh zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono ttf-fira-code ttf-nerd-fonts-symbols-mono noto-fonts-emoji gst-libav man xclip tree vim curl net-tools networkmanager-openvpn zip unzip jq yq htop python python-pip docker-compose ctop qemu libvirt flatpak ventoy-bin google-chrome element-desktop telegram-desktop slack-desktop steam discord
+paru -Syuq --needed --sudoloop --noconfirm --noprogressbar pacman-contrib zsh zsh-syntax-highlighting powerline-fonts ttf-jetbrains-mono ttf-fira-code ttf-nerd-fonts-symbols-mono noto-fonts-emoji gst-libav man xclip tree vim curl net-tools networkmanager-openvpn zip unzip jq yq htop python python-pip docker-compose ctop qemu libvirt flatpak ventoy-bin google-chrome element-desktop telegram-desktop slack-desktop steam discord ttf-ms-fonts oh-my-zsh-git visual-studio-code-bin insomnia-bin
 # DEFAULT
 
 # FLATPAK
@@ -74,13 +74,13 @@ fi
 
 # BACKEND
 if [ "$BACKEND" == "1" ]; then
-    paru -Sq --needed --sudoloop --noconfirm --noprogressbar clang erlang elixir go nasm ruby perl clisp ghc cabal-install stack lua vala ninja meson arduino arduino-avr-core minikube kubernetes-tools helm k9s intellij-idea-community-edition pycharm-community-edition dbeaver
+    paru -Sq --needed --sudoloop --noconfirm --noprogressbar clang erlang elixir go nasm ruby perl clisp ghc cabal-install stack lua vala ninja meson arduino arduino-avr-core minikube kubernetes-tools helm k9s intellij-idea-community-edition pycharm-community-edition dbeaver nvm kind ncurses5-compat-libs
 fi
 # BACKEND
 
 # FRONTEND
 if [ "$FRONTEND" == "1" ]; then
-    paru -Sq --needed --sudoloop --noconfirm --noprogressbar php smali jadx jdk8-openjdk
+    paru -Sq --needed --sudoloop --noconfirm --noprogressbar php smali jadx jdk8-openjdk nvm android-studio android-sdk
 fi
 # FRONTEND
 
@@ -89,36 +89,6 @@ if [ "$DATA_SCIENCE" == "1" ]; then
     paru -Sq --needed --sudoloop --noconfirm --noprogressbar r pycharm-community-edition dbeaver
 fi
 # DATA-SCIENCE
-
-if [ $(isInstalled paru) == 1 ]; then
-    # DEFAULT
-    paru -Sq --needed --sudoloop --noconfirm --noprogressbar ttf-ms-fonts oh-my-zsh-git visual-studio-code-bin insomnia-bin
-    # DEFAULT
-
-    # BACKEND
-    if [ "$BACKEND" == "1" ]; then
-        paru -Sq --needed --sudoloop --noconfirm --noprogressbar nvm kind ncurses5-compat-libs
-    fi
-    # BACKEND
-
-    # FRONTEND
-    if [ "$FRONTEND" == "1" ]; then
-        paru -Sq --needed --sudoloop --noconfirm --noprogressbar nvm android-studio android-sdk
-    fi
-    # FRONTEND
-fi
-
-# KVM
-sudo usermod -aG kvm $USER
-# KVM
-
-# DOCKER
-if [ $(isInstalled docker) == 1 ]; then
-    sudo systemctl start docker
-    sudo systemctl enable docker
-    sudo usermod -aG docker $USER
-fi
-# DOCKER
 
 # PYTHON
 if [ $(isInstalled pip) == 1 ]; then
@@ -139,6 +109,46 @@ if [ $(isInstalled pip) == 1 ]; then
     # DATA-SCIENCE
 fi
 # PYTHON
+
+# SDKMAN
+if [ "$BACKEND" == "1" ] && [ $(isInstalled zsh) == 1 ] && [ $(isInstalled sdk) == 0 ]; then
+    curl -s "https://get.sdkman.io" | zsh
+fi
+
+SDKMAN_INIT_FILE="$HOME/.sdkman/bin/sdkman-init.sh"
+if [ -f "$SDKMAN_INIT_FILE" ]; then
+    source "$SDKMAN_INIT_FILE"
+fi
+
+if [ $(isInstalled sdk) == 1 ]; then
+    sdk selfupdate force
+
+    sed -i '/auto_answer/s/false/true/' ~/.sdkman/etc/config
+    sed -i '/auto_selfupdate/s/false/true/' ~/.sdkman/etc/config
+    sed -i '/colour_enable/s/false/true/' ~/.sdkman/etc/config
+    sed -i '/auto_env/s/false/true/' ~/.sdkman/etc/config
+
+    sdk list java | grep -Po "(8|11|15)(\.\d+)+-zulu" | while read -r JAVA_LATEST_MINOR; do
+        sdk install java $JAVA_LATEST_MINOR < /dev/null
+    done
+    sdk install kotlin < /dev/null
+    sdk install scala < /dev/null
+    sdk install groovy < /dev/null
+    sdk install maven < /dev/null
+    sdk install gradle < /dev/null
+    sdk install visualvm < /dev/null
+
+    # VISUALVM
+echo "[Desktop Entry]
+Name=VisualVM
+Type=Application
+Categories=Development;
+Exec=$HOME/.sdkman/candidates/visualvm/current/bin/visualvm
+Icon=$HOME/.sdkman/candidates/visualvm/current/etc/visualvm.icns
+" > ~/.local/share/applications/visualvm-sdkman.desktop
+    # VISUALVM
+fi
+# SDKMAN
 
 # NVM
 NVM_INIT_FILE="/usr/share/nvm/init-nvm.sh"
@@ -200,51 +210,23 @@ if [ "$FRONTEND" == "1" ]; then
 fi
 # ANDROID-SDK
 
+# KVM
+sudo usermod -aG kvm $USER
+# KVM
+
+# DOCKER
+if [ $(isInstalled docker) == 1 ]; then
+    sudo systemctl start docker
+    sudo systemctl enable docker
+    sudo usermod -aG docker $USER
+fi
+# DOCKER
+
 # ARDUINO
 if [ $(isInstalled arduino) == 1 ]; then
     sudo usermod -aG uucp $USER
 fi
 # ARDUINO
-
-# SDKMAN
-if [ "$BACKEND" == "1" ] && [ $(isInstalled zsh) == 1 ] && [ $(isInstalled sdk) == 0 ]; then
-    curl -s "https://get.sdkman.io" | zsh
-fi
-
-SDKMAN_INIT_FILE="$HOME/.sdkman/bin/sdkman-init.sh"
-if [ -f "$SDKMAN_INIT_FILE" ]; then
-    source "$SDKMAN_INIT_FILE"
-fi
-
-if [ $(isInstalled sdk) == 1 ]; then
-    sdk selfupdate force
-
-    sed -i '/auto_answer/s/false/true/' ~/.sdkman/etc/config
-    sed -i '/auto_selfupdate/s/false/true/' ~/.sdkman/etc/config
-    sed -i '/colour_enable/s/false/true/' ~/.sdkman/etc/config
-    sed -i '/auto_env/s/false/true/' ~/.sdkman/etc/config
-
-    sdk list java | grep -Po "(8|11|15)(\.\d+)+-zulu" | while read -r JAVA_LATEST_MINOR; do
-        sdk install java $JAVA_LATEST_MINOR < /dev/null
-    done
-    sdk install kotlin < /dev/null
-    sdk install scala < /dev/null
-    sdk install groovy < /dev/null
-    sdk install maven < /dev/null
-    sdk install gradle < /dev/null
-    sdk install visualvm < /dev/null
-
-    # VISUALVM
-echo "[Desktop Entry]
-Name=VisualVM
-Type=Application
-Categories=Development;
-Exec=$HOME/.sdkman/candidates/visualvm/current/bin/visualvm
-Icon=$HOME/.sdkman/candidates/visualvm/current/etc/visualvm.icns
-" > ~/.local/share/applications/visualvm-sdkman.desktop
-    # VISUALVM
-fi
-# SDKMAN
 
 # VSCODE
 if [ $(isInstalled code) == 1 ]; then
