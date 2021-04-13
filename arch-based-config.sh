@@ -128,7 +128,7 @@ if [ $(isInstalled sdk) == 1 ]; then
     sed -i '/colour_enable/s/false/true/' ~/.sdkman/etc/config
     sed -i '/auto_env/s/false/true/' ~/.sdkman/etc/config
 
-    sdk list java | grep -Po "(8|11|15)(\.\d+)+-zulu" | while read -r JAVA_LATEST_MINOR; do
+    sdk list java | grep -Po "(8|11|16)(\.\d+)+-zulu" | while read -r JAVA_LATEST_MINOR; do
         sdk install java $JAVA_LATEST_MINOR < /dev/null
     done
     sdk install kotlin < /dev/null
