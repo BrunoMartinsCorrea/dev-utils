@@ -14,7 +14,7 @@ fdisk /dev/sda
     <DEFAULT>
     +512M
     t
-    <EFI [1]>
+    1 # <EFI [1]>
     n
     <DEFAULT>
     <DEFAULT>
