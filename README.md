@@ -1,6 +1,6 @@
 # dev-utils
 
-[pt-BR](README.pt-BR.md)
+[pt-BR](README_ptBR.md)
 
 This repository aims to create some facilitators for programmers, specially for those like me, who love distro hopping weekly and need to configure the dev environment as quickly as possible! 
 
