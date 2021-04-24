@@ -94,4 +94,4 @@ Para mais detalhes do uso, acesse o help do script
 
 ## vpn-config.sh
 
-Seleciona um arquivo .ovpn que esteja no mesmo nível do diretório do script e importa ao NetworkManager configurando o nome do usuário, senha e um apelido para a conexão
+Procura por arquivos .ovpn e importa o arqruivo selecionado ao NetworkManager configurando o nome do usuário, senha e um apelido para a conexão
