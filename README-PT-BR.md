@@ -1,14 +1,14 @@
 # dev-utils
 
-[pt-BR](README-PT-BR.md)
+[en-us](README.md)
 
-This repository aims to create some facilitators for programmers, specially for those like me, who love distro hopping weekly and need to configure the dev environment as quickly as possible! 
+Este repositório tem como objetivo criar alguns facilitadores para programadores, pricipalmente aqueles que como eu, amam trocar de distro semanalmente e precisam configurar seu ambiente o mais rápido possível!
 
 ## arch-based-config.sh
 
-Creates a dev environment based on your technical profile (backend, frontend or data scientist), containing the following...
+Cria um ambiente amplo para desenvolvimento baseado no seu perfil técnico (backend, frontend ou data scientist), contendo as seguintes...
 
-### Programming Languages
+### Linguagens
 
 - [Elixir](https://elixir-lang.org)
 - [Erlang](https://www.erlang.org)
@@ -30,7 +30,7 @@ Creates a dev environment based on your technical profile (backend, frontend or 
 - [Scala](https://www.scala-lang.org)
 - [Vala](https://wiki.gnome.org/Projects/Vala)
 
-### Tools / Frameworks
+### Ferramentas / Frameworks
 
 - [Android Studio](https://developer.android.com/studio)
 - [Arduino IDE](https://www.arduino.cc/en/software)
@@ -59,34 +59,34 @@ Creates a dev environment based on your technical profile (backend, frontend or 
 - [VisualVM](https://visualvm.github.io)
 - [Vue.js](https://vuejs.org)
 
-### How to Use
+### Uso
 
-For more details on how to use it, check out the help option available in the script. 
+Para mais detalhes do uso, acesse o help do script
 
 ```bash
 ./arch-based-dev-config.sh -h
 ```
 
-PS: This script will override your .zshrc file, so if you want to create variables, aliases or even customize your oh-my-zsh theme, write these commands in the .zsh_profile file, this file is safe from changes.
+PS: Este script sobrescreverá toda vez o arquivo .zshrc, então caso você queira criar variáveis, alias ou personalizar seu tema do oh-my-zsh, escreva esses comandos no arquivo .zsh_profile, pois ele nunca sofrerá alterações de conteúdo
 
 ## git-config.sh
 
-Simple CLI that uses official GIT CLI to facilitate the following tasks:
+CLI simples usando o CLI oficial do GIT para facilitar as seguintes tarefas:
 
-- Set up Global user
-- Set up different users by folders
-- Generate different SSH keys by VCS (Version Control Software)
+- Configurar usuário global
+- Configurar diferentes usuários por pastas
+- Gerar diferentes chaves SSH por VCS (Version Control Software)
     - [Bitbucket](https://bitbucket.org/)
     - [GitHub](https://github.com/)
     - [GitLab](https://gitlab.com/)
 
 ## gnome-arch-based-mojave-theme-config.sh
 
-Script that applies the Mojave theme to your Gnome 3 desktop environment.
+Script que aplica o tema Mojave no seu ambiente Gnome 3.
 
-### How to Use
+### Uso
 
-For more details on how to use it, check out the help option available in the script. 
+Para mais detalhes do uso, acesse o help do script
 
 ```bash
 ./gnome-arch-based-mojave-theme-config.sh -h
@@ -94,4 +94,4 @@ For more details on how to use it, check out the help option available in the sc
 
 ## vpn-config.sh
 
-Search and select an .ovpn file and import it into the NetworkManager setting your username, password and nickname for the connection
+Procura por arquivos .ovpn e importa o arqruivo selecionado ao NetworkManager configurando o nome do usuário, senha e um apelido para a conexão
