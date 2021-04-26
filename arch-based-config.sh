@@ -63,7 +63,7 @@ fi
 # PARU
 
 # DEFAULT
-paru -Syuq --needed --sudoloop --noconfirm --noprogressbar posix-user-portability pacman-contrib zsh zsh-syntax-highlighting ttf-jetbrains-mono ttf-fira-code ttf-nerd-fonts-symbols-mono noto-fonts-emoji gst-libav man xclip tree vim curl net-tools networkmanager-openvpn zip unzip jq yq htop python python-pip docker-compose ctop qemu libvirt flatpak ventoy-bin google-chrome element-desktop telegram-desktop slack-desktop steam discord ttf-ms-fonts oh-my-zsh-git visual-studio-code-bin insomnia-bin
+paru -Syuq --needed --sudoloop --noconfirm --noprogressbar posix-user-portability pacman-contrib zsh zsh-syntax-highlighting ttf-jetbrains-mono ttf-fira-code ttf-nerd-fonts-symbols-mono noto-fonts-emoji gst-libav man xclip tree vim curl net-tools networkmanager-openvpn zip unzip jq yq htop python python-pip docker-compose ctop qemu libvirt flatpak ventoy-bin google-chrome element-desktop telegram-desktop slack-desktop discord ttf-ms-fonts oh-my-zsh-git visual-studio-code-bin insomnia-bin
 # DEFAULT
 
 # FLATPAK
