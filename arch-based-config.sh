@@ -43,6 +43,8 @@ while [ -n "$1" ]; do
 	shift
 done
 
+curl -s https://archlinux.org/mirrorlist/\?country\=BR | sed 's/^#Server/Server/' | sudo tee /etc/pacman.d/mirrorlist
+rankmirrors /etc/pacman.d/mirrorlist
 sudo pacman -Syuq --needed --noconfirm --noprogressbar base-devel cmake git rustup
 
 # RUSTUP
