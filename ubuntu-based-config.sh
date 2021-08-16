@@ -7,6 +7,7 @@ sudo apt install -y cmake tree vim curl net-tools xclip zsh zsh-syntax-highlight
 sudo apt autoremove -y
 
 # SNAP
+sudo snap refresh
 sudo snap install code --classic
 sudo snap install intellij-idea-community --classic
 sudo snap install pycharm-community --classic
