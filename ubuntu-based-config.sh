@@ -78,8 +78,7 @@ Icon=$HOME/.sdkman/candidates/visualvm/current/etc/visualvm.icns
 # SDKMAN
 
 # NVM
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-source ~/.bashrc
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash && source ~/.bashrc
 nvm install --lts
 # NVM
 
@@ -135,7 +134,7 @@ alias update-everything='_pwd=\$(pwd) && cd && update-all-system-packages && upd
 source \"\$HOME/.zsh_profile\"
 
 # OH-MY-ZSH SOURCE
-source ./.oh-my-zsh/oh-my-zsh.sh
+source \"\$HOME/.oh-my-zsh/oh-my-zsh.sh\"
 source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
