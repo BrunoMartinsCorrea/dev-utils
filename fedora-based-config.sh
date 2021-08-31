@@ -118,7 +118,7 @@ alias docker-remove-all-images=\"docker rmi -f \\\$(docker images -q)\"
 alias docker-cleanup=\"docker-stop-all && docker-remove-all-containers && docker-remove-all-images\"
 alias update-all-repositories='cur_dir=\$(pwd) && for i in \$(find . -name \".git\" 2>/dev/null | grep -Po \".*(?=/\.git)\" | grep -v \".*/\..*\"); do cd \"\$cur_dir/\$i\" && echo -e \"\\\n\\\nUPDATING \$i\\\n\\\n\" && git pull || true; done && cd \"\$cur_dir\"'
 alias update-all-pip-packages=\"pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip install -U\"
-alias update-all-system-packages=\"sudo yum update -y && sudo yum distro-sync -y && sudo yum autoremove -y && sudo flatpak update -y\"
+alias update-all-system-packages=\"sudo yum distro-sync -y && sudo yum autoremove -y && sudo flatpak update -y\"
 alias update-everything='_pwd=\$(pwd) && cd && update-all-system-packages && update-all-pip-packages && rustup update && update-all-repositories && sdk self-update && sdk update && nvm install --lts --reinstall-packages-from=default --latest-npm && npm update -g && cd \"\$_pwd\"'
 
 # USER PROFILE SOURCE
