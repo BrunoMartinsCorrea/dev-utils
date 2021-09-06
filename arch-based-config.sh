@@ -39,7 +39,7 @@ while [ -n "$1" ]; do
 "
 			exit 0;;
 	esac
-	
+
 	shift
 done
 
@@ -302,7 +302,7 @@ if [ $(isInstalled code) == 1 ]; then
     # FRONTEND
 
     # DATA-SCIENCE
-    if [ "$DATA_SCIENCE" == "1" ]; then 
+    if [ "$DATA_SCIENCE" == "1" ]; then
         code --install-extension ms-toolsai.jupyter --force
         code --install-extension ms-ossdata.vscode-postgresql --force
     fi
@@ -324,7 +324,7 @@ if [ $(isInstalled zsh) == 1 ]; then
     fi
     mkdir -p ~/.cache/zsh
     touch ~/.zsh_profile
-    
+
     # DEFAULT
     echo "# OH-MY-ZSH VARS
 ZSH_CACHE_DIR=~/.cache/zsh
@@ -386,7 +386,7 @@ alias update-everything='_pwd=\$(pwd) && cd && update-all-system-packages && upd
         echo -n "&& nvm install --lts --reinstall-packages-from=default --latest-npm && npm update -g " >> ~/.zshrc
     fi
     # FRONTEND
-    
+
     echo "&& cd \"\$_pwd\"'
 
 # USER PROFILE SOURCE
