@@ -64,17 +64,20 @@ curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh -
 # OHMYZSH
 
 # SDKMAN
-curl -s "https://get.sdkman.io" | bash
-SDKMAN_INIT_FILE="$HOME/.sdkman/bin/sdkman-init.sh"
+curl -s "https://get.sdkman.io" | sudo -E SDKMAN_DIR="/usr/local/sdkman" bash
+SDKMAN_DIR="/usr/local/sdkman"
+SDKMAN_INIT_FILE="$SDKMAN_DIR/bin/sdkman-init.sh"
 if [ -f "$SDKMAN_INIT_FILE" ]; then
     source "$SDKMAN_INIT_FILE"
 fi
+sudo chgrp -R sudo $SDKMAN_DIR
+
 sdk selfupdate force
 
-sed -i '/auto_answer/s/false/true/' ~/.sdkman/etc/config
-sed -i '/auto_selfupdate/s/false/true/' ~/.sdkman/etc/config
-sed -i '/colour_enable/s/false/true/' ~/.sdkman/etc/config
-sed -i '/auto_env/s/false/true/' ~/.sdkman/etc/config
+sed -i '/auto_answer/s/false/true/' $SDKMAN_DIR/etc/config
+sed -i '/auto_selfupdate/s/false/true/' $SDKMAN_DIR/etc/config
+sed -i '/colour_enable/s/false/true/' $SDKMAN_DIR/etc/config
+sed -i '/auto_env/s/false/true/' $SDKMAN_DIR/etc/config
 
 sdk list java | grep -Po "(8|11|16)(\.\d+)+-zulu" | while read -r JAVA_LATEST_MINOR; do
     sdk install java $JAVA_LATEST_MINOR < /dev/null
@@ -90,15 +93,19 @@ echo "[Desktop Entry]
 Name=VisualVM
 Type=Application
 Categories=Development;
-Exec=$HOME/.sdkman/candidates/visualvm/current/bin/visualvm
-Icon=$HOME/.sdkman/candidates/visualvm/current/etc/visualvm.icns
-" > ~/.local/share/applications/visualvm-sdkman.desktop
+Exec=$SDKMAN_DIR/candidates/visualvm/current/bin/visualvm
+Icon=$SDKMAN_DIR/candidates/visualvm/current/etc/visualvm.icns
+" | sudo tee /usr/share/applications/visualvm-sdkman.desktop
+
+echo "export SDKMAN_DIR=\"/usr/local/sdkman\"
+[[ -s \"\$SDKMAN_DIR/bin/sdkman-init.sh\" ]] && source \"\$SDKMAN_DIR/bin/sdkman-init.sh\"
+" | sudo tee /etc/profile.d/sdkman.sh
 # SDKMAN
 
 # NVM
 sudo mkdir /usr/local/nvm
 sudo mkdir /opt/nvm
-sudo chmod 777 /usr/local/nvm/
+sudo chgrp -R sudo /usr/local/nvm/
 sudo git clone https://github.com/nvm-sh/nvm.git /opt/nvm
 echo "export NVM_DIR=/usr/local/nvm
 source /opt/nvm/nvm.sh
@@ -256,14 +263,6 @@ source \"\$HOME/.zsh_profile\"
 source \"\$HOME/.oh-my-zsh/oh-my-zsh.sh\"
 source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# NVM SOURCE
-source \"\$HOME/.nvm/nvm.sh\"
-
-# SDKMAN
-# THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR=\"\$HOME/.sdkman\"
-[[ -s \"\$HOME/.sdkman/bin/sdkman-init.sh\" ]] && source \"\$HOME/.sdkman/bin/sdkman-init.sh\"
 
 # ANDROID-SDK
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
