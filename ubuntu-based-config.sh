@@ -3,7 +3,7 @@ cd /tmp/
 
 sudo apt update -y
 sudo apt full-upgrade -y
-sudo apt install -y cmake tree vim curl net-tools xclip neofetch zsh zsh-syntax-highlighting zsh-autosuggestions libaio-dev ntfs-3g openjdk-8-jdk openjdk-11-jdk python3 python3-pip python3-notebook pipenv virtualenv clang erlang elixir golang nasm ruby perl clisp haskell-platform lua5.3 valabind valac valac-bin valadoc ninja-build meson pkg-config libgtk-3-dev arduino kubernetes php apktool android-sdk awscli git ssh zip unzip jq xmlstarlet htop qemu libvirt0 openvpn network-manager-openvpn-gnome openvpn-systemd-resolved fonts-powerline fonts-firacode fonts-noto-color-emoji docker-compose dconf-cli gnome-boxes gnome-tweak-tool gnome-sushi geary cheese gnome-audio gnome-builder gnome-calendar gnome-clocks gnome-contacts gnome-dictionary gnome-documents gnome-multi-writer gnome-photos gnome-remote-desktop gnome-shell-extension-gsconnect gnome-shell-extension-gsconnect-browsers gnome-sound-recorder gnome-todo gnome-weather peek pitivi gnome-music dconf-editor eog gnome-logs epiphany-browser gnome-books almanah seahorse gnome-system-monitor gnome-terminal tilix gnome-usage file-roller meld evince polari vinagre totem nautilus gparted chrome-gnome-shell gnome-shell-extension-appindicator gnome-shell-extension-caffeine gnome-shell-extension-arc-menu gnome-shell-extension-dash-to-panel gnome-shell-extension-draw-on-your-screen gnome-shell-extension-hard-disk-led gnome-shell-extension-system-monitor
+sudo apt install -y cmake tree vim curl net-tools xclip neofetch zsh zsh-syntax-highlighting zsh-autosuggestions libaio-dev ntfs-3g openjdk-8-jdk openjdk-11-jdk python3 python3-pip python3-notebook pipenv virtualenv yarn clang erlang elixir golang nasm ruby perl clisp haskell-platform lua5.3 valabind valac valac-bin valadoc ninja-build meson pkg-config libgtk-3-dev arduino kubernetes php apktool android-sdk awscli git ssh zip unzip jq xmlstarlet htop qemu libvirt0 openvpn network-manager-openvpn-gnome openvpn-systemd-resolved fonts-powerline fonts-firacode fonts-noto-color-emoji docker-compose dconf-cli gnome-boxes gnome-tweak-tool gnome-sushi geary cheese gnome-audio gnome-builder gnome-calendar gnome-clocks gnome-contacts gnome-dictionary gnome-documents gnome-multi-writer gnome-photos gnome-remote-desktop gnome-shell-extension-gsconnect gnome-shell-extension-gsconnect-browsers gnome-sound-recorder gnome-todo gnome-weather peek pitivi gnome-music dconf-editor eog gnome-logs epiphany-browser gnome-books almanah seahorse gnome-system-monitor gnome-terminal tilix gnome-usage file-roller meld evince polari vinagre totem nautilus gparted chrome-gnome-shell gnome-shell-extension-appindicator gnome-shell-extension-caffeine gnome-shell-extension-arc-menu gnome-shell-extension-dash-to-panel gnome-shell-extension-draw-on-your-screen gnome-shell-extension-hard-disk-led gnome-shell-extension-system-monitor
 sudo apt autoremove -y
 
 # SNAP
@@ -96,13 +96,19 @@ Icon=$HOME/.sdkman/candidates/visualvm/current/etc/visualvm.icns
 # SDKMAN
 
 # NVM
-curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-source ~/.nvm/nvm.sh
+sudo mkdir /usr/local/nvm
+sudo mkdir /opt/nvm
+sudo chmod 777 /usr/local/nvm/
+sudo git clone https://github.com/nvm-sh/nvm.git /opt/nvm
+echo "export NVM_DIR=/usr/local/nvm
+source /opt/nvm/nvm.sh
+" | sudo tee -a /etc/profile.d/nvm.sh
 nvm install --lts
+nvm use --lts
 # NVM
 
 # NPM
-npm install -g yarn @nestjs/cli react-native-cli create-react-app create-next-app vercel @vue/cli vue-native-cli json-server expo-cli netlify-cli tsdx
+npm install -g @nestjs/cli react-native-cli create-react-app create-next-app vercel @vue/cli vue-native-cli json-server expo-cli netlify-cli tsdx
 # NPM
 
 # ANDROID-SDK
