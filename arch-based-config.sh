@@ -167,7 +167,7 @@ fi
 # NPM
 if [ $(isInstalled npm) == 1 ]; then
     # DEFAULT
-    npm install -g yarn
+    npm install -g yarn tsdx
     # DEFAULT
 
     # BACKEND

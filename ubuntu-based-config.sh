@@ -102,7 +102,7 @@ nvm install --lts
 # NVM
 
 # NPM
-npm install -g yarn @nestjs/cli react-native-cli create-react-app create-next-app vercel @vue/cli vue-native-cli json-server expo-cli netlify-cli
+npm install -g yarn @nestjs/cli react-native-cli create-react-app create-next-app vercel @vue/cli vue-native-cli json-server expo-cli netlify-cli tsdx
 # NPM
 
 # ANDROID-SDK
