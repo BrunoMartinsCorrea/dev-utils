@@ -119,33 +119,30 @@ npm install -g @nestjs/cli react-native-cli create-react-app create-next-app ver
 # NPM
 
 # ANDROID-SDK
-if [ "$FRONTEND" == "1" ]; then
-    mkdir -p ~/.android && touch ~/.android/repositories.cfg
+mkdir -p ~/.android && touch ~/.android/repositories.cfg
 
-    androidsdk --update
+androidsdk --update
 
-    export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-    export ANDROID_HOME=$HOME/AndroidSDK
-    export ANDROID_SDK_ROOT=$ANDROID_HOME
-    export PATH=$PATH:$ANDROID_HOME/emulator
-    export PATH=$PATH:$ANDROID_HOME/tools
-    export PATH=$PATH:$ANDROID_HOME/tools/bin
-    export PATH=$PATH:$ANDROID_HOME/platform-tools
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export ANDROID_HOME=$HOME/AndroidSDK
+export ANDROID_SDK_ROOT=$ANDROID_HOME
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
-    sdkmanager --update
-    yes | sdkmanager --install platform-tools emulator
-    yes | sdkmanager --licenses
+yes | androidsdk --install platform-tools emulator
+yes | androidsdk --licenses
 
-    SDKMANAGER_LIST=$(sdkmanager --list)
-    SDKMANAGER_PLATFORMS=$(echo $SDKMANAGER_LIST | grep -Po "platforms;android-(\d{2,}|[a-zA-Z]*)" | sort -r | head -1)
-    SDKMANAGER_BUILD_TOOLS=$(echo $SDKMANAGER_LIST | grep -Po "build-tools;(\d+\.){2}\d+(?=\s)" | sort -r | head -1)
-    SDKMANAGER_SYSTEM_IMAGES=$(echo $SDKMANAGER_LIST | grep -Po "system-images;android\S*google_apis;x86_64" | sort -r | head -1)
+SDKMANAGER_LIST=$(androidsdk --list)
+SDKMANAGER_PLATFORMS=$(echo $SDKMANAGER_LIST | grep -Po "platforms;android-(\d{2,}|[a-zA-Z]*)" | sort -r | head -1)
+SDKMANAGER_BUILD_TOOLS=$(echo $SDKMANAGER_LIST | grep -Po "build-tools;(\d+\.){2}\d+(?=\s)" | sort -r | head -1)
+SDKMANAGER_SYSTEM_IMAGES=$(echo $SDKMANAGER_LIST | grep -Po "system-images;android\S*google_apis;x86_64" | sort -r | head -1)
 
-    sdkmanager "$SDKMANAGER_PLATFORMS"
-    sdkmanager "$SDKMANAGER_BUILD_TOOLS"
-    sdkmanager "$SDKMANAGER_SYSTEM_IMAGES"
-    avdmanager create avd --force --name pixel --device "pixel_xl" --package "$SDKMANAGER_SYSTEM_IMAGES"
-fi
+androidsdk "$SDKMANAGER_PLATFORMS"
+androidsdk "$SDKMANAGER_BUILD_TOOLS"
+androidsdk "$SDKMANAGER_SYSTEM_IMAGES"
+$ANDROID_SDK_ROOT/tools/bin/avdmanager create avd --force --name pixel --device "pixel_xl" --package "$SDKMANAGER_SYSTEM_IMAGES"
 # ANDROID-SDK
 
 # FLUTTER
