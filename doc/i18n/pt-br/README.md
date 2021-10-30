@@ -1,6 +1,6 @@
 # dev-utils
 
-[en-us](README.md)
+[en-us](../../../README.md)
 
 Este repositório tem como objetivo criar alguns facilitadores para programadores, pricipalmente aqueles que como eu, amam trocar de distro semanalmente e precisam configurar seu ambiente o mais rápido possível!
 
