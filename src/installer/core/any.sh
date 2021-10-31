@@ -15,3 +15,4 @@ source $packages_path/discord.sh
 source $packages_path/neofetch.sh
 source $packages_path/cpufetch.sh
 source $packages_path/jq.sh
+source $packages_path/htop.sh
