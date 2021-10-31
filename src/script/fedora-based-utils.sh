@@ -1,36 +1,10 @@
 #!/bin/bash
 
-echo "fastestmirror=1" | sudo tee -a /etc/dnf/dnf.conf
-sudo dnf clean all
-sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-sudo dnf group update core -y
-sudo dnf distro-sync -y
-
 sudo dnf install -y cmake tree vim curl net-tools xclip zsh zsh-syntax-highlighting zsh-autosuggestions python3 python3-pip clang erlang elixir golang nasm ruby perl clisp haskell-platform lua vala ninja-build meson arduino kubernetes php git openssh NetworkManager-ssh-gnome xclip zip unzip jq htop qemu libvirt-libs openvpn NetworkManager-openvpn-gnome jetbrains-mono-fonts-all powerline fira-code-fonts google-noto-emoji-color-fonts docker-distribution docker-compose ntfs-3g ntfs2btrfs ntfsprogs dconf dconf-editor gnome-boxes gnome-tweak-tool sushi geary cheese eog gnome-builder gnome-calendar gnome-clocks gnome-contacts gnome-dictionary gnome-multi-writer gnome-photos gnome-remote-desktop gnome-sound-recorder gnome-logs gnome-todo gnome-weather peek pitivi epiphany gnome-latex gnome-books gnome-connections almanah seahorse gnome-system-monitor gnome-terminal tilix gnome-usage file-roller meld evince polari vinagre totem gnome-music nautilus chrome-gnome-shell gnome-shell-extension-gsconnect gnome-shell-extension-appindicator gnome-shell-extension-common gnome-shell-extension-dash-to-dock
-
-sudo dnf autoremove -y
-
-# CTOP
-sudo wget https://github.com/bcicen/ctop/releases/download/0.7.6/ctop-0.7.6-linux-amd64 -O /usr/local/bin/ctop
-sudo chmod +x /usr/local/bin/ctop
-# CTOP
 
 #KVM
 sudo adduser $USER kvm
 #KVM
-
-# ARDUINO
-sudo usermod -aG dialout $USER
-# ARDUINO
-
-#DOCKER
-sudo usermod -aG docker $USER
-#DOCKER
-
-# RUSTUP
-curl -fsS https://sh.rustup.rs | sh -s -- -y --profile complete -c rls
-# RUSTUP
-
 
 # OHMYZSH
 curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh -s -- -y
