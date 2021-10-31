@@ -3,13 +3,13 @@
 dev_utils_path=$(dirname $0)
 os_name=''
 distro_name=''
-pre_install_scripts=''
 official_package_manager=''
-official_packages=''
-flatpak_packages=''
-snap_packages=''
-custom_install_scripts=''
-post_install_scripts=''
+pre_install_scripts=()
+official_packages=()
+flatpak_packages=()
+snap_packages=()
+custom_install_scripts=()
+post_install_scripts=()
 
 case "$(uname -s)" in
     Linux*)
@@ -33,9 +33,26 @@ case "$(uname -s)" in
         ;;
 esac
 
-eval "$pre_install_scripts"
-eval "$official_package_manager"
-eval "$flatpak_packages"
-eval "$snap_packages"
-eval "$custom_install_scripts"
-eval "$post_install_scripts"
+source $dev_utils_path/installer/core/any.sh
+
+for pre_install_script in "${pre_install_scripts[@]}"; do
+    eval "$pre_install_script"
+done
+
+eval "$official_package_manager ${official_packages[@]}"
+
+for flatpak_package in "${flatpak_packages[@]}"; do
+    eval "sudo flatpak install -y flathub $flatpak_package"
+done
+
+for snap_package in "${snap_packages[@]}"; do
+    eval "sudo snap install $snap_package"
+done
+
+for custom_install_script in "${custom_install_scripts[@]}"; do
+    eval "$custom_install_script"
+done
+
+for post_install_script in "${post_install_scripts[@]}"; do
+    eval "$post_install_script"
+done
