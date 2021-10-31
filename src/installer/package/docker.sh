@@ -11,6 +11,7 @@ case "$os_name" in
                     'docker-ce'
                     'docker-ce-cli'
                     'containerd.io'
+                    'docker-compose'
                 )
                 post_install_scripts+=(
                     'sudo usermod -aG docker $USER'
