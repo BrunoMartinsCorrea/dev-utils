@@ -7,7 +7,7 @@ case "$os_name" in
                 official_packages+=(
                     'arduino'
                 )
-                post_install_scripts=(
+                post_install_scripts+=(
                     'sudo usermod -aG dialout $USER'
                 )
                 ;;
