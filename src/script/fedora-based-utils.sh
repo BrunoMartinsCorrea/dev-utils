@@ -6,38 +6,6 @@ sudo dnf install -y clang erlang elixir golang nasm ruby perl clisp haskell-plat
 sudo adduser $USER kvm
 #KVM
 
-# SDKMAN
-curl -s "https://get.sdkman.io" | bash
-SDKMAN_INIT_FILE="$HOME/.sdkman/bin/sdkman-init.sh"
-if [ -f "$SDKMAN_INIT_FILE" ]; then
-    source "$SDKMAN_INIT_FILE"
-fi
-sdk selfupdate force
-
-sed -i '/auto_answer/s/false/true/' ~/.sdkman/etc/config
-sed -i '/auto_selfupdate/s/false/true/' ~/.sdkman/etc/config
-sed -i '/colour_enable/s/false/true/' ~/.sdkman/etc/config
-sed -i '/auto_env/s/false/true/' ~/.sdkman/etc/config
-
-sdk list java | grep -Po "(8|11|16)(\.\d+)+-zulu" | while read -r JAVA_LATEST_MINOR; do
-    sdk install java $JAVA_LATEST_MINOR < /dev/null
-done
-sdk install kotlin < /dev/null
-sdk install scala < /dev/null
-sdk install groovy < /dev/null
-sdk install maven < /dev/null
-sdk install gradle < /dev/null
-sdk install visualvm < /dev/null
-
-echo "[Desktop Entry]
-Name=VisualVM
-Type=Application
-Categories=Development;
-Exec=$HOME/.sdkman/candidates/visualvm/current/bin/visualvm
-Icon=$HOME/.sdkman/candidates/visualvm/current/etc/visualvm.icns
-" > ~/.local/share/applications/visualvm-sdkman.desktop
-# SDKMAN
-
 # NVM
 curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 source ~/.nvm/nvm.sh
