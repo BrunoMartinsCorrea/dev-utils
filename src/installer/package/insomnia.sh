@@ -7,6 +7,9 @@ case "$os_name" in
                 flatpak_packages+=(
                     'rest.insomnia.Insomnia'
                 )
+                post_install_scripts+=(
+                    'sudo flatpak override rest.insomnia.Insomnia --filesystem=home'
+                )
                 ;;
         esac
         ;;
