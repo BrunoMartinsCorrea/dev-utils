@@ -14,6 +14,8 @@ case "$os_name" in
                     'docker-compose'
                 )
                 post_install_scripts+=(
+                    'sudo systemctl start docker'
+                    'sudo systemctl enable docker'
                     'sudo usermod -aG docker $USER'
                 )
                 ;;
