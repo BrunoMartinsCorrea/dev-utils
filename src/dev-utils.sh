@@ -41,9 +41,7 @@ done
 
 eval "$official_package_manager ${official_packages[@]}"
 
-for flatpak_package in "${flatpak_packages[@]}"; do
-    eval "sudo flatpak install -y flathub $flatpak_package"
-done
+eval "$sudo flatpak install -y flathub ${flatpak_packages[@]}"
 
 for snap_package in "${snap_packages[@]}"; do
     eval "sudo snap install $snap_package"
