@@ -24,6 +24,18 @@ case "$os_name" in
                     'gstreamer1-plugins-good'
                     'libaio'
                     'libvirt'
+                    'libvirt-daemon-config-network'
+                    'libvirt-daemon-kvm'
+                    'virt-install'
+                    'virt-manager'
+                    'virt-viewer'
+                    'virt-top'
+                    'qemu'
+                    'qemu-kvm'
+                )
+                post_install_scripts+=(
+                    'sudo systemctl start libvirtd'
+                    'sudo systemctl enable libvirtd'
                 )
                 ;;
         esac
