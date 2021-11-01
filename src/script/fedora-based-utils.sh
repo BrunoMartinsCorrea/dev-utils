@@ -5,13 +5,3 @@ sudo dnf install -y clang erlang elixir golang nasm ruby perl clisp haskell-plat
 #KVM
 sudo adduser $USER kvm
 #KVM
-
-# NVM
-curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-source ~/.nvm/nvm.sh
-nvm install --lts
-# NVM
-
-# NPM
-npm install -g yarn @nestjs/cli react-native-cli create-react-app create-next-app vercel @vue/cli vue-native-cli json-server expo-cli netlify-cli
-# NPM
