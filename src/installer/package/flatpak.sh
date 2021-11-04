@@ -7,8 +7,8 @@ case "$os_name" in
                 official_packages+=(
                     'flatpak'
                 )
-                post_install_scripts+=(
-                    'flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo'
+                pre_flatpak_install_scripts+=(
+                    'sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo'
                 )
                 ;;
         esac

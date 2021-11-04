@@ -4,10 +4,10 @@ case "$os_name" in
     linux)
         case "$distro_name" in
             fedora)
-                official_packages+=(
-                    'arduino'
+                flatpak_packages+=(
+                    'cc.arduino.arduinoide'
                 )
-                post_install_scripts+=(
+                post_flatpak_install_scripts+=(
                     'sudo usermod -aG dialout $USER'
                 )
                 ;;

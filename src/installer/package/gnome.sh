@@ -23,7 +23,6 @@ case "$os_name" in
                     'gnome-connections'
                     'gnome-contacts'
                     'gnome-dictionary'
-                    'gnome-latex'
                     'gnome-logs'
                     'gnome-multi-writer'
                     'gnome-music'

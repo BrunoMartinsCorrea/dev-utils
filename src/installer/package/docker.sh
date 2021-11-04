@@ -4,7 +4,7 @@ case "$os_name" in
     linux)
         case "$distro_name" in
             fedora)
-                pre_install_scripts+=(
+                pre_official_install_scripts+=(
                     'sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo'
                 )
                 official_packages+=(
@@ -13,7 +13,7 @@ case "$os_name" in
                     'containerd.io'
                     'docker-compose'
                 )
-                post_install_scripts+=(
+                post_official_install_scripts+=(
                     'sudo systemctl start docker'
                     'sudo systemctl enable docker'
                     'sudo usermod -aG docker $USER'

@@ -33,7 +33,7 @@ case "$os_name" in
                     'qemu'
                     'qemu-kvm'
                 )
-                post_install_scripts+=(
+                post_official_install_scripts+=(
                     'sudo systemctl start libvirtd'
                     'sudo systemctl enable libvirtd'
                 )
