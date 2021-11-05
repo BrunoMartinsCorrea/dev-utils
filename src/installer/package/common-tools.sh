@@ -15,6 +15,7 @@ case "$os_name" in
                     'git'
                     'zip'
                     'unzip'
+                    'crypto-policies'
                     'openssh'
                     'openvpn'
                     'ntfs-3g'
@@ -36,6 +37,7 @@ case "$os_name" in
                 post_official_install_scripts+=(
                     'sudo systemctl start libvirtd'
                     'sudo systemctl enable libvirtd'
+                    'sudo update-crypto-policies --set LEGACY'
                 )
                 ;;
         esac
