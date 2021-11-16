@@ -37,7 +37,6 @@ case "$os_name" in
                 post_official_install_scripts+=(
                     'sudo systemctl start libvirtd'
                     'sudo systemctl enable libvirtd'
-                    'sudo update-crypto-policies --set LEGACY'
                 )
                 ;;
         esac
