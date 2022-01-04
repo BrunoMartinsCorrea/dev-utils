@@ -30,6 +30,9 @@ case "$(uname -s)" in
             fedora)
                 source $dev_utils_path/installer/core/fedora.sh
                 ;;
+            *)
+                source $dev_utils_path/installer/core/any.sh
+                ;;
         esac
         ;;
     Darwin*)
