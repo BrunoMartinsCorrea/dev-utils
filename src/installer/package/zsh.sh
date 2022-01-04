@@ -49,7 +49,7 @@ case "$os_name" in
                     'if [ `tput colors` != "256" ]; then'
                     '    ZSH_THEME="dstufft"'
                     'fi'
-                    'plugins=(autopep8 aws colored-man-pages command-not-found dotenv docker docker-compose man pep8 pip rust rustup sudo cabal cargo gem golang gradle jfrog kubectl minikube mvn scala sdk spring adb react-native npm nvm yarn)'
+                    'plugins=(autopep8 aws colored-man-pages command-not-found dotenv docker docker-compose man pep8 pip rust sudo cabal gem golang gradle jfrog kubectl minikube mvn scala sdk spring adb react-native npm nvm yarn)'
                     ''
                     '# FUNCTIONS'
                     'kill-on-port() {'
