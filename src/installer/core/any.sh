@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 PACKAGES_PATH=$INSTALLER_PATH/package
 

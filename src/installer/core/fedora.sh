@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 official_package_manager='sudo dnf install -y'
 

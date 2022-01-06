@@ -1,4 +1,5 @@
 #!/bin/bash
+
 function isInstalled() {
     if ! command -v $1 &>/dev/null; then
         echo "0"

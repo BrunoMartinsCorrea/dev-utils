@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 OUTPUT_SCRIPT_FILE="$DEV_UTILS_DIR/setup.sh"
 OUTPUT_RC_FILE="$DEV_UTILS_DIR/.zshrc"
