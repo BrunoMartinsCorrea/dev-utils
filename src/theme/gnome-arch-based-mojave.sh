@@ -1,6 +1,6 @@
 #!/bin/bash
 function isInstalled() {
-    if ! command -v $1 &> /dev/null; then
+    if ! command -v $1 &>/dev/null; then
         echo "0"
     else
         echo "1"
@@ -11,24 +11,28 @@ INTERFACE_THEME=1
 INTERFACE_SOLID=0
 
 while [ -n "$1" ]; do
-	case "$1" in
-		--help)
-			echo "Usage: $(basename $0) [OPTION..]
+    case "$1" in
+    --help)
+        echo "Usage: $(basename $0) [OPTION..]
 
   --dark	Set dark theme as default.
   --solid	Set windows transparency false.
 "
-			exit 0;;
-		--dark)
-			INTERFACE_THEME=0;;
-		--solid)
-			INTERFACE_SOLID=1;;
-		*)
-			echo "Ops! Try read the help! $(basename $0) --help"
-			exit 1;;
-	esac
-	
-	shift
+        exit 0
+        ;;
+    --dark)
+        INTERFACE_THEME=0
+        ;;
+    --solid)
+        INTERFACE_SOLID=1
+        ;;
+    *)
+        echo "Ops! Try read the help! $(basename $0) --help"
+        exit 1
+        ;;
+    esac
+
+    shift
 done
 
 sudo pacman -Syuq --needed --noconfirm --noprogressbar base-devel cmake git rustup
@@ -88,7 +92,7 @@ pinch:
     in:
       command: \"dbus-send --session --type=method_call --dest=org.gnome.Shell /org/gnome/Shell org.gnome.Shell.Eval string:'Main.shellDBusService.ShowApplications();'\"
     out:
-      command: \"xdotool key ctrl+d\"" > ~/.config/fusuma/config.yml
+      command: \"xdotool key ctrl+d\"" >~/.config/fusuma/config.yml
 echo "[Desktop Entry]
 Type=Application
 Exec=/usr/bin/fusuma -d
@@ -98,7 +102,7 @@ X-GNOME-Autostart-enabled=true
 Name[en_US]=Fusuma
 Name=Fusuma
 Comment[en_US]=
-Comment=" > ~/.config/autostart/fusuma.desktop
+Comment=" >~/.config/autostart/fusuma.desktop
 fusuma -d
 
 # SETTING DEFAULT WEB BROWSER
@@ -208,21 +212,21 @@ CURSOR_THEME=""
 GTK_THEME=""
 
 if [ "$INTERFACE_THEME" == "0" ]; then
-	CURSOR_THEME="capitaine-cursors-light"
-	
-	if [ "$INTERFACE_SOLID" == "1" ]; then
-		GTK_THEME="Mojave-dark-solid"
-	else
-		GTK_THEME="Mojave-dark"
-	fi
+    CURSOR_THEME="capitaine-cursors-light"
+
+    if [ "$INTERFACE_SOLID" == "1" ]; then
+        GTK_THEME="Mojave-dark-solid"
+    else
+        GTK_THEME="Mojave-dark"
+    fi
 else
-	CURSOR_THEME="capitaine-cursors"
-	
-	if [ "$INTERFACE_SOLID" == "1" ]; then
-		GTK_THEME="Mojave-light-solid"
-	else
-		GTK_THEME="Mojave-light"
-	fi
+    CURSOR_THEME="capitaine-cursors"
+
+    if [ "$INTERFACE_SOLID" == "1" ]; then
+        GTK_THEME="Mojave-light-solid"
+    else
+        GTK_THEME="Mojave-light"
+    fi
 fi
 
 gsettings set org.gnome.desktop.interface cursor-theme "$CURSOR_THEME"
@@ -308,7 +312,7 @@ gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/prof
 BROWSER_THEME="light"
 
 if [ "$INTERFACE_THEME" == 0 ]; then
-	BROWSER_THEME="dark"
+    BROWSER_THEME="dark"
 fi
 
 gsettings set org.gnome.Epiphany ask-for-default true

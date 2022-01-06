@@ -9,8 +9,7 @@ mapfile -t VPN_FILES < <(find ~ -name "*.ovpn" 2>/dev/null)
 if [ -n "$VPN_FILES" ]; then
     echo -e "Choose a file to import...\n"
 
-    select VPN_FILE in "${VPN_FILES[@]}";
-    do
+    select VPN_FILE in "${VPN_FILES[@]}"; do
         test -z "$VPN_FILE" && break
         echo -e "\n${YELLOW}Importing $VPN_FILE...${NO_COLOR}\n"
 

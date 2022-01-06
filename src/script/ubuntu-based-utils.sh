@@ -118,11 +118,11 @@ code --install-extension ms-ossdata.vscode-postgresql --force
 
 # ZSHELL
 if [ "$SHELL" != "/usr/bin/zsh" ]; then
-    while : ; do
+    while :; do
         chsh -s $(which zsh)
         [[ "$?" == "1" ]] || break
     done
-    while : ; do
+    while :; do
         sudo chsh -s $(which zsh)
         [[ "$?" == "1" ]] || break
     done

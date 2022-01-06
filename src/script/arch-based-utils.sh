@@ -1,6 +1,6 @@
 #!/bin/bash
 function isInstalled() {
-    if ! command -v $1 &> /dev/null; then
+    if ! command -v $1 &>/dev/null; then
         echo "0"
     else
         echo "1"
@@ -12,22 +12,27 @@ FRONTEND=0
 DATA_SCIENCE=0
 
 while [ -n "$1" ]; do
-	case "$1" in
-		--backend|-b)
-			BACKEND=1;;
-		--frontend|-f)
-			FRONTEND=1;;
-		--data-science|-d)
-			DATA_SCIENCE=1;;
-		--fullstack|-F)
-			BACKEND=1
-			FRONTEND=1;;
-		--all|-A)
-			BACKEND=1
-			FRONTEND=1
-			DATA_SCIENCE=1;;
-		--help|-h|*)
-			echo "Usage: $(basename $0) [OPTION..]
+    case "$1" in
+    --backend | -b)
+        BACKEND=1
+        ;;
+    --frontend | -f)
+        FRONTEND=1
+        ;;
+    --data-science | -d)
+        DATA_SCIENCE=1
+        ;;
+    --fullstack | -F)
+        BACKEND=1
+        FRONTEND=1
+        ;;
+    --all | -A)
+        BACKEND=1
+        FRONTEND=1
+        DATA_SCIENCE=1
+        ;;
+    --help | -h | *)
+        echo "Usage: $(basename $0) [OPTION..]
 
   By default, the following packages will be installed: [base-devel, rustup, python, docker, cmake, git, awscli, paru, flatpak, zsh, oh-my-zsh, vscode, insomnia, ventoy, google-chrome, element, telegram, slack, discord]
 
@@ -37,10 +42,11 @@ while [ -n "$1" ]; do
   -F, --fullstack       All packages included in backend and frontend flags
   -A, --all             All packages above
 "
-			exit 0;;
-	esac
+        exit 0
+        ;;
+    esac
 
-	shift
+    shift
 done
 
 curl -s https://archlinux.org/mirrorlist/\?country\=BR | sed 's/^#Server/Server/' | sudo tee /etc/pacman.d/mirrorlist
@@ -131,23 +137,23 @@ if [ $(isInstalled sdk) == 1 ]; then
     sed -i '/auto_env/s/false/true/' ~/.sdkman/etc/config
 
     sdk list java | grep -Po "(8|11|16)(\.\d+)+-zulu" | while read -r JAVA_LATEST_MINOR; do
-        sdk install java $JAVA_LATEST_MINOR < /dev/null
+        sdk install java $JAVA_LATEST_MINOR </dev/null
     done
-    sdk install kotlin < /dev/null
-    sdk install scala < /dev/null
-    sdk install groovy < /dev/null
-    sdk install maven < /dev/null
-    sdk install gradle < /dev/null
-    sdk install visualvm < /dev/null
+    sdk install kotlin </dev/null
+    sdk install scala </dev/null
+    sdk install groovy </dev/null
+    sdk install maven </dev/null
+    sdk install gradle </dev/null
+    sdk install visualvm </dev/null
 
     # VISUALVM
-echo "[Desktop Entry]
+    echo "[Desktop Entry]
 Name=VisualVM
 Type=Application
 Categories=Development;
 Exec=$HOME/.sdkman/candidates/visualvm/current/bin/visualvm
 Icon=$HOME/.sdkman/candidates/visualvm/current/etc/visualvm.icns
-" > ~/.local/share/applications/visualvm-sdkman.desktop
+" >~/.local/share/applications/visualvm-sdkman.desktop
     # VISUALVM
 fi
 # SDKMAN
@@ -313,11 +319,11 @@ fi
 # ZSHELL
 if [ $(isInstalled zsh) == 1 ]; then
     if [ "$SHELL" != "/usr/bin/zsh" ]; then
-        while : ; do
+        while :; do
             chsh -s $(which zsh)
             [[ "$?" == "1" ]] || break
         done
-        while : ; do
+        while :; do
             sudo chsh -s $(which zsh)
             [[ "$?" == "1" ]] || break
         done
@@ -332,23 +338,23 @@ ZSH_THEME=\"agnoster\"
 if [ \`tput colors\` != \"256\" ]; then
   ZSH_THEME=\"dstufft\"
 fi
-plugins=(autopep8 aws colored-man-pages command-not-found dotenv docker docker-compose man pep8 pip rust rustup sudo " > ~/.zshrc
+plugins=(autopep8 aws colored-man-pages command-not-found dotenv docker docker-compose man pep8 pip rust rustup sudo " >~/.zshrc
 
     # BACKEND
     if [ "$BACKEND" == "1" ]; then
-        echo "cabal cargo gem golang gradle jfrog kubectl minikube mvn scala sdk spring " >> ~/.zshrc
+        echo "cabal cargo gem golang gradle jfrog kubectl minikube mvn scala sdk spring " >>~/.zshrc
     fi
     # BACKEND
 
     # FRONTEND
     if [ "$FRONTEND" == "1" ]; then
-        echo "adb django react-native " >> ~/.zshrc
+        echo "adb django react-native " >>~/.zshrc
     fi
     # FRONTEND
 
     # BACKEND || FRONTEND
     if [ "$BACKEND" == "1" ] || [ "$FRONTEND" == "1" ]; then
-        echo "npm nvm yarn" >> ~/.zshrc
+        echo "npm nvm yarn" >>~/.zshrc
     fi
     # BACKEND || FRONTEND
 
@@ -373,17 +379,17 @@ alias docker-cleanup=\"docker-stop-all && docker-remove-all-containers && docker
 alias update-all-repositories='cur_dir=\$(pwd) && for i in \$(find . -name \".git\" 2>/dev/null | grep -Po \".*(?=/\.git)\" | grep -v \".*/\..*\"); do cd \"\$cur_dir/\$i\" && echo -e \"\\\n\\\nUPDATING \$i\\\n\\\n\" && git pull || true; done && cd \"\$cur_dir\"'
 alias update-all-pip-packages=\"pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip install -U\"
 alias update-all-system-packages=\"paru -Syu --noconfirm && flatpak update\"
-alias update-everything='_pwd=\$(pwd) && cd && update-all-system-packages && update-all-pip-packages && rustup update && update-all-repositories " >> ~/.zshrc
+alias update-everything='_pwd=\$(pwd) && cd && update-all-system-packages && update-all-pip-packages && rustup update && update-all-repositories " >>~/.zshrc
 
     # BACKEND
     if [ "$BACKEND" == "1" ]; then
-        echo -n "&& sdk self-update && sdk update " >> ~/.zshrc
+        echo -n "&& sdk self-update && sdk update " >>~/.zshrc
     fi
     # BACKEND
 
     # FRONTEND
     if [ "$FRONTEND" == "1" ]; then
-        echo -n "&& nvm install --lts --reinstall-packages-from=default --latest-npm && npm update -g " >> ~/.zshrc
+        echo -n "&& nvm install --lts --reinstall-packages-from=default --latest-npm && npm update -g " >>~/.zshrc
     fi
     # FRONTEND
 
@@ -395,14 +401,14 @@ source \"\$HOME/.zsh_profile\"
 
 # OH-MY-ZSH SOURCE
 source /usr/share/oh-my-zsh/oh-my-zsh.sh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >>~/.zshrc
     # DEFAULT
 
     # NVM
     if [ $(isInstalled nvm) == 1 ]; then
         echo "
 # NVM SOURCE
-source /usr/share/nvm/init-nvm.sh" >> ~/.zshrc
+source /usr/share/nvm/init-nvm.sh" >>~/.zshrc
     fi
     # NVM
 
@@ -412,7 +418,7 @@ source /usr/share/nvm/init-nvm.sh" >> ~/.zshrc
 # SDKMAN
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR=\"\$HOME/.sdkman\"
-[[ -s \"\$HOME/.sdkman/bin/sdkman-init.sh\" ]] && source \"\$HOME/.sdkman/bin/sdkman-init.sh\"" >> ~/.zshrc
+[[ -s \"\$HOME/.sdkman/bin/sdkman-init.sh\" ]] && source \"\$HOME/.sdkman/bin/sdkman-init.sh\"" >>~/.zshrc
     fi
     # SDKMAN
 
@@ -427,7 +433,7 @@ export PATH=\$PATH:$ANDROID_HOME/emulator
 export PATH=\$PATH:$ANDROID_HOME/tools
 export PATH=\$PATH:$ANDROID_HOME/tools/bin
 export PATH=\$PATH:$ANDROID_HOME/platform-tools
-" >> ~/.zshrc
+" >>~/.zshrc
     fi
     # ANDROID-SDK
 

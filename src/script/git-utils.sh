@@ -6,13 +6,12 @@ NO_COLOR='\033[0m'
 GIT_PATH=$(which git)
 XCLIP_PATH=$(which xclip)
 
-if ! command -v git &> /dev/null || ! command -v xclip &> /dev/null; then
+if ! command -v git &>/dev/null || ! command -v xclip &>/dev/null; then
     echo "${RED}Oops! You need to install git and xclip before running this script!${NO_COLOR}"
     exit 1
 fi
 
-while :
-do
+while :; do
     clear
     echo "
 ╔══════════════════════════════════════╗
@@ -70,13 +69,11 @@ User email: $GIT_EMAIL
     elif [ "$MENU_OPTION" == "2" ]; then
         DIRECTORY=~/
 
-        while :
-        do
-        clear
+        while :; do
+            clear
             echo -e "Please select a directory:\n"
 
-            select DIRECTORY in "$DIRECTORY"*/;
-            do
+            select DIRECTORY in "$DIRECTORY"*/; do
                 test -n "$DIRECTORY" && break
             done
 
@@ -138,8 +135,7 @@ User email: $GIT_EMAIL
             read
         fi
     elif [ "$MENU_OPTION" == "3" ]; then
-        while :
-        do
+        while :; do
             clear
             echo "
 ╔══════════════════════════════════════╗
@@ -171,13 +167,13 @@ User email: $GIT_EMAIL
                 VCS_SSH_URL="https://gitlab.com/profile/keys"
             else
                 read -p "Type the service name: " VCS_OTHER_NAME
-                
+
                 VCS_NAME=$(echo "$VCS_OTHER_NAME" | awk '{print tolower($0)}')
             fi
 
             ssh-keygen -t rsa -b 4096 -C "$GIT_EMAIL" -f ~/.ssh/id_rsa_$VCS_NAME -q -N ""
             ssh-add ~/.ssh/id_rsa_$VCS_NAME
-            xclip -sel clip < ~/.ssh/id_rsa_$VCS_NAME.pub
+            xclip -sel clip <~/.ssh/id_rsa_$VCS_NAME.pub
 
             clear
 
@@ -189,8 +185,8 @@ User email: $GIT_EMAIL
 ║ website that will open.                      ║
 ╚══════════════════════════════════════════════╝${NO_COLOR}"
             read
-            xdg-open $VCS_SSH_URL > /dev/null 2>&1
-            
+            xdg-open $VCS_SSH_URL >/dev/null 2>&1
+
             clear
             read -p "Do you want to configure another SSH key? [y/N]: " CONTINUE_OPTION
 
