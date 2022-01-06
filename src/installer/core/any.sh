@@ -1,7 +1,7 @@
 #!/bin/sh
 
-packages_path=$dev_utils_path/installer/package
+PACKAGES_PATH=$INSTALLER_PATH/package
 
-for package in $(ls $packages_path); do
-    source $packages_path/$package
+for package in $(ls $PACKAGES_PATH); do
+    source $PACKAGES_PATH/$package
 done

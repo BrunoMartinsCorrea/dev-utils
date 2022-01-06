@@ -1,8 +1,8 @@
 #!/bin/sh
 
-case "$os_name" in
+case "$OS_NAME" in
 linux)
-    case "$distro_name" in
+    case "$DISTRO_NAME" in
     fedora)
         pre_official_install_scripts+=(
             'sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo'

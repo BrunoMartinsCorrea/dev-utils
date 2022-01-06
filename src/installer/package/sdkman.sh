@@ -1,8 +1,8 @@
 #!/bin/sh
 
-case "$os_name" in
+case "$OS_NAME" in
 linux)
-    case "$distro_name" in
+    case "$DISTRO_NAME" in
     fedora)
         custom_install_scripts+=(
             'curl -s "https://get.sdkman.io" | bash'

@@ -1,8 +1,8 @@
 #!/bin/sh
 
-case "$os_name" in
+case "$OS_NAME" in
 linux)
-    case "$distro_name" in
+    case "$DISTRO_NAME" in
     fedora)
         custom_install_scripts+=(
             'sudo wget https://github.com/bcicen/ctop/releases/download/0.7.6/ctop-0.7.6-linux-amd64 -O /usr/local/bin/ctop'
