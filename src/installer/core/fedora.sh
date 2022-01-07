@@ -1,10 +1,13 @@
 #!/bin/bash
 
+CONFIG_PATH=$INSTALLER_PATH/config/fedora
+DNF_CONF=$(cat $CONFIG_PATH/dnf.conf)
+
 official_package_manager='sudo dnf install -y'
 
 pre_official_install_scripts+=(
     'sudo dnf config-manager --set-enabled google-chrome'
-    'echo "fastestmirror=1" | sudo tee -a /etc/dnf/dnf.conf'
+    "echo '$DNF_CONF' | sudo tee -a /etc/dnf/dnf.conf"
     'sudo dnf clean all'
     'sudo dnf makecache'
     'sudo dnf distro-sync -y'
