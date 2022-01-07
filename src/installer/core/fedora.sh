@@ -2,8 +2,13 @@
 
 CONFIG_PATH=$INSTALLER_PATH/config/fedora
 DNF_CONF=$(cat $CONFIG_PATH/dnf.conf)
+GDM_CONF=$(cat $CONFIG_PATH/gdm.conf)
 
 official_package_manager='sudo dnf install -y'
+
+init_scripts=(
+    "echo '$GDM_CONF' | sudo tee /etc/gdm/custom.conf"
+)
 
 pre_official_install_scripts+=(
     'sudo dnf config-manager --set-enabled google-chrome'
