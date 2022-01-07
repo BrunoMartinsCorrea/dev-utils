@@ -11,7 +11,7 @@ linux)
             'curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash'
             'source ~/.nvm/nvm.sh'
             'nvm install --lts'
-            'yes | npm install -g @nestjs/cli react-native-cli create-react-app create-next-app vercel @angular/cli @vue/cli vue-native-cli json-server expo-cli netlify-cli tsdx'
+            'yes | npm install -g nx @nestjs/cli react-native-cli create-react-app create-next-app vercel @angular/cli @vue/cli vue-native-cli json-server expo-cli netlify-cli tsdx'
         )
         ;;
     esac
