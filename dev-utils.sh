@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEV_UTILS_DIR="$HOME/.local/dev-utils"
+DEV_UTILS_DIR="$HOME/.local/share/dev-utils"
 ROOT_PATH=$(dirname $0)
 INSTALLER_PATH=$ROOT_PATH/src/installer
 SCRIPT_PATH=$ROOT_PATH/src/script
