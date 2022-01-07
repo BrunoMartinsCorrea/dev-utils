@@ -13,26 +13,18 @@ linux)
             'curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh -s -- -y'
         )
         end_scripts+=(
-            'if [ "$SHELL" != "/usr/bin/zsh" ]; then
-                while : ; do
-                    chsh -s $(which zsh)
-                    [[ "$?" == "1" ]] || break
-                done
-                while : ; do
-                    sudo chsh -s $(which zsh)
-                    [[ "$?" == "1" ]] || break
-                done
-            fi
-            mkdir -p ~/.cache/zsh
-            touch ~/.zsh_profile'
-
-            'sudo sed -i "s/SHELL=.*/SHELL=\/bin\/zsh/" /etc/default/useradd'
-
-            'sudo sed -i "s/DSHELL=.*/DSHELL=\/bin\/zsh/" /etc/adduser.conf'
-
-            'sudo sed -i "s/#EXTRA_GROUPS=.*/EXTRA_GROUPS=\"dialout cdrom floppy audio video plugdev users kvm docker\"/" /etc/adduser.conf'
-
-            'sudo sed -i "s/#ADD_EXTRA_GROUPS=.*/ADD_EXTRA_GROUPS=1/" /etc/adduser.conf'
+            'if [ "$SHELL" != "/usr/bin/zsh" ]; then'
+            '    while : ; do'
+            '        chsh -s $(which zsh)'
+            '        [[ "$?" == "1" ]] || break'
+            '    done'
+            '    while : ; do'
+            '        sudo chsh -s $(which zsh)'
+            '        [[ "$?" == "1" ]] || break'
+            '    done'
+            'fi'
+            'mkdir -p ~/.cache/zsh'
+            'touch ~/.zsh_profile'
         )
         rc_scripts+=(
             '# PATH'
