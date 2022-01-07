@@ -7,7 +7,7 @@ official_package_manager='sudo dnf install -y'
 
 pre_official_install_scripts+=(
     'sudo dnf config-manager --set-enabled google-chrome'
-    "echo '$DNF_CONF' | sudo tee -a /etc/dnf/dnf.conf"
+    "echo '$DNF_CONF' | sudo tee /etc/dnf/dnf.conf"
     'sudo dnf clean all'
     'sudo dnf makecache'
     'sudo dnf distro-sync -y'
