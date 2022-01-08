@@ -15,3 +15,7 @@ init_scripts+=(
     "echo '$GDM_TAP_TO_CLICK_CONF' | sudo tee /etc/dconf/db/gdm.d/06-tap-to-click"
     "sudo -u gdm dbus-launch gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click 'true'"
 )
+
+end_scripts+=(
+    'gsettings set org.gnome.shell app-picker-layout "[]"'
+)
