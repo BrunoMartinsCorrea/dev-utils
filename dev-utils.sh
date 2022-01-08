@@ -1,7 +1,7 @@
 #!/bin/bash
 
-DEV_UTILS_DIR="$HOME/.local/share/dev-utils"
 ROOT_PATH=$(dirname $0)
+DEV_UTILS_DATA_DIR=$ROOT_PATH
 INSTALLER_PATH=$ROOT_PATH/src/installer
 SCRIPT_PATH=$ROOT_PATH/src/script
 GREEN='\033[0;32m'
@@ -9,7 +9,9 @@ YELLOW='\033[1;33m'
 RED='\033[0;31m'
 NO_COLOR='\033[0m'
 
-mkdir -p $DEV_UTILS_DIR
+if ! [ -d "$DEV_UTILS_DATA_DIR" ]; then
+    mkdir -p $DEV_UTILS_DATA_DIR
+fi
 
 while :; do
     clear

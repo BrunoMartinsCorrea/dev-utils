@@ -1,7 +1,8 @@
 #!/bin/bash
 
-OUTPUT_SCRIPT_FILE="$DEV_UTILS_DIR/setup.sh"
-OUTPUT_RC_FILE="$DEV_UTILS_DIR/.zshrc"
+OUTPUT_SCRIPT_FILE="$DEV_UTILS_DATA_DIR/script.sh"
+OUTPUT_RC_FILE="$DEV_UTILS_DATA_DIR/.zshrc"
+OUTPUT_INSTALL_FILE="$DEV_UTILS_DATA_DIR/install.sh"
 OS_NAME=''
 DISTRO_NAME=''
 
@@ -94,4 +95,38 @@ for rc_script in "${rc_scripts[@]}"; do
     echo "$rc_script" >>$OUTPUT_RC_FILE
 done
 
+echo "# INSTALL SCRIPT
 chmod +x $OUTPUT_SCRIPT_FILE
+$OUTPUT_SCRIPT_FILE
+
+echo '' >~/.zshrc
+ZSHRC_PATH=''
+if [ -f '/etc/zshrc' ]; then
+    ZSHRC_PATH='/etc/zshrc'
+elif [ -f '/etc/zsh/zshrc' ]; then
+    ZSHRC_PATH='/etc/zsh/zshrc'
+else
+    ZSHRC_PATH='~/.zshrc'
+fi
+sudo cp $OUTPUT_RC_FILE \$ZSHRC_PATH
+" >$OUTPUT_INSTALL_FILE
+chmod +x $OUTPUT_INSTALL_FILE
+
+clear
+echo -e "${GREEN}
+╔═══════════════════════════════╗
+║ Script generated with success ║
+╚═══════════════════════════════╝
+${NO_COLOR}"
+
+read -p "Do you want to install it? [Y/n]: " INSTALL_SCRIPT_INPUT
+
+if [ -z "$INSTALL_SCRIPT_INPUT" ] || [ "$INSTALL_SCRIPT_INPUT" == "y" ] || [ "$INSTALL_SCRIPT_INPUT" == "Y" ]; then
+    INSTALL_SCRIPT=1
+else
+    INSTALL_SCRIPT=0
+fi
+
+if [ "$INSTALL_SCRIPT" == "1" ]; then
+    sh $OUTPUT_INSTALL_FILE
+fi
