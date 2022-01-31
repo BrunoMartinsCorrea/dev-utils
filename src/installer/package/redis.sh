@@ -5,7 +5,7 @@ linux)
     case "$DISTRO_NAME" in
     *)
         flatpak_packages+=(
-            'dev.rdm.RDM'
+            'app.resp.RESP'
         )
         ;;
     esac
