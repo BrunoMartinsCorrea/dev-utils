@@ -12,6 +12,28 @@ linux)
         #"sudo -u gdm dbus-launch gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click 'true'"
     )
     end_scripts+=(
+        'gsettings set org.gnome.desktop.interface enable-animations true'
+        'gsettings set org.gnome.desktop.interface enable-hot-corners false'
+        'gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"'
+        'gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true'
+        'gsettings set org.gnome.desktop.peripherals.keyboard remember-numlock-state true'
+        'gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true'
+        'gsettings set org.gnome.desktop.sound allow-volume-above-100-percent true'
+        'gsettings set org.gnome.desktop.wm.keybindings show-desktop "[\"<Super>d\"]"'
+        'gsettings set org.gnome.desktop.wm.keybindings switch-applications "[\"<Super>Tab\"]"'
+        'gsettings set org.gnome.desktop.wm.keybindings switch-applications-backward "[\"<Shift><Super>Tab\", \"<Shift><Alt>Tab\"]"'
+        'gsettings set org.gnome.desktop.wm.keybindings switch-windows "[\"<Alt>Tab\"]"'
+        'gsettings set org.gnome.gedit.preferences.editor highlight-current-line false'
+        'gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name "Files"'
+        'gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command "nautilus"'
+        'gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding "<Super>e"'
+        'gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name "System Monitor"'
+        'gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command "gnome-system-monitor"'
+        'gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding "<Control><Shift>Escape"'
+        'gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name "Terminal"'
+        'gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command "gnome-terminal"'
+        'gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding "<Control><Alt>t"'
+        'gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "[\"/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/\", \"/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/\", \"/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/\"]"'
         'gsettings set org.gnome.shell app-picker-layout "[]"'
     )
 
