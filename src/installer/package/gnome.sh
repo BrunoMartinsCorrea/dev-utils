@@ -1,7 +1,20 @@
 #!/bin/bash
 
+GDM_CONF=$(cat $CONFIG_PATH/gdm.conf)
+GDM_TAP_TO_CLICK_CONF=$(cat $CONFIG_PATH/gdm-tap-to-click.conf)
+
 case "$OS_NAME" in
 linux)
+    init_scripts+=(
+        #'DISPLAY=:1 && xhost +SI:localuser:gdm'
+        "echo '$GDM_CONF' | sudo tee /etc/gdm/custom.conf"
+        "echo '$GDM_TAP_TO_CLICK_CONF' | sudo tee /etc/dconf/db/gdm.d/06-tap-to-click"
+        #"sudo -u gdm dbus-launch gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click 'true'"
+    )
+    end_scripts+=(
+        'gsettings set org.gnome.shell app-picker-layout "[]"'
+    )
+
     case "$DISTRO_NAME" in
     fedora)
         official_packages+=(
