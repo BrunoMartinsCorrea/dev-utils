@@ -15,9 +15,6 @@ post_official_install_scripts=()
 pre_flatpak_install_scripts=()
 flatpak_packages=()
 post_flatpak_install_scripts=()
-pre_snap_install_scripts=()
-snap_packages=()
-post_snap_install_scripts=()
 custom_install_scripts=()
 end_scripts=()
 
@@ -47,49 +44,57 @@ esac
 
 rm -f $OUTPUT_SCRIPT_FILE $OUTPUT_RC_FILE
 
+echo '#INIT-SCRIPT' >>$OUTPUT_SCRIPT_FILE
 for init_script in "${init_scripts[@]}"; do
     echo "$init_script" >>$OUTPUT_SCRIPT_FILE
 done
+echo -e '#INIT-SCRIPT\n' >>$OUTPUT_SCRIPT_FILE
 
+echo '#PRE-OFFICIAL-INSTALL-SCRIPT' >>$OUTPUT_SCRIPT_FILE
 for pre_official_install_script in "${pre_official_install_scripts[@]}"; do
     echo "$pre_official_install_script" >>$OUTPUT_SCRIPT_FILE
+    #RC-SCRIPTS
+    #RC-SCRIPTS
 done
+echo -e '#PRE-OFFICIAL-INSTALL-SCRIPT\n' >>$OUTPUT_SCRIPT_FILE
 
+echo '#OFFICIAL-PACKAGE-MANAGER' >>$OUTPUT_SCRIPT_FILE
 echo "$official_package_manager ${official_packages[@]}" >>$OUTPUT_SCRIPT_FILE
+echo -e '#OFFICIAL-PACKAGE-MANAGER\n' >>$OUTPUT_SCRIPT_FILE
 
+echo '#POST-OFFICIAL-INSTALL-SCRIPT' >>$OUTPUT_SCRIPT_FILE
 for post_official_install_script in "${post_official_install_scripts[@]}"; do
     echo "$post_official_install_script" >>$OUTPUT_SCRIPT_FILE
 done
+echo -e '#POST-OFFICIAL-INSTALL-SCRIPT\n' >>$OUTPUT_SCRIPT_FILE
 
+echo '#PRE-FLATPAK-INSTALL-SCRIPT' >>$OUTPUT_SCRIPT_FILE
 for pre_flatpak_install_script in "${pre_flatpak_install_scripts[@]}"; do
     echo "$pre_flatpak_install_script" >>$OUTPUT_SCRIPT_FILE
 done
+echo -e '#PRE-FLATPAK-INSTALL-SCRIPT\n' >>$OUTPUT_SCRIPT_FILE
 
+echo '#FLATPAK-PACKAGES' >>$OUTPUT_SCRIPT_FILE
 echo "sudo flatpak install -y flathub ${flatpak_packages[@]}" >>$OUTPUT_SCRIPT_FILE
+echo -e '#FLATPAK-PACKAGES\n' >>$OUTPUT_SCRIPT_FILE
 
+echo '#POST-FLATPAK-INSTALL-SCRIPT' >>$OUTPUT_SCRIPT_FILE
 for post_flatpak_install_script in "${post_flatpak_install_scripts[@]}"; do
     echo "$post_flatpak_install_script" >>$OUTPUT_SCRIPT_FILE
 done
+echo -e '#POST-FLATPAK-INSTALL-SCRIPT\n' >>$OUTPUT_SCRIPT_FILE
 
-for pre_snap_install_script in "${pre_snap_install_scripts[@]}"; do
-    echo "$pre_snap_install_script" >>$OUTPUT_SCRIPT_FILE
-done
-
-for snap_package in "${snap_packages[@]}"; do
-    echo "sudo snap install $snap_package" >>$OUTPUT_SCRIPT_FILE
-done
-
-for post_snap_install_script in "${post_snap_install_scripts[@]}"; do
-    echo "$post_snap_install_script" >>$OUTPUT_SCRIPT_FILE
-done
-
+echo '#CUSTOM-INSTALL-SCRIPT' >>$OUTPUT_SCRIPT_FILE
 for custom_install_script in "${custom_install_scripts[@]}"; do
     echo "$custom_install_script" >>$OUTPUT_SCRIPT_FILE
 done
+echo -e '#CUSTOM-INSTALL-SCRIPT\n' >>$OUTPUT_SCRIPT_FILE
 
+echo '#END-SCRIPTS' >>$OUTPUT_SCRIPT_FILE
 for end_script in "${end_scripts[@]}"; do
     echo "$end_script" >>$OUTPUT_SCRIPT_FILE
 done
+echo -e '#END-SCRIPTS\n' >>$OUTPUT_SCRIPT_FILE
 
 for rc_script in "${rc_scripts[@]}"; do
     echo "$rc_script" >>$OUTPUT_RC_FILE
