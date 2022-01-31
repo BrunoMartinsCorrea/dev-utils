@@ -19,6 +19,8 @@ linux)
             'openssh'
             'openvpn'
             'ntfs-3g'
+            'gtk3-devel'
+            'gtk4-devel'
             'gstreamer1'
             'gstreamer1-libav'
             'gstreamer1-plugins-base'

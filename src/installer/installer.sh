@@ -96,6 +96,8 @@ for end_script in "${end_scripts[@]}"; do
 done
 echo -e '#END-SCRIPTS\n' >>$OUTPUT_SCRIPT_FILE
 
+chmod +x $OUTPUT_SCRIPT_FILE
+
 for rc_script in "${rc_scripts[@]}"; do
     echo "$rc_script" >>$OUTPUT_RC_FILE
 done
