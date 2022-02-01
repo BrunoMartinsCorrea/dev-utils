@@ -5,7 +5,8 @@ linux)
     case "$DISTRO_NAME" in
     fedora)
         official_packages+=(
-            'dnf-plugins-core'
+            'terraform'
+            'terraform-ls'
         )
         ;;
     esac
