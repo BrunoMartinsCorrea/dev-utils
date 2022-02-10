@@ -35,6 +35,7 @@ linux)
         'gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding "<Control><Alt>t"'
         'gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "[\"/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/\", \"/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/\", \"/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/\"]"'
         'gsettings set org.gnome.shell app-picker-layout "[]"'
+        'gsettings set org.gnome.shell enabled-extensions "[\"appindicatorsupport@rgcjonas.gmail.com\"]"'
     )
 
     case "$DISTRO_NAME" in
@@ -76,6 +77,8 @@ linux)
             'gnome-weather'
             'meld'
             'nautilus'
+            'NetworkManager-fortisslvpn-gnome'
+            'NetworkManager-openconnect-gnome'
             'NetworkManager-openvpn-gnome'
             'NetworkManager-ssh-gnome'
             'peek'
