@@ -8,6 +8,9 @@ linux)
             'python3'
             'python3-pip'
         )
+        post_official_packages+=(
+            'pip install --user awscli localstack localstack-client jupyter pipenv virtualenv'
+        )
         ;;
     esac
     ;;
