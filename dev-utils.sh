@@ -16,21 +16,23 @@ fi
 while :; do
     clear
     echo "
-╔══════════════════════╗
-║ Welcome to dev-utils ║
-╠══════════════════════╣
-║ 0. Exit [DEFAULT]    ║
-║ 1. Setup my computer ║
-║ 2. Setup my git      ║
-╚══════════════════════╝
+╔════════════════════════╗
+║  Welcome to dev-utils  ║
+╠════════════════════════╣
+║ 0. Exit [DEFAULT]      ║
+║ 1. Setup my computer   ║
+║ 2. Setup my git        ║
+║ 3. Setup my OpenVPN    ║
+╚════════════════════════╝
 "
     read -p "Option: " MENU_OPTION
 
     if [ "$MENU_OPTION" == "1" ]; then
         source $INSTALLER_PATH/installer.sh
     elif [ "$MENU_OPTION" == "2" ]; then
-        echo "Setup my git"
-        read
+        source $SCRIPT_PATH/git-utils.sh
+    elif [ "$MENU_OPTION" == "3" ]; then
+        source $SCRIPT_PATH/vpn-utils.sh
     else
         break
     fi
