@@ -14,6 +14,7 @@ linux)
     end_scripts+=(
         'gsettings set org.gnome.desktop.interface enable-animations true'
         'gsettings set org.gnome.desktop.interface enable-hot-corners false'
+        'gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"'
         'gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"'
         'gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true'
         'gsettings set org.gnome.desktop.peripherals.keyboard remember-numlock-state true'
