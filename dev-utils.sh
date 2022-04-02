@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ROOT_PATH=$(dirname $0)
+ROOT_PATH=$(dirname "$0")
 DEV_UTILS_DATA_DIR=$ROOT_PATH
 INSTALLER_PATH=$ROOT_PATH/src/installer
 SCRIPT_PATH=$ROOT_PATH/src/script
@@ -10,7 +10,7 @@ RED='\033[0;31m'
 NO_COLOR='\033[0m'
 
 if ! [ -d "$DEV_UTILS_DATA_DIR" ]; then
-    mkdir -p $DEV_UTILS_DATA_DIR
+    mkdir -p "$DEV_UTILS_DATA_DIR"
 fi
 
 while :; do
@@ -28,11 +28,11 @@ while :; do
     read -p "Option: " MENU_OPTION
 
     if [ "$MENU_OPTION" == "1" ]; then
-        source $INSTALLER_PATH/installer.sh
+        source "$INSTALLER_PATH/installer.sh"
     elif [ "$MENU_OPTION" == "2" ]; then
-        source $SCRIPT_PATH/git-utils.sh
+        source "$SCRIPT_PATH/git-utils.sh"
     elif [ "$MENU_OPTION" == "3" ]; then
-        source $SCRIPT_PATH/vpn-utils.sh
+        source "$SCRIPT_PATH/vpn-utils.sh"
     else
         break
     fi

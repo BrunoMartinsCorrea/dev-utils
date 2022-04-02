@@ -68,7 +68,7 @@ User email: $GIT_EMAIL
             git config --global init.defaultBranch main
         fi
     elif [ "$MENU_OPTION" == "2" ]; then
-        DIRECTORY=~/
+        DIRECTORY="$HOME/"
 
         while :; do
             clear
@@ -85,8 +85,8 @@ User email: $GIT_EMAIL
             fi
         done
 
-        GIT_NAME=$(git config --file $DIRECTORY/.gitconfig user.name)
-        GIT_EMAIL=$(git config --file $DIRECTORY/.gitconfig user.email)
+        GIT_NAME=$(git config --file "$DIRECTORY/.gitconfig" user.name)
+        GIT_EMAIL=$(git config --file "$DIRECTORY/.gitconfig" user.email)
         GIT_OVERWRITE=1
 
         if [ -n "$GIT_NAME" ] || [ -n "$GIT_EMAIL" ]; then
@@ -121,11 +121,11 @@ User email: $GIT_EMAIL
             read -p "Type your full name: " GIT_NAME
             read -p "Type your e-mail: " GIT_EMAIL
 
-            git config --file $DIRECTORY/.gitconfig user.name "$GIT_NAME"
-            git config --file $DIRECTORY/.gitconfig user.email "$GIT_EMAIL"
-            git config --file $DIRECTORY/.gitconfig pull.rebase true
-            git config --file $DIRECTORY/.gitconfig init.defaultBranch main
-            git config --global --add includeif.gitdir:$DIRECTORY.path $DIRECTORY.gitconfig
+            git config --file "$DIRECTORY/.gitconfig" user.name "$GIT_NAME"
+            git config --file "$DIRECTORY/.gitconfig" user.email "$GIT_EMAIL"
+            git config --file "$DIRECTORY/.gitconfig" pull.rebase true
+            git config --file "$DIRECTORY/.gitconfig" init.defaultBranch main
+            git config --global --add "includeif.gitdir:$DIRECTORY.path" "$DIRECTORY.gitconfig"
             clear
             echo -e "${GREEN}
 ╔════════════════════════════════════╗
@@ -172,9 +172,9 @@ User email: $GIT_EMAIL
                 VCS_NAME=$(echo "$VCS_OTHER_NAME" | awk '{print tolower($0)}')
             fi
 
-            ssh-keygen -t rsa -b 4096 -C "$GIT_EMAIL" -f ~/.ssh/id_rsa_$VCS_NAME -q -N ""
-            ssh-add ~/.ssh/id_rsa_$VCS_NAME
-            xclip -sel clip <~/.ssh/id_rsa_$VCS_NAME.pub
+            ssh-keygen -t rsa -b 4096 -C "$GIT_EMAIL" -f "$HOME/.ssh/id_rsa_$VCS_NAME" -q -N ""
+            ssh-add "$HOME/.ssh/id_rsa_$VCS_NAME"
+            xclip -sel clip <"$HOME/.ssh/id_rsa_$VCS_NAME.pub"
 
             clear
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CONFIG_PATH=$INSTALLER_PATH/config/fedora
-DNF_CONF=$(cat $CONFIG_PATH/dnf.conf)
+DNF_CONF=$(cat "$CONFIG_PATH/dnf.conf")
 
 official_package_manager='sudo dnf install -y'
 

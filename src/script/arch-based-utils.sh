@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function isInstalled() {
-    if ! command -v $1 &>/dev/null; then
+    if ! command -v "$1" &>/dev/null; then
         echo "0"
     else
         echo "1"
@@ -33,7 +33,7 @@ while [ -n "$1" ]; do
         DATA_SCIENCE=1
         ;;
     --help | -h | *)
-        echo "Usage: $(basename $0) [OPTION..]
+        echo "Usage: $(basename "$0") [OPTION..]
 
   By default, the following packages will be installed: [base-devel, rustup, python, docker, cmake, git, awscli, paru, flatpak, zsh, oh-my-zsh, vscode, insomnia, ventoy, google-chrome, element, telegram, slack, discord]
 
@@ -55,7 +55,7 @@ rankmirrors /etc/pacman.d/mirrorlist
 sudo pacman -Syuq --needed --noconfirm --noprogressbar base-devel cmake git rustup
 
 # RUSTUP
-if [ $(isInstalled rustup) == 1 ]; then
+if [ "$(isInstalled rustup)" == 1 ]; then
     rustup install stable
     rustup default stable
     rustup component add rls
@@ -63,10 +63,9 @@ fi
 # RUSTUP
 
 # PARU
-if [ $(isInstalled paru) == 0 ]; then
-    cd /tmp
-    git clone https://aur.archlinux.org/paru.git
-    cd paru
+if [ "$(isInstalled paru)" == 0 ]; then
+    git clone https://aur.archlinux.org/paru.git /tmp/paru
+    cd /tmp/paru
     makepkg -si
 fi
 # PARU
@@ -76,7 +75,7 @@ paru -Syuq --needed --sudoloop --noconfirm --noprogressbar posix-user-portabilit
 # DEFAULT
 
 # FLATPAK
-if [ $(isInstalled flatpak) == 1 ]; then
+if [ "$(isInstalled flatpak)" == 1 ]; then
     flatpak install -y flathub com.spotify.Client
 fi
 # FLATPAK
@@ -100,7 +99,7 @@ fi
 # DATA-SCIENCE
 
 # PYTHON
-if [ $(isInstalled pip) == 1 ]; then
+if [ "$(isInstalled pip)" == 1 ]; then
     # DEFAULT
     pip install --user pipenv virtualenv awscli
     # DEFAULT
@@ -120,7 +119,7 @@ fi
 # PYTHON
 
 # SDKMAN
-if [ "$BACKEND" == "1" ] && [ $(isInstalled zsh) == 1 ] && [ $(isInstalled sdk) == 0 ]; then
+if [ "$BACKEND" == "1" ] && [ "$(isInstalled zsh)" == 1 ] && [ "$(isInstalled sdk)" == 0 ]; then
     curl -s "https://get.sdkman.io" | zsh
 fi
 
@@ -129,7 +128,7 @@ if [ -f "$SDKMAN_INIT_FILE" ]; then
     source "$SDKMAN_INIT_FILE"
 fi
 
-if [ $(isInstalled sdk) == 1 ]; then
+if [ "$(isInstalled sdk)" == 1 ]; then
     sdk selfupdate force
 
     sed -i '/auto_answer/s/false/true/' ~/.sdkman/etc/config
@@ -138,7 +137,7 @@ if [ $(isInstalled sdk) == 1 ]; then
     sed -i '/auto_env/s/false/true/' ~/.sdkman/etc/config
 
     sdk list java | grep -Po "(8|11|16)(\.\d+)+-zulu" | while read -r JAVA_LATEST_MINOR; do
-        sdk install java $JAVA_LATEST_MINOR </dev/null
+        sdk install java "$JAVA_LATEST_MINOR" </dev/null
     done
     sdk install kotlin </dev/null
     sdk install scala </dev/null
@@ -165,14 +164,14 @@ if [ -f "$NVM_INIT_FILE" ]; then
     source "$NVM_INIT_FILE"
 fi
 
-if [ $(isInstalled nvm) == 1 ]; then
+if [ "$(isInstalled nvm)" == 1 ]; then
     nvm install --lts
     nvm use --lts
 fi
 # NVM
 
 # NPM
-if [ $(isInstalled npm) == 1 ]; then
+if [ "$(isInstalled npm)" == 1 ]; then
     # DEFAULT
     npm install -g yarn tsdx
     # DEFAULT
@@ -208,9 +207,9 @@ if [ "$FRONTEND" == "1" ]; then
     yes | sdkmanager --licenses
 
     SDKMANAGER_LIST=$(sdkmanager --list)
-    SDKMANAGER_PLATFORMS=$(echo $SDKMANAGER_LIST | grep -Po "platforms;android-(\d{2,}|[a-zA-Z]*)" | sort -r | head -1)
-    SDKMANAGER_BUILD_TOOLS=$(echo $SDKMANAGER_LIST | grep -Po "build-tools;(\d+\.){2}\d+(?=\s)" | sort -r | head -1)
-    SDKMANAGER_SYSTEM_IMAGES=$(echo $SDKMANAGER_LIST | grep -Po "system-images;android\S*google_apis;x86_64" | sort -r | head -1)
+    SDKMANAGER_PLATFORMS=$(echo "$SDKMANAGER_LIST" | grep -Po "platforms;android-(\d{2,}|[a-zA-Z]*)" | sort -r | head -1)
+    SDKMANAGER_BUILD_TOOLS=$(echo "$SDKMANAGER_LIST" | grep -Po "build-tools;(\d+\.){2}\d+(?=\s)" | sort -r | head -1)
+    SDKMANAGER_SYSTEM_IMAGES=$(echo "$SDKMANAGER_LIST" | grep -Po "system-images;android\S*google_apis;x86_64" | sort -r | head -1)
 
     sdkmanager "$SDKMANAGER_PLATFORMS"
     sdkmanager "$SDKMANAGER_BUILD_TOOLS"
@@ -220,25 +219,25 @@ fi
 # ANDROID-SDK
 
 # KVM
-sudo usermod -aG kvm $USER
+sudo usermod -aG kvm "$USER"
 # KVM
 
 # DOCKER
-if [ $(isInstalled docker) == 1 ]; then
+if [ "$(isInstalled docker)" == 1 ]; then
     sudo systemctl start docker
     sudo systemctl enable docker
-    sudo usermod -aG docker $USER
+    sudo usermod -aG docker "$USER"
 fi
 # DOCKER
 
 # ARDUINO
-if [ $(isInstalled arduino) == 1 ]; then
-    sudo usermod -aG uucp $USER
+if [ "$(isInstalled arduino)" == 1 ]; then
+    sudo usermod -aG uucp "$USER"
 fi
 # ARDUINO
 
 # VSCODE
-if [ $(isInstalled code) == 1 ]; then
+if [ "$(isInstalled code)" == 1 ]; then
     # DEFAULT
     code --install-extension ms-vscode.cmake-tools --force
     code --install-extension ms-azuretools.vscode-docker --force
@@ -318,14 +317,14 @@ fi
 # VSCODE
 
 # ZSHELL
-if [ $(isInstalled zsh) == 1 ]; then
+if [ "$(isInstalled zsh)" == 1 ]; then
     if [ "$SHELL" != "/usr/bin/zsh" ]; then
         while :; do
-            chsh -s $(which zsh)
+            chsh -s "$(which zsh)"
             [[ "$?" == "1" ]] || break
         done
         while :; do
-            sudo chsh -s $(which zsh)
+            sudo chsh -s "$(which zsh)"
             [[ "$?" == "1" ]] || break
         done
     fi
@@ -406,7 +405,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
     # DEFAULT
 
     # NVM
-    if [ $(isInstalled nvm) == 1 ]; then
+    if [ "$(isInstalled nvm)" == 1 ]; then
         echo "
 # NVM SOURCE
 source /usr/share/nvm/init-nvm.sh" >>~/.zshrc
@@ -414,7 +413,7 @@ source /usr/share/nvm/init-nvm.sh" >>~/.zshrc
     # NVM
 
     # SDKMAN
-    if [ $(isInstalled sdk) == 1 ]; then
+    if [ "$(isInstalled sdk)" == 1 ]; then
         echo "
 # SDKMAN
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!

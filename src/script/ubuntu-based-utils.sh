@@ -47,15 +47,15 @@ sudo apt install -f
 # GOOGLE CHROME
 
 #KVM
-sudo usermod -aG kvm $USER
+sudo usermod -aG kvm "$USER"
 #KVM
 
 # ARDUINO
-sudo usermod -aG dialout $USER
+sudo usermod -aG dialout "$USER"
 # ARDUINO
 
 #DOCKER
-sudo usermod -aG docker $USER
+sudo usermod -aG docker "$USER"
 #DOCKER
 
 # VSCODE
@@ -120,11 +120,11 @@ code --install-extension ms-ossdata.vscode-postgresql --force
 # ZSHELL
 if [ "$SHELL" != "/usr/bin/zsh" ]; then
     while :; do
-        chsh -s $(which zsh)
+        chsh -s "$(which zsh)"
         [[ "$?" == "1" ]] || break
     done
     while :; do
-        sudo chsh -s $(which zsh)
+        sudo chsh -s "$(which zsh)"
         [[ "$?" == "1" ]] || break
     done
 fi
@@ -288,4 +288,4 @@ flutter doctor
 exit 0
 ' | sudo tee /usr/local/sbin/adduser.local
 sudo chmod +x /usr/local/sbin/adduser.local
-/usr/local/sbin/adduser.local $USER
+/usr/local/sbin/adduser.local "$USER"

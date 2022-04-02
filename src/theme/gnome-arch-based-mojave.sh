@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function isInstalled() {
-    if ! command -v $1 &>/dev/null; then
+    if ! command -v "$1" &>/dev/null; then
         echo "0"
     else
         echo "1"
@@ -14,7 +14,7 @@ INTERFACE_SOLID=0
 while [ -n "$1" ]; do
     case "$1" in
     --help)
-        echo "Usage: $(basename $0) [OPTION..]
+        echo "Usage: $(basename "$0") [OPTION..]
 
   --dark	Set dark theme as default.
   --solid	Set windows transparency false.
@@ -28,7 +28,7 @@ while [ -n "$1" ]; do
         INTERFACE_SOLID=1
         ;;
     *)
-        echo "Ops! Try read the help! $(basename $0) --help"
+        echo "Ops! Try read the help! $(basename "$0") --help"
         exit 1
         ;;
     esac
@@ -39,17 +39,16 @@ done
 sudo pacman -Syuq --needed --noconfirm --noprogressbar base-devel cmake git rustup
 
 # RUSTUP
-if [ $(isInstalled rustup) == 1 ]; then
+if [ "$(isInstalled rustup)" == 1 ]; then
     rustup install stable
     rustup default stable
 fi
 # RUSTUP
 
 # PARU
-if [ $(isInstalled paru) == 0 ]; then
-    cd /tmp
-    git clone https://aur.archlinux.org/paru.git
-    cd paru
+if [ "$(isInstalled paru)" == 0 ]; then
+    git clone https://aur.archlinux.org/paru.git /tmp/paru
+    cd /tmp/paru
     makepkg -si
 fi
 # PARU
@@ -76,7 +75,7 @@ gsettings set org.gnome.desktop.peripherals.touchpad speed 0
 gsettings set org.gnome.desktop.peripherals.touchpad tap-and-drag true
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 gsettings set org.gnome.desktop.peripherals.touchpad two-finger-scrolling-enabled true
-sudo gpasswd -a $USER input
+sudo gpasswd -a "$USER" input
 mkdir -p ~/.config/fusuma
 echo "swipe:
   3:

@@ -23,7 +23,7 @@ if [ -n "$VPN_FILES" ]; then
 
         if [ -n "$VPN_UUID" ]; then
             nmcli connection modify "$VPN_UUID" connection.id "$VPN_ALIAS"
-            nmcli connection modify "$VPN_UUID" +vpn.data username=$VPN_USERNAME
+            nmcli connection modify "$VPN_UUID" +vpn.data username="$VPN_USERNAME"
             nmcli connection modify "$VPN_UUID" +vpn.secrets "password=$VPN_PASSWORD"
             nmcli connection modify "$VPN_UUID" ipv4.never-default true
             nmcli connection modify "$VPN_UUID" ipv6.never-default true
