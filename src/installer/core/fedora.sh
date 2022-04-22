@@ -3,16 +3,16 @@
 CONFIG_PATH=$INSTALLER_PATH/config/fedora
 DNF_CONF=$(cat "$CONFIG_PATH/dnf.conf")
 
-official_package_manager='sudo dnf install -y'
+official_package_manager='sudo dnf install --skip-broken -by'
 
 pre_official_install_scripts+=(
     "echo '$DNF_CONF' | sudo tee /etc/dnf/dnf.conf"
-    'sudo dnf clean all'
-    'sudo dnf makecache'
-    'sudo dnf distro-sync -y'
     'sudo dnf install -y dnf-plugins-core fedora-workstation-repositories https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm'
     'sudo dnf config-manager --set-enabled google-chrome'
     'sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo'
+    'sudo dnf clean all'
+    'sudo dnf makecache'
+    'sudo dnf distro-sync -y'
 )
 
 official_packages+=(
