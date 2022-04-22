@@ -8,6 +8,7 @@ linux)
         'sudo mkdir -p /opt/toolbox-app'
         'sudo tar -xf /tmp/toolbox-app.tar.gz --strip-components=1 -C /opt/toolbox-app'
         'sudo ln -s /opt/toolbox-app/jetbrains-toolbox /usr/bin/jetbrains-toolbox'
+        '/usr/bin/jetbrains-toolbox'
     )
     ;;
 esac

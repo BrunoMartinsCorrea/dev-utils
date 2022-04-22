@@ -30,7 +30,6 @@ linux)
         'sudo git clone -b stable https://github.com/flutter/flutter.git $FLUTTER_HOME'
         'sudo chmod -R +777 $FLUTTER_HOME'
         'flutter config --android-sdk $ANDROID_SDK_ROOT'
-        'flutter config --android-studio-dir=/var/lib/flatpak/app/com.google.AndroidStudio/current/active/files/extra/android-studio'
         'flutter config --enable-linux-desktop'
         'flutter precache'
     )
