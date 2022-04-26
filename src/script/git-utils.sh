@@ -66,6 +66,7 @@ User email: $GIT_EMAIL
             git config --global user.email "$GIT_EMAIL"
             git config --global pull.rebase true
             git config --global init.defaultBranch main
+            git config --global advice.skippedCherryPicks false
         fi
     elif [ "$MENU_OPTION" == "2" ]; then
         DIRECTORY="$HOME/"
@@ -125,6 +126,7 @@ User email: $GIT_EMAIL
             git config --file "$DIRECTORY/.gitconfig" user.email "$GIT_EMAIL"
             git config --file "$DIRECTORY/.gitconfig" pull.rebase true
             git config --file "$DIRECTORY/.gitconfig" init.defaultBranch main
+            git config --file "$DIRECTORY/.gitconfig" advice.skippedCherryPicks false
             git config --global --add "includeif.gitdir:$DIRECTORY.path" "$DIRECTORY.gitconfig"
             clear
             echo -e "${GREEN}
