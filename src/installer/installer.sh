@@ -29,6 +29,9 @@ Linux*)
     fedora)
         source "$INSTALLER_PATH/core/fedora.sh"
         ;;
+    ubuntu)
+        source "$INSTALLER_PATH/core/ubuntu.sh"
+        ;;
     esac
     ;;
 Darwin*)
