@@ -3,6 +3,11 @@
 case "$OS_NAME" in
 linux)
     case "$DISTRO_NAME" in
+    ubuntu)
+        official_packages+=(
+            'gnome-software-plugin-flatpak'
+        )
+        ;;&
     fedora | ubuntu)
         official_packages+=(
             'flatpak'
