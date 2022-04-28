@@ -5,8 +5,17 @@ linux)
     case "$DISTRO_NAME" in
     fedora)
         official_packages+=(
-            'ruby'
             'rubygems'
+        )
+        ;;&
+    ubuntu)
+        official_packages+=(
+            'rubygems-integration'
+        )
+        ;;&
+    fedora | ubuntu)
+        official_packages+=(
+            'ruby'
         )
         ;;
     esac
