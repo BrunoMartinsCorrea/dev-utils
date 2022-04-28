@@ -8,6 +8,11 @@ linux)
             'lua'
         )
         ;;
+    ubuntu)
+        official_packages+=(
+            'lua5.4'
+        )
+        ;;
     esac
     ;;
 esac
