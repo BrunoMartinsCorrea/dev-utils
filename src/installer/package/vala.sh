@@ -6,6 +6,15 @@ linux)
     fedora)
         official_packages+=(
             'vala'
+        )
+        ;;&
+    ubuntu)
+        official_packages+=(
+            'valac'
+        )
+        ;;&
+    fedora | ubuntu)
+        official_packages+=(
             'ninja-build'
             'meson'
         )
