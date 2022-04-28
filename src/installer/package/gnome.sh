@@ -35,6 +35,8 @@ linux)
     fedora | ubuntu)
         init_scripts+=(
             #'DISPLAY=:1 && xhost +SI:localuser:gdm'
+            'sudo mkdir -p /etc/gdm'
+            'sudo mkdir -p /etc/dconf/db/gdm.d'
             "echo '$GDM_CONF' | sudo tee /etc/gdm/custom.conf"
             "echo '$GDM_TAP_TO_CLICK_CONF' | sudo tee /etc/dconf/db/gdm.d/06-tap-to-click"
             #"sudo -u gdm dbus-launch gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click 'true'"
