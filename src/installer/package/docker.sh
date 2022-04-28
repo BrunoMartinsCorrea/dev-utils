@@ -3,6 +3,16 @@
 case "$OS_NAME" in
 linux)
     case "$DISTRO_NAME" in
+    fedora | ubuntu)
+        official_packages+=(
+            'docker-compose'
+        )
+        post_official_install_scripts+=(
+            'sudo systemctl start docker'
+            'sudo systemctl enable docker'
+            'sudo usermod -aG docker $USER'
+        )
+        ;;&
     fedora)
         pre_official_install_scripts+=(
             'sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo'
@@ -11,12 +21,12 @@ linux)
             'docker-ce'
             'docker-ce-cli'
             'containerd.io'
-            'docker-compose'
         )
-        post_official_install_scripts+=(
-            'sudo systemctl start docker'
-            'sudo systemctl enable docker'
-            'sudo usermod -aG docker $USER'
+        ;;&
+    ubuntu)
+        official_packages+=(
+            'docker.io'
+            'containerd'
         )
         ;;
     esac
