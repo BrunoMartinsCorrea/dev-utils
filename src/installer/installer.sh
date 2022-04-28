@@ -32,16 +32,26 @@ Linux*)
     ubuntu)
         source "$INSTALLER_PATH/core/ubuntu.sh"
         ;;
+    *)
+        echo "Linux distribution not supported!"
+        exit 1
+        ;;
     esac
     ;;
 Darwin*)
     OS_NAME=mac
+    echo "OS not supported!"
+    exit 1
     ;;
 CYGWIN*)
     OS_NAME=cygwin
+    echo "OS not supported!"
+    exit 1
     ;;
 MINGW*)
     OS_NAME=mingw
+    echo "OS not supported!"
+    exit 1
     ;;
 esac
 
