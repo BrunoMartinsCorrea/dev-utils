@@ -46,7 +46,11 @@ linux)
             'gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"'
             'gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true'
             'gsettings set org.gnome.desktop.peripherals.keyboard remember-numlock-state true'
+            'gsettings set org.gnome.desktop.peripherals.touchpad click-methods "fingers"'
+            'gsettings set org.gnome.desktop.peripherals.touchpad disable-while-typing true'
+            'gsettings set org.gnome.desktop.peripherals.touchpad tap-and-drag true'
             'gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true'
+            'gsettings set org.gnome.desktop.peripherals.touchpad two-finger-scrolling-enabled true'
             'gsettings set org.gnome.desktop.sound allow-volume-above-100-percent true'
             'gsettings set org.gnome.desktop.wm.keybindings show-desktop "[\"<Super>d\"]"'
             'gsettings set org.gnome.desktop.wm.keybindings switch-applications "[\"<Super>Tab\"]"'
@@ -64,6 +68,7 @@ linux)
             'gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "[\"/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/\", \"/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/\", \"/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/\"]"'
             'gsettings set org.gnome.shell app-picker-layout "[]"'
             'gsettings set org.gnome.shell enabled-extensions "[\"appindicatorsupport@rgcjonas.gmail.com\"]"'
+            'gsettings set org.gnome.mutter center-new-windows true'
         )
         official_packages+=(
             'almanah'
