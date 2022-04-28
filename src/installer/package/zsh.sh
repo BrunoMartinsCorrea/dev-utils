@@ -71,6 +71,7 @@ linux)
             'source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
             ''
             '# ANDROID-SDK'
+            'export CHROME_EXECUTABLE=/var/lib/flatpak/exports/bin/com.google.Chrome'
             'export ANDROID_HOME=/opt/android-sdk'
             'export ANDROID_SDK_ROOT=$ANDROID_HOME'
             'export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin'
