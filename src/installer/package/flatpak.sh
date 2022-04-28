@@ -13,8 +13,8 @@ linux)
             'flatpak'
         )
         pre_flatpak_install_scripts+=(
-            'sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo'
-            'sudo flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo'
+            'sudo flatpak remote-delete flathub'
+            'sudo flatpak remote-add flathub https://flathub.org/repo/flathub.flatpakrepo'
         )
         ;;
     esac

@@ -77,7 +77,6 @@ linux)
             'cheese'
             'chrome-gnome-shell'
             'dconf-editor'
-            'dconf-cli'
             'eog'
             'evince'
             'file-roller'
