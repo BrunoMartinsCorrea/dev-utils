@@ -3,6 +3,11 @@
 case "$OS_NAME" in
 linux)
     case "$DISTRO_NAME" in
+    arch)
+        official_packages+=(
+            'qemu-desktop'
+        )
+        ;;&
     fedora)
         official_packages+=(
             'vi'
@@ -39,6 +44,14 @@ linux)
         ;;&
     fedora | ubuntu)
         official_packages+=(
+            'crypto-policies'
+            'libvirt-daemon-config-network'
+            'virt-top'
+            'qemu'
+        )
+        ;;&
+    arch | fedora | ubuntu)
+        official_packages+=(
             'cmake'
             'tree'
             'vim'
@@ -48,14 +61,10 @@ linux)
             'git'
             'zip'
             'unzip'
-            'crypto-policies'
             'openvpn'
             'ntfs-3g'
-            'libvirt-daemon-config-network'
             'virt-manager'
             'virt-viewer'
-            'virt-top'
-            'qemu'
         )
         post_official_install_scripts+=(
             'sudo systemctl start libvirtd'
