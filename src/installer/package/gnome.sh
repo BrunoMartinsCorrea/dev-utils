@@ -25,6 +25,7 @@ linux)
             'dconf-cli'
             'epiphany-browser'
             'gnome-tweaks'
+            'gnome-software-plugin-flatpak'
             'gnome-sushi'
             'network-manager-fortisslvpn-gnome'
             'network-manager-openconnect-gnome'
