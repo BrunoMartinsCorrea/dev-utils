@@ -3,6 +3,14 @@
 case "$OS_NAME" in
 linux)
     case "$DISTRO_NAME" in
+    arch)
+        official_packages+=(
+            'ttf-jetbrains-mono'
+            'ttf-fira-code'
+            'ttf-nerd-fonts-symbols-mono'
+            'noto-fonts-emoji'
+        )
+        ;;&
     fedora)
         official_packages+=(
             'jetbrains-mono-fonts-all'
@@ -17,7 +25,7 @@ linux)
             'fonts-noto-color-emoji'
         )
         ;;&
-    fedora | ubuntu)
+    arch | fedora | ubuntu)
         official_packages+=(
             'powerline'
         )
