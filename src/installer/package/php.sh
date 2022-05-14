@@ -3,7 +3,7 @@
 case "$OS_NAME" in
 linux)
     case "$DISTRO_NAME" in
-    fedora | ubuntu)
+    arch | fedora | ubuntu)
         official_packages+=(
             'php'
         )
