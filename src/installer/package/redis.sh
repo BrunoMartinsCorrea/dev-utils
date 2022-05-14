@@ -6,7 +6,6 @@ linux)
     arch)
         official_packages+=(
             'redis'
-            'resp-app'
         )
         ;;
     fedora | ubuntu)
