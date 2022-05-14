@@ -3,9 +3,9 @@
 case "$OS_NAME" in
 linux)
     case "$DISTRO_NAME" in
-    fedora)
+    arch)
         official_packages+=(
-            'vala'
+            'ninja'
         )
         ;;&
     ubuntu)
@@ -13,9 +13,18 @@ linux)
             'valac'
         )
         ;;&
+    arch | fedora)
+        official_packages+=(
+            'vala'
+        )
+        ;;&
     fedora | ubuntu)
         official_packages+=(
             'ninja-build'
+        )
+        ;;&
+    arch | fedora | ubuntu)
+        official_packages+=(
             'meson'
         )
         ;;
