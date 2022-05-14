@@ -3,6 +3,11 @@
 case "$OS_NAME" in
 linux)
     case "$DISTRO_NAME" in
+    arch)
+        official_packages+=(
+            'docker'
+        )
+        ;;&
     fedora)
         pre_official_install_scripts+=(
             'sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo'
@@ -19,7 +24,7 @@ linux)
             'containerd'
         )
         ;;&
-    fedora | ubuntu)
+    arch | fedora | ubuntu)
         official_packages+=(
             'docker-compose'
         )
