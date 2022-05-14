@@ -3,7 +3,7 @@
 case "$OS_NAME" in
 linux)
     case "$DISTRO_NAME" in
-    fedora | ubuntu)
+    arch | fedora | ubuntu)
         custom_install_scripts+=(
             'export CHROME_EXECUTABLE=/var/lib/flatpak/exports/bin/com.google.Chrome'
             'export ANDROID_HOME=/opt/android-sdk'
