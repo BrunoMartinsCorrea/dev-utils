@@ -3,6 +3,11 @@
 case "$OS_NAME" in
 linux)
     case "$DISTRO_NAME" in
+    arch)
+        official_packages+=(
+            'webex-bin'
+        )
+        ;;
     fedora)
         official_packages+=(
             'https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm'
