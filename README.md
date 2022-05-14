@@ -60,7 +60,6 @@ Cria um ambiente amplo para desenvolvimento baseado no seu perfil técnico, cont
 - [Figma](https://www.figma.com/downloads)
 - [Flatpak](https://flatpak.org)
 - [Flutter](https://flutter.dev)
-- [Fritzing](https://fritzing.org)
 - [Google Chrome](https://www.google.com/chrome)
 - [htop](https://htop.dev)
 - [Insomnia](https://insomnia.rest)
