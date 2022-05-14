@@ -3,6 +3,11 @@
 case "$OS_NAME" in
 linux)
     case "$DISTRO_NAME" in
+    arch)
+        official_packages+=(
+            'visual-studio-code-bin'
+        )
+        ;;
     fedora)
         pre_official_install_scripts+=(
             'sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc'
