@@ -52,55 +52,73 @@ esac
 
 rm -f "$OUTPUT_SCRIPT_FILE" "$OUTPUT_RC_FILE"
 
-echo '#INIT-SCRIPT' >>"$OUTPUT_SCRIPT_FILE"
-for init_script in "${init_scripts[@]}"; do
-    echo "$init_script" >>"$OUTPUT_SCRIPT_FILE"
-done
-echo -e '#INIT-SCRIPT\n' >>"$OUTPUT_SCRIPT_FILE"
+if [ -n "$init_scripts" ]; then
+    echo '#INIT-SCRIPT' >>"$OUTPUT_SCRIPT_FILE"
+    for init_script in "${init_scripts[@]}"; do
+        echo "$init_script" >>"$OUTPUT_SCRIPT_FILE"
+    done
+    echo -e '#INIT-SCRIPT\n' >>"$OUTPUT_SCRIPT_FILE"
+fi
 
-echo '#PRE-OFFICIAL-INSTALL-SCRIPT' >>"$OUTPUT_SCRIPT_FILE"
-for pre_official_install_script in "${pre_official_install_scripts[@]}"; do
-    echo "$pre_official_install_script" >>"$OUTPUT_SCRIPT_FILE"
-done
-echo -e '#PRE-OFFICIAL-INSTALL-SCRIPT\n' >>"$OUTPUT_SCRIPT_FILE"
+if [ -n "$pre_official_install_scripts" ]; then
+    echo '#PRE-OFFICIAL-INSTALL-SCRIPT' >>"$OUTPUT_SCRIPT_FILE"
+    for pre_official_install_script in "${pre_official_install_scripts[@]}"; do
+        echo "$pre_official_install_script" >>"$OUTPUT_SCRIPT_FILE"
+    done
+    echo -e '#PRE-OFFICIAL-INSTALL-SCRIPT\n' >>"$OUTPUT_SCRIPT_FILE"
+fi
 
-echo '#OFFICIAL-PACKAGE-MANAGER' >>"$OUTPUT_SCRIPT_FILE"
-echo "$official_package_manager ${official_packages[@]}" >>"$OUTPUT_SCRIPT_FILE"
-echo -e '#OFFICIAL-PACKAGE-MANAGER\n' >>"$OUTPUT_SCRIPT_FILE"
+if [ -n "$official_packages" ]; then
+    echo '#OFFICIAL-PACKAGE-MANAGER' >>"$OUTPUT_SCRIPT_FILE"
+    echo "$official_package_manager ${official_packages[@]}" >>"$OUTPUT_SCRIPT_FILE"
+    echo -e '#OFFICIAL-PACKAGE-MANAGER\n' >>"$OUTPUT_SCRIPT_FILE"
+fi
 
-echo '#POST-OFFICIAL-INSTALL-SCRIPT' >>"$OUTPUT_SCRIPT_FILE"
-for post_official_install_script in "${post_official_install_scripts[@]}"; do
-    echo "$post_official_install_script" >>"$OUTPUT_SCRIPT_FILE"
-done
-echo -e '#POST-OFFICIAL-INSTALL-SCRIPT\n' >>$OUTPUT_SCRIPT_FILE
+if [ -n "$post_official_install_scripts" ]; then
+    echo '#POST-OFFICIAL-INSTALL-SCRIPT' >>"$OUTPUT_SCRIPT_FILE"
+    for post_official_install_script in "${post_official_install_scripts[@]}"; do
+        echo "$post_official_install_script" >>"$OUTPUT_SCRIPT_FILE"
+    done
+    echo -e '#POST-OFFICIAL-INSTALL-SCRIPT\n' >>$OUTPUT_SCRIPT_FILE
+fi
 
-echo '#PRE-FLATPAK-INSTALL-SCRIPT' >>"$OUTPUT_SCRIPT_FILE"
-for pre_flatpak_install_script in "${pre_flatpak_install_scripts[@]}"; do
-    echo "$pre_flatpak_install_script" >>$OUTPUT_SCRIPT_FILE
-done
-echo -e '#PRE-FLATPAK-INSTALL-SCRIPT\n' >>"$OUTPUT_SCRIPT_FILE"
+if [ -n "$pre_flatpak_install_scripts" ]; then
+    echo '#PRE-FLATPAK-INSTALL-SCRIPT' >>"$OUTPUT_SCRIPT_FILE"
+    for pre_flatpak_install_script in "${pre_flatpak_install_scripts[@]}"; do
+        echo "$pre_flatpak_install_script" >>$OUTPUT_SCRIPT_FILE
+    done
+    echo -e '#PRE-FLATPAK-INSTALL-SCRIPT\n' >>"$OUTPUT_SCRIPT_FILE"
+fi
 
-echo '#FLATPAK-PACKAGES' >>"$OUTPUT_SCRIPT_FILE"
-echo "sudo flatpak install -y flathub ${flatpak_packages[@]}" >>"$OUTPUT_SCRIPT_FILE"
-echo -e '#FLATPAK-PACKAGES\n' >>"$OUTPUT_SCRIPT_FILE"
+if [ -n "$flatpak_packages" ]; then
+    echo '#FLATPAK-PACKAGES' >>"$OUTPUT_SCRIPT_FILE"
+    echo "sudo flatpak install -y flathub ${flatpak_packages[@]}" >>"$OUTPUT_SCRIPT_FILE"
+    echo -e '#FLATPAK-PACKAGES\n' >>"$OUTPUT_SCRIPT_FILE"
+fi
 
-echo '#POST-FLATPAK-INSTALL-SCRIPT' >>"$OUTPUT_SCRIPT_FILE"
-for post_flatpak_install_script in "${post_flatpak_install_scripts[@]}"; do
-    echo "$post_flatpak_install_script" >>"$OUTPUT_SCRIPT_FILE"
-done
-echo -e '#POST-FLATPAK-INSTALL-SCRIPT\n' >>"$OUTPUT_SCRIPT_FILE"
+if [ -n "$post_flatpak_install_scripts" ]; then
+    echo '#POST-FLATPAK-INSTALL-SCRIPT' >>"$OUTPUT_SCRIPT_FILE"
+    for post_flatpak_install_script in "${post_flatpak_install_scripts[@]}"; do
+        echo "$post_flatpak_install_script" >>"$OUTPUT_SCRIPT_FILE"
+    done
+    echo -e '#POST-FLATPAK-INSTALL-SCRIPT\n' >>"$OUTPUT_SCRIPT_FILE"
+fi
 
-echo '#CUSTOM-INSTALL-SCRIPT' >>"$OUTPUT_SCRIPT_FILE"
-for custom_install_script in "${custom_install_scripts[@]}"; do
-    echo "$custom_install_script" >>"$OUTPUT_SCRIPT_FILE"
-done
-echo -e '#CUSTOM-INSTALL-SCRIPT\n' >>"$OUTPUT_SCRIPT_FILE"
+if [ -n "$custom_install_scripts" ]; then
+    echo '#CUSTOM-INSTALL-SCRIPT' >>"$OUTPUT_SCRIPT_FILE"
+    for custom_install_script in "${custom_install_scripts[@]}"; do
+        echo "$custom_install_script" >>"$OUTPUT_SCRIPT_FILE"
+    done
+    echo -e '#CUSTOM-INSTALL-SCRIPT\n' >>"$OUTPUT_SCRIPT_FILE"
+fi
 
-echo '#END-SCRIPTS' >>"$OUTPUT_SCRIPT_FILE"
-for end_script in "${end_scripts[@]}"; do
-    echo "$end_script" >>"$OUTPUT_SCRIPT_FILE"
-done
-echo -e '#END-SCRIPTS\n' >>$OUTPUT_SCRIPT_FILE
+if [ -n "$end_scripts" ]; then
+    echo '#END-SCRIPTS' >>"$OUTPUT_SCRIPT_FILE"
+    for end_script in "${end_scripts[@]}"; do
+        echo "$end_script" >>"$OUTPUT_SCRIPT_FILE"
+    done
+    echo -e '#END-SCRIPTS\n' >>$OUTPUT_SCRIPT_FILE
+fi
 
 chmod +x "$OUTPUT_SCRIPT_FILE"
 
