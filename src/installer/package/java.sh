@@ -3,6 +3,13 @@
 case "$OS_NAME" in
 linux)
     case "$DISTRO_NAME" in
+    arch)
+        official_packages+=(
+            'jdk8-openjdk'
+            'jdk11-openjdk'
+            'jdk17-openjdk'
+        )
+        ;;
     fedora)
         official_packages+=(
             'java-1.8.0-openjdk'
