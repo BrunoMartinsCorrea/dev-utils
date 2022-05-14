@@ -22,21 +22,16 @@ case "$(uname -s)" in
 Linux*)
     OS_NAME='linux'
     DISTRO_NAME=$(cat /etc/*-release | grep -Po "(?<=^ID=).*")
+    DISTRO_SCRIPT_PATH="$INSTALLER_PATH/core/$DISTRO_NAME.sh"
 
-    source "$INSTALLER_PATH/core/any.sh"
-
-    case "$DISTRO_NAME" in
-    fedora)
-        source "$INSTALLER_PATH/core/fedora.sh"
-        ;;
-    ubuntu)
-        source "$INSTALLER_PATH/core/ubuntu.sh"
-        ;;
-    *)
+    if [ -f "$DISTRO_SCRIPT_PATH" ]; then
+        source "$DISTRO_SCRIPT_PATH"
+    else
         echo "Linux distribution not supported!"
         exit 1
-        ;;
-    esac
+    fi
+
+    source "$INSTALLER_PATH/core/any.sh"
     ;;
 Darwin*)
     OS_NAME=mac
