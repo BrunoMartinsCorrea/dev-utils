@@ -10,7 +10,7 @@ linux)
             'sudo chmod +x /usr/local/bin/ctop'
         )
         ;;
-    ubuntu)
+    arch | ubuntu)
         official_packages+=(
             'ctop'
         )
