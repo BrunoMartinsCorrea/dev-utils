@@ -7,12 +7,12 @@ linux)
         official_packages+=(
             'yarn'
         )
-        ;;
+        ;;&
     fedora | ubuntu)
         official_packages+=(
             'yarnpkg'
         )
-        ;;
+        ;;&
     arch | fedora | ubuntu)
         custom_install_scripts+=(
             'NVM_LATEST_VERSION=$(curl -s https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r .tag_name)'
