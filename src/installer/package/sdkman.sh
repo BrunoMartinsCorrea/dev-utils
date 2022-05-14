@@ -3,7 +3,7 @@
 case "$OS_NAME" in
 linux)
     case "$DISTRO_NAME" in
-    fedora | ubuntu)
+    arch | fedora | ubuntu)
         custom_install_scripts+=(
             'curl -s "https://get.sdkman.io" | bash'
             'source "$HOME/.sdkman/bin/sdkman-init.sh"'
