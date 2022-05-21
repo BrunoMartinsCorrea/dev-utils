@@ -9,8 +9,11 @@ pre_official_install_scripts+=(
     'rustup install stable'
     'rustup default stable'
     'rustup component add rls'
+    'git clone https://aur.archlinux.org/paru.git /tmp/paru'
+    'cd /tmp/paru'
+    'makepkg -si'
 )
 
 post_official_install_scripts+=(
-    'sudo pacman -Scq --noconfirm'
+    'paru -Scq --noconfirm'
 )
