@@ -9,6 +9,9 @@ linux)
             'jdk11-openjdk'
             'jdk17-openjdk'
         )
+        post_official_packages+=(
+            'sudo archlinux-java set java-8-openjdk'
+        )
         ;;
     fedora)
         official_packages+=(

@@ -3,7 +3,30 @@
 case "$OS_NAME" in
 linux)
     case "$DISTRO_NAME" in
-    arch | fedora | ubuntu)
+    arch)
+        official_packages+=(
+            'android-platform'
+            'android-sdk-build-tools'
+            'android-sdk-cmdline-tools-latest'
+            'android-sdk-platform-tools'
+            'android-sdk'
+            'dart'
+            'flutter'
+        )
+        post_official_packages+=(
+            'export CHROME_EXECUTABLE=google-chrome-stable'
+            'git config --global --add safe.directory /opt/flutter'
+            'sudo groupadd android-sdk'
+            'sudo chgrp -R android-sdk /opt/android-sdk'
+            'sudo usermod -aG android-sdk $USER'
+            'sudo usermod -aG flutterusers $USER'
+            'sudo -u $USER bash -ci "flutter config --enable-linux-desktop"'
+            'sudo -u $USER bash -ci "flutter precache"'
+            'sudo -u $USER bash -ci "yes | flutter doctor --android-licenses"'
+            'sudo -u $USER bash -ci "yes | sdkmanager --licenses"'
+        )
+        ;;
+    fedora | ubuntu)
         custom_install_scripts+=(
             'export CHROME_EXECUTABLE=/var/lib/flatpak/exports/bin/com.google.Chrome'
             'export ANDROID_HOME=/opt/android-sdk'

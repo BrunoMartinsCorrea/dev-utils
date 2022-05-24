@@ -11,7 +11,7 @@ pre_official_install_scripts+=(
     'rustup component add rls'
     'git clone https://aur.archlinux.org/paru.git /tmp/paru'
     'cd /tmp/paru'
-    'makepkg -si'
+    'yes | makepkg -si'
 )
 
 post_official_install_scripts+=(
