@@ -25,7 +25,7 @@ linux)
             'sudo -u $USER bash -ci "yes | flutter doctor --android-licenses"'
             'sudo -u $USER bash -ci "yes | sdkmanager --licenses"'
         )
-        ;;
+        ;;&
     fedora | ubuntu)
         custom_install_scripts+=(
             'export CHROME_EXECUTABLE=/var/lib/flatpak/exports/bin/com.google.Chrome'
@@ -59,6 +59,19 @@ linux)
             'flutter config --android-sdk $ANDROID_SDK_ROOT'
             'flutter config --enable-linux-desktop'
             'flutter precache'
+        )
+        ;;&
+    arch | fedora | ubuntu)
+        environment_variables+=(
+            'export FLUTTER_HOME=/opt/flutter'
+            'export PATH=$PATH:$FLUTTER_HOME/bin'
+            'export ANDROID_HOME=/opt/android-sdk'
+            'export ANDROID_SDK_ROOT=$ANDROID_HOME'
+            'export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin'
+            'export PATH=$PATH:$ANDROID_SDK_ROOT/emulator'
+            'export PATH=$PATH:$ANDROID_SDK_ROOT/tools'
+            'export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin'
+            'export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools'
         )
         ;;
     esac

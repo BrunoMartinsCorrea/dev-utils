@@ -4,5 +4,6 @@
 # OUTPUT FILE
 .bashrc
 .zshrc
+env.sh
 install.sh
 script.sh

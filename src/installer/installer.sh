@@ -2,6 +2,7 @@
 
 OUTPUT_SCRIPT_FILE="$DEV_UTILS_DATA_DIR/script.sh"
 OUTPUT_RC_FILE="$DEV_UTILS_DATA_DIR/.zshrc"
+OUTPUT_ENV_FILE="$DEV_UTILS_DATA_DIR/env.sh"
 OUTPUT_INSTALL_FILE="$DEV_UTILS_DATA_DIR/install.sh"
 OS_NAME=''
 DISTRO_NAME=''
@@ -17,6 +18,7 @@ flatpak_packages=()
 post_flatpak_install_scripts=()
 custom_install_scripts=()
 end_scripts=()
+environment_variables=()
 
 case "$(uname -s)" in
 Linux*)
@@ -50,7 +52,7 @@ MINGW*)
     ;;
 esac
 
-rm -f "$OUTPUT_SCRIPT_FILE" "$OUTPUT_RC_FILE"
+rm -f "$OUTPUT_SCRIPT_FILE" "$OUTPUT_RC_FILE" "$OUTPUT_ENV_FILE"
 
 if [ -n "$init_scripts" ]; then
     echo '#INIT-SCRIPT' >>"$OUTPUT_SCRIPT_FILE"
@@ -126,6 +128,10 @@ for rc_script in "${rc_scripts[@]}"; do
     echo "$rc_script" >>"$OUTPUT_RC_FILE"
 done
 
+for environment_variable in "${environment_variables[@]}"; do
+    echo "$environment_variable" >>"$OUTPUT_ENV_FILE"
+done
+
 echo "# INSTALL SCRIPT
 chmod +x $OUTPUT_SCRIPT_FILE
 $OUTPUT_SCRIPT_FILE
@@ -160,4 +166,5 @@ fi
 
 if [ "$INSTALL_SCRIPT" == "1" ]; then
     sh $OUTPUT_INSTALL_FILE
+    sudo cp $OUTPUT_ENV_FILE /etc/profile.d/dev-utils.sh
 fi
