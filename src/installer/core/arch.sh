@@ -12,6 +12,7 @@ pre_official_install_scripts+=(
     'git clone https://aur.archlinux.org/paru.git /tmp/paru'
     'cd /tmp/paru'
     'yes | makepkg -si'
+    'paru -Syuq --noconfirm --noprogressbar'
 )
 
 post_official_install_scripts+=(
