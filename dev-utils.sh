@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ROOT_PATH=$(dirname "$0")
+ROOT_PATH=$(readlink -f $(dirname "$0"))
 DEV_UTILS_DATA_DIR=$ROOT_PATH
 INSTALLER_PATH=$ROOT_PATH/src/installer
 SCRIPT_PATH=$ROOT_PATH/src/script

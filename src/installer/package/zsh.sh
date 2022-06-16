@@ -24,7 +24,6 @@ linux)
             '    done'
             'fi'
             'mkdir -p ~/.cache/zsh'
-            'touch ~/.zsh_profile'
         )
         rc_scripts+=(
             '# OH-MY-ZSH VARS'
