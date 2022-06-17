@@ -9,7 +9,7 @@ linux)
             'jdk11-openjdk'
             'jdk17-openjdk'
         )
-        post_official_packages+=(
+        post_official_install_scripts+=(
             'sudo archlinux-java set java-8-openjdk'
         )
         ;;

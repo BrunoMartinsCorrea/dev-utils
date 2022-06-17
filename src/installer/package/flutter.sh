@@ -13,7 +13,7 @@ linux)
             'dart'
             'flutter'
         )
-        post_official_packages+=(
+        post_official_install_scripts+=(
             'export CHROME_EXECUTABLE=google-chrome-stable'
             'git config --global --add safe.directory /opt/flutter'
             'sudo groupadd android-sdk'

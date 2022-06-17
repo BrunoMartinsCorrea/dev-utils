@@ -16,7 +16,7 @@ linux)
         )
         ;;&
     arch | fedora | ubuntu)
-        post_official_packages+=(
+        post_official_install_scripts+=(
             'pip install --user awscli localstack localstack-client jupyter pipenv virtualenv'
         )
         ;;
