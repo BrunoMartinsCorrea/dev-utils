@@ -23,7 +23,6 @@ linux)
             'sudo -u $USER bash -ci "flutter config --enable-linux-desktop"'
             'sudo -u $USER bash -ci "flutter precache"'
             'sudo -u $USER bash -ci "yes | flutter doctor --android-licenses"'
-            'sudo -u $USER bash -ci "yes | sdkmanager --licenses"'
         )
         ;;&
     fedora | ubuntu)
