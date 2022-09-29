@@ -39,9 +39,8 @@ Linux*)
     esac
     ;;
 Darwin*)
-    OS_NAME=mac
-    echo "OS not supported!"
-    exit 1
+    OS_NAME=macos
+    source "$INSTALLER_PATH/core/macos.sh"
     ;;
 CYGWIN*)
     OS_NAME=cygwin
